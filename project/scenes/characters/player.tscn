@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://player001"]
+
+[ext_resource type="Script" path="res://scripts/characters/player.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
+size = Vector2(28, 16)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1")
+move_speed = 200.0
+player_index = 0
+element = 0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+modulate = Color(0, 0, 0, 0.35)
+position = Vector2(0, 8)
+texture = null
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_player")
+
+[node name="AimIndicator" type="Node2D" parent="."]
+
+[node name="AimLine" type="Line2D" parent="AimIndicator"]
+points = PackedVector2Array(0, 0, 40, 0)
+width = 2.0
+default_color = Color(1, 1, 1, 0.5)
+
+[node name="AimDot" type="Sprite2D" parent="AimIndicator"]
+position = Vector2(45, 0)
+
+[node name="ElementLabel" type="Label" parent="."]
+offset_left = -30
+offset_top = -45
+offset_right = 30
+offset_bottom = -30
+horizontal_alignment = 1
+text = "Fire"
+
+[node name="HPBar" type="ProgressBar" parent="."]
+offset_left = -25
+offset_top = -35
+offset_right = 25
+offset_bottom = -28
+max_value = 300.0
+value = 300.0
+show_percentage = false
+
+[node name="HPBarStyleOverride" type="Node" parent="HPBar"]
