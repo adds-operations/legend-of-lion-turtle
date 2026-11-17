@@ -1,0 +1,231 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://assets/avatar_arenas/arena_layout.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/avatar_arenas/art/tideglass_harbor.png" id="2"]
+[ext_resource type="Shader" path="res://assets/avatar_arenas/water_ripples.gdshader" id="3"]
+[ext_resource type="Texture2D" path="res://assets/avatar_arenas/art/metal_marker.png" id="4"]
+
+[sub_resource type="RectangleShape2D" id="Boundary_0"]
+size = Vector2(801, 20)
+
+[sub_resource type="RectangleShape2D" id="Boundary_1"]
+size = Vector2(801, 20)
+
+[sub_resource type="RectangleShape2D" id="Boundary_2"]
+size = Vector2(20, 399)
+
+[sub_resource type="RectangleShape2D" id="Boundary_3"]
+size = Vector2(20, 399)
+
+[sub_resource type="RectangleShape2D" id="Cover_0"]
+size = Vector2(92, 44)
+
+[sub_resource type="RectangleShape2D" id="Cover_1"]
+size = Vector2(100, 40)
+
+[sub_resource type="RectangleShape2D" id="Cover_2"]
+size = Vector2(92, 40)
+
+[sub_resource type="RectangleShape2D" id="Cover_3"]
+size = Vector2(100, 48)
+
+[sub_resource type="ShaderMaterial" id="Ripple_0"]
+shader = ExtResource("3")
+shader_parameter/center = Vector2(472.5, 156.5)
+shader_parameter/radii = Vector2(379.5, 25.5)
+shader_parameter/phase = 1.62
+shader_parameter/ellipse_fade = false
+
+[sub_resource type="ShaderMaterial" id="Ripple_1"]
+shader = ExtResource("3")
+shader_parameter/center = Vector2(473.0, 448.5)
+shader_parameter/radii = Vector2(380.0, 28.5)
+shader_parameter/phase = 2.92
+shader_parameter/ellipse_fade = false
+
+[node name="TideglassHarbor" type="Node2D"]
+script = ExtResource("1")
+play_rect = Rect2(93, 112, 761, 399)
+
+[node name="Backdrop" type="Sprite2D" parent="."]
+z_index = -10
+texture_filter = 1
+texture = ExtResource("2")
+centered = false
+
+[node name="Boundary" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="SolidCover" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Wall0" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(473.5, 102)
+shape = SubResource("Boundary_0")
+
+[node name="Wall1" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(473.5, 521)
+shape = SubResource("Boundary_1")
+
+[node name="Wall2" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(83, 311.5)
+shape = SubResource("Boundary_2")
+
+[node name="Wall3" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(864, 311.5)
+shape = SubResource("Boundary_3")
+
+[node name="Cover0" type="CollisionShape2D" parent="SolidCover"]
+position = Vector2(251, 270)
+shape = SubResource("Cover_0")
+
+[node name="Cover1" type="CollisionShape2D" parent="SolidCover"]
+position = Vector2(392, 335)
+shape = SubResource("Cover_1")
+
+[node name="Cover2" type="CollisionShape2D" parent="SolidCover"]
+position = Vector2(568, 232)
+shape = SubResource("Cover_2")
+
+[node name="Cover3" type="CollisionShape2D" parent="SolidCover"]
+position = Vector2(704, 297)
+shape = SubResource("Cover_3")
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Point0" type="Marker2D" parent="Spawns"]
+position = Vector2(165, 320)
+
+[node name="Point1" type="Marker2D" parent="Spawns"]
+position = Vector2(781, 320)
+
+[node name="Raava" type="Node2D" parent="."]
+
+[node name="Point0" type="Marker2D" parent="Raava"]
+position = Vector2(485, 288)
+
+[node name="Point1" type="Marker2D" parent="Raava"]
+position = Vector2(469, 312)
+
+[node name="Point2" type="Marker2D" parent="Raava"]
+position = Vector2(517, 280)
+
+[node name="WaterSources" type="Node2D" parent="."]
+
+[node name="Point0" type="Marker2D" parent="WaterSources"]
+position = Vector2(117, 152)
+
+[node name="Point1" type="Marker2D" parent="WaterSources"]
+position = Vector2(261, 152)
+
+[node name="Point2" type="Marker2D" parent="WaterSources"]
+position = Vector2(397, 160)
+
+[node name="Point3" type="Marker2D" parent="WaterSources"]
+position = Vector2(541, 152)
+
+[node name="Point4" type="Marker2D" parent="WaterSources"]
+position = Vector2(685, 152)
+
+[node name="Point5" type="Marker2D" parent="WaterSources"]
+position = Vector2(829, 152)
+
+[node name="Point6" type="Marker2D" parent="WaterSources"]
+position = Vector2(117, 448)
+
+[node name="Point7" type="Marker2D" parent="WaterSources"]
+position = Vector2(261, 448)
+
+[node name="Point8" type="Marker2D" parent="WaterSources"]
+position = Vector2(397, 448)
+
+[node name="Point9" type="Marker2D" parent="WaterSources"]
+position = Vector2(541, 448)
+
+[node name="Point10" type="Marker2D" parent="WaterSources"]
+position = Vector2(685, 448)
+
+[node name="Point11" type="Marker2D" parent="WaterSources"]
+position = Vector2(829, 448)
+
+[node name="EarthSources" type="Node2D" parent="."]
+
+[node name="Point0" type="Marker2D" parent="EarthSources"]
+position = Vector2(165, 184)
+
+[node name="Point1" type="Marker2D" parent="EarthSources"]
+position = Vector2(165, 424)
+
+[node name="Point2" type="Marker2D" parent="EarthSources"]
+position = Vector2(269, 184)
+
+[node name="Point3" type="Marker2D" parent="EarthSources"]
+position = Vector2(269, 416)
+
+[node name="Point4" type="Marker2D" parent="EarthSources"]
+position = Vector2(677, 184)
+
+[node name="Point5" type="Marker2D" parent="EarthSources"]
+position = Vector2(677, 416)
+
+[node name="Point6" type="Marker2D" parent="EarthSources"]
+position = Vector2(781, 184)
+
+[node name="Point7" type="Marker2D" parent="EarthSources"]
+position = Vector2(781, 416)
+
+[node name="Point8" type="Marker2D" parent="EarthSources"]
+position = Vector2(253, 320)
+
+[node name="Point9" type="Marker2D" parent="EarthSources"]
+position = Vector2(389, 384)
+
+[node name="Point10" type="Marker2D" parent="EarthSources"]
+position = Vector2(565, 280)
+
+[node name="Point11" type="Marker2D" parent="EarthSources"]
+position = Vector2(701, 344)
+
+[node name="MetalSources" type="Node2D" parent="."]
+
+[node name="Point0" type="Marker2D" parent="MetalSources"]
+position = Vector2(365, 288)
+
+[node name="Resource" type="Sprite2D" parent="MetalSources/Point0"]
+z_index = -6
+texture_filter = 1
+texture = ExtResource("4")
+scale = Vector2(0.24, 0.24)
+
+[node name="Point1" type="Marker2D" parent="MetalSources"]
+position = Vector2(597, 288)
+
+[node name="Resource" type="Sprite2D" parent="MetalSources/Point1"]
+z_index = -6
+texture_filter = 1
+texture = ExtResource("4")
+scale = Vector2(0.24, 0.24)
+
+[node name="ShallowWater" type="Node2D" parent="."]
+
+[node name="Pool0" type="Polygon2D" parent="ShallowWater"]
+z_index = -8
+material = SubResource("Ripple_0")
+polygon = PackedVector2Array(93, 137, 231, 131, 374, 137, 552, 133, 703, 136, 852, 133, 852, 175, 715, 180, 587, 176, 473, 182, 329, 175, 195, 180, 93, 176)
+
+[node name="Pool1" type="Polygon2D" parent="ShallowWater"]
+z_index = -8
+material = SubResource("Ripple_1")
+polygon = PackedVector2Array(93, 425, 182, 424, 292, 420, 440, 425, 564, 423, 712, 422, 853, 424, 853, 471, 731, 476, 596, 474, 464, 472, 323, 477, 189, 475, 93, 473)
+
+[node name="BendableGround" type="Node2D" parent="."]
+
+[node name="Ground0" type="Polygon2D" parent="BendableGround"]
+visible = false
+polygon = PackedVector2Array(111, 124, 417, 124, 417, 498, 111, 498)
+
+[node name="Ground1" type="Polygon2D" parent="BendableGround"]
+visible = false
+polygon = PackedVector2Array(549, 124, 836, 124, 836, 498, 549, 498)

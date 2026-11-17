@@ -1,0 +1,150 @@
+{
+  "frame_size_px": [
+    128,
+    128
+  ],
+  "alignment": "center",
+  "specials": {
+    "fire_rings": {
+      "element": "fire",
+      "sprite_frames": "res://assets/avatar_bending/specials/fire_rings.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "fire_wave": {
+      "element": "fire",
+      "sprite_frames": "res://assets/avatar_bending/specials/fire_wave.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "lightning": {
+      "element": "fire",
+      "sprite_frames": "res://assets/avatar_bending/specials/lightning.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "combustion": {
+      "element": "fire",
+      "sprite_frames": "res://assets/avatar_bending/specials/combustion.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "flame_guard": {
+      "element": "fire",
+      "sprite_frames": "res://assets/avatar_bending/specials/flame_guard.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "octopus_stance": {
+      "element": "water",
+      "sprite_frames": "res://assets/avatar_bending/specials/octopus_stance.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "ice_barrier": {
+      "element": "water",
+      "sprite_frames": "res://assets/avatar_bending/specials/ice_barrier.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "bloodbending": {
+      "element": "water",
+      "sprite_frames": "res://assets/avatar_bending/specials/bloodbending.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "healing": {
+      "element": "water",
+      "sprite_frames": "res://assets/avatar_bending/specials/healing.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "water_surge": {
+      "element": "water",
+      "sprite_frames": "res://assets/avatar_bending/specials/water_surge.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "earth_armor": {
+      "element": "earth",
+      "sprite_frames": "res://assets/avatar_bending/specials/earth_armor.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "ground_slam": {
+      "element": "earth",
+      "sprite_frames": "res://assets/avatar_bending/specials/ground_slam.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "lava": {
+      "element": "earth",
+      "sprite_frames": "res://assets/avatar_bending/specials/lava.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "metal_shell": {
+      "element": "earth",
+      "sprite_frames": "res://assets/avatar_bending/specials/metal_shell.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "earth_surf": {
+      "element": "earth",
+      "sprite_frames": "res://assets/avatar_bending/specials/earth_surf.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "tornado": {
+      "element": "air",
+      "sprite_frames": "res://assets/avatar_bending/specials/tornado.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "repulsion_burst": {
+      "element": "air",
+      "sprite_frames": "res://assets/avatar_bending/specials/repulsion_burst.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "flight_sphere": {
+      "element": "air",
+      "sprite_frames": "res://assets/avatar_bending/specials/flight_sphere.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    },
+    "spirit_form": {
+      "element": "air",
+      "sprite_frames": "res://assets/avatar_bending/specials/spirit_form.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact",
+      "required_original_element": "air"
+    },
+    "air_barrier": {
+      "element": "air",
+      "sprite_frames": "res://assets/avatar_bending/specials/air_barrier.tres",
+      "startup": "windup",
+      "release": "active",
+      "finish": "impact"
+    }
+  }
+}

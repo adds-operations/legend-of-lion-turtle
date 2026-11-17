@@ -1,0 +1,76 @@
+{
+  "frame_size_px": [
+    96,
+    96
+  ],
+  "ground_pivot_px": [
+    48,
+    80
+  ],
+  "directions_left_to_right": [
+    "south",
+    "west",
+    "east",
+    "north"
+  ],
+  "poses_top_to_bottom": [
+    "channel",
+    "fusion_enter",
+    "fusion_peak",
+    "avatar_ready"
+  ],
+  "animations": [
+    "raava_channel",
+    "raava_fusion",
+    "avatar_ready"
+  ],
+  "fighters": [
+    {
+      "id": "ember_captain",
+      "atlas": "res://assets/avatar_transformation/fighters/ember_captain_avatar.png",
+      "sprite_frames": "res://assets/avatar_transformation/fighters/ember_captain_avatar.tres"
+    },
+    {
+      "id": "sun_student",
+      "atlas": "res://assets/avatar_transformation/fighters/sun_student_avatar.png",
+      "sprite_frames": "res://assets/avatar_transformation/fighters/sun_student_avatar.tres"
+    },
+    {
+      "id": "ice_guard",
+      "atlas": "res://assets/avatar_transformation/fighters/ice_guard_avatar.png",
+      "sprite_frames": "res://assets/avatar_transformation/fighters/ice_guard_avatar.tres"
+    },
+    {
+      "id": "tide_runner",
+      "atlas": "res://assets/avatar_transformation/fighters/tide_runner_avatar.png",
+      "sprite_frames": "res://assets/avatar_transformation/fighters/tide_runner_avatar.tres"
+    },
+    {
+      "id": "stone_warden",
+      "atlas": "res://assets/avatar_transformation/fighters/stone_warden_avatar.png",
+      "sprite_frames": "res://assets/avatar_transformation/fighters/stone_warden_avatar.tres"
+    },
+    {
+      "id": "sand_outrider",
+      "atlas": "res://assets/avatar_transformation/fighters/sand_outrider_avatar.png",
+      "sprite_frames": "res://assets/avatar_transformation/fighters/sand_outrider_avatar.tres"
+    },
+    {
+      "id": "temple_courier",
+      "atlas": "res://assets/avatar_transformation/fighters/temple_courier_avatar.png",
+      "sprite_frames": "res://assets/avatar_transformation/fighters/temple_courier_avatar.tres"
+    },
+    {
+      "id": "cloud_keeper",
+      "atlas": "res://assets/avatar_transformation/fighters/cloud_keeper_avatar.png",
+      "sprite_frames": "res://assets/avatar_transformation/fighters/cloud_keeper_avatar.tres"
+    }
+  ],
+  "raava_effects": {
+    "claim_circle": "res://assets/avatar_transformation/raava/claim_circle.png",
+    "warning_circle": "res://assets/avatar_transformation/raava/warning_circle.png",
+    "spirit_descent": "res://assets/avatar_transformation/raava/spirit_descent.png",
+    "fusion": "res://assets/avatar_transformation/raava/fusion.png",
+    "eye_glow": "res://assets/avatar_transformation/raava/eye_glow.png"
+  }
+}

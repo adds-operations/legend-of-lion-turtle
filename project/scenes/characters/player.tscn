@@ -1,53 +1,62 @@
-[gd_scene load_steps=3 format=3 uid="uid://player001"]
+[gd_scene load_steps=4 format=3 uid="uid://player001"]
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/ui/kit/side_ring.gd" id="2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(28, 16)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 15
+motion_mode = 1
 script = ExtResource("1")
-move_speed = 200.0
-player_index = 0
-element = 0
 
 [node name="Shadow" type="Sprite2D" parent="."]
-z_index = -1
-modulate = Color(0, 0, 0, 0.35)
-position = Vector2(0, 8)
-texture = null
+position = Vector2(0, 4)
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="SideRing" type="Node2D" parent="."]
+position = Vector2(0, 4)
+script = ExtResource("2")
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+centered = false
+offset = Vector2(-48, -80)
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_player")
 
 [node name="AimIndicator" type="Node2D" parent="."]
+position = Vector2(0, -26)
 
 [node name="AimLine" type="Line2D" parent="AimIndicator"]
-points = PackedVector2Array(0, 0, 40, 0)
+points = PackedVector2Array(22, 0, 44, 0)
 width = 2.0
-default_color = Color(1, 1, 1, 0.5)
+default_color = Color(1, 1, 1, 0.55)
 
-[node name="AimDot" type="Sprite2D" parent="AimIndicator"]
-position = Vector2(45, 0)
+[node name="AimDot" type="Polygon2D" parent="AimIndicator"]
+position = Vector2(48, 0)
+color = Color(1, 1, 1, 0.8)
+polygon = PackedVector2Array(-3, -4, 5, 0, -3, 4)
 
-[node name="ElementLabel" type="Label" parent="."]
-offset_left = -30
-offset_top = -45
-offset_right = 30
-offset_bottom = -30
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -94.0
+offset_right = 60.0
+offset_bottom = -76.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 13
+text = "YOU"
 horizontal_alignment = 1
-text = "Fire"
+vertical_alignment = 1
 
 [node name="HPBar" type="ProgressBar" parent="."]
-offset_left = -25
-offset_top = -35
-offset_right = 25
-offset_bottom = -28
+offset_left = -26.0
+offset_top = -71.0
+offset_right = 26.0
+offset_bottom = -65.0
 max_value = 300.0
 value = 300.0
 show_percentage = false
-
-[node name="HPBarStyleOverride" type="Node" parent="HPBar"]

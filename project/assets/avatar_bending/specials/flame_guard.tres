@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/avatar_bending/specials/fire_specials.png" id="1"]
+
+[sub_resource type="AtlasTexture" id="Frame_0"]
+atlas = ExtResource("1")
+region = Rect2(0, 512, 128, 128)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_1"]
+atlas = ExtResource("1")
+region = Rect2(128, 512, 128, 128)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_2"]
+atlas = ExtResource("1")
+region = Rect2(256, 512, 128, 128)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{"duration": 1.0, "texture": SubResource("Frame_0")}],
+"loop": false,
+"name": &"windup",
+"speed": 6.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("Frame_1")}],
+"loop": false,
+"name": &"active",
+"speed": 6.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("Frame_2")}],
+"loop": false,
+"name": &"impact",
+"speed": 6.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("Frame_2")}],
+"loop": false,
+"name": &"expire",
+"speed": 6.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("Frame_0")}, {"duration": 1.0, "texture": SubResource("Frame_1")}, {"duration": 1.0, "texture": SubResource("Frame_2")}],
+"loop": false,
+"name": &"sequence",
+"speed": 6.0
+}]

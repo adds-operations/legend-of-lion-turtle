@@ -1,0 +1,146 @@
+[gd_resource type="SpriteFrames" load_steps=18 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/avatar_transformation/fighters/tide_runner_avatar.png" id="1"]
+
+[sub_resource type="AtlasTexture" id="Frame_0_0"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_0_1"]
+atlas = ExtResource("1")
+region = Rect2(96, 0, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_0_2"]
+atlas = ExtResource("1")
+region = Rect2(192, 0, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_0_3"]
+atlas = ExtResource("1")
+region = Rect2(288, 0, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_1_0"]
+atlas = ExtResource("1")
+region = Rect2(0, 96, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_1_1"]
+atlas = ExtResource("1")
+region = Rect2(96, 96, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_1_2"]
+atlas = ExtResource("1")
+region = Rect2(192, 96, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_1_3"]
+atlas = ExtResource("1")
+region = Rect2(288, 96, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_2_0"]
+atlas = ExtResource("1")
+region = Rect2(0, 192, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_2_1"]
+atlas = ExtResource("1")
+region = Rect2(96, 192, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_2_2"]
+atlas = ExtResource("1")
+region = Rect2(192, 192, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_2_3"]
+atlas = ExtResource("1")
+region = Rect2(288, 192, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_3_0"]
+atlas = ExtResource("1")
+region = Rect2(0, 288, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_3_1"]
+atlas = ExtResource("1")
+region = Rect2(96, 288, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_3_2"]
+atlas = ExtResource("1")
+region = Rect2(192, 288, 96, 96)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="Frame_3_3"]
+atlas = ExtResource("1")
+region = Rect2(288, 288, 96, 96)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{"duration": 1.0, "texture": SubResource("Frame_0_0")}],
+"loop": true,
+"name": &"raava_channel_south",
+"speed": 1.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("Frame_0_1")}],
+"loop": true,
+"name": &"raava_channel_west",
+"speed": 1.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("Frame_0_2")}],
+"loop": true,
+"name": &"raava_channel_east",
+"speed": 1.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("Frame_0_3")}],
+"loop": true,
+"name": &"raava_channel_north",
+"speed": 1.0
+}, {
+"frames": [{"duration": 0.85, "texture": SubResource("Frame_1_0")}, {"duration": 1.65, "texture": SubResource("Frame_2_0")}, {"duration": 1.0, "texture": SubResource("Frame_3_0")}],
+"loop": false,
+"name": &"raava_fusion_south",
+"speed": 8.0
+}, {
+"frames": [{"duration": 0.85, "texture": SubResource("Frame_1_1")}, {"duration": 1.65, "texture": SubResource("Frame_2_1")}, {"duration": 1.0, "texture": SubResource("Frame_3_1")}],
+"loop": false,
+"name": &"raava_fusion_west",
+"speed": 8.0
+}, {
+"frames": [{"duration": 0.85, "texture": SubResource("Frame_1_2")}, {"duration": 1.65, "texture": SubResource("Frame_2_2")}, {"duration": 1.0, "texture": SubResource("Frame_3_2")}],
+"loop": false,
+"name": &"raava_fusion_east",
+"speed": 8.0
+}, {
+"frames": [{"duration": 0.85, "texture": SubResource("Frame_1_3")}, {"duration": 1.65, "texture": SubResource("Frame_2_3")}, {"duration": 1.0, "texture": SubResource("Frame_3_3")}],
+"loop": false,
+"name": &"raava_fusion_north",
+"speed": 8.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("Frame_3_0")}],
+"loop": true,
+"name": &"avatar_ready_south",
+"speed": 1.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("Frame_3_1")}],
+"loop": true,
+"name": &"avatar_ready_west",
+"speed": 1.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("Frame_3_2")}],
+"loop": true,
+"name": &"avatar_ready_east",
+"speed": 1.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("Frame_3_3")}],
+"loop": true,
+"name": &"avatar_ready_north",
+"speed": 1.0
+}]

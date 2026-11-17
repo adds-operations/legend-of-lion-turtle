@@ -1,0 +1,263 @@
+[gd_scene load_steps=9 format=3 uid="uid://lolt_lobby"]
+
+[ext_resource type="Script" path="res://scripts/ui/lobby.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/ui/kit/backdrop.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/ui/kit/paint_panel.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/ui/kit/key_hint.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/ui/kit/player_plate.gd" id="5"]
+[ext_resource type="Script" path="res://scripts/ui/kit/element_card.gd" id="6"]
+[ext_resource type="Script" path="res://scripts/ui/kit/slash_banner.gd" id="7"]
+[ext_resource type="Script" path="res://scripts/ui/kit/arena_chip.gd" id="8"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Backdrop" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2")
+sun_center = Vector2(0.5, 0.22)
+sun_radius = 120.0
+show_horizon = false
+banners = Array[Vector4]([])
+leaf_count = 14
+
+[node name="Header" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 34.0
+offset_right = 900.0
+offset_bottom = 100.0
+theme_override_constants/separation = 18
+
+[node name="Accent" type="Control" parent="Header"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("3")
+style = 3
+color = Color(0.71, 0.165, 0.102, 1)
+
+[node name="Titles" type="VBoxContainer" parent="Header"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="Title" type="Label" parent="Header/Titles"]
+layout_mode = 2
+theme_type_variation = &"H1Label"
+text = "CHOOSE YOUR ELEMENT"
+
+[node name="Subtitle" type="Label" parent="Header/Titles"]
+layout_mode = 2
+theme_type_variation = &"BodyLabel"
+theme_override_colors/font_color = Color(0.165, 0.122, 0.09, 1)
+text = "Both benders may pick the same element. Gold is you, indigo is your rival."
+
+[node name="ArenaChip" type="Control" parent="."]
+custom_minimum_size = Vector2(380, 96)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -428.0
+offset_top = 14.0
+offset_right = -48.0
+offset_bottom = 110.0
+grow_horizontal = 0
+script = ExtResource("8")
+
+[node name="Plates" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 48.0
+offset_top = 122.0
+offset_right = -48.0
+offset_bottom = 218.0
+grow_horizontal = 2
+alignment = 1
+theme_override_constants/separation = 24
+
+[node name="YouPlate" type="Control" parent="Plates"]
+custom_minimum_size = Vector2(440, 96)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("5")
+
+[node name="Vs" type="Label" parent="Plates"]
+layout_mode = 2
+theme_type_variation = &"DisplayLabel"
+theme_override_colors/font_color = Color(0.71, 0.165, 0.102, 1)
+theme_override_font_sizes/font_size = 72
+text = "vs"
+vertical_alignment = 1
+
+[node name="RivalPlate" type="Control" parent="Plates"]
+custom_minimum_size = Vector2(440, 96)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("5")
+is_you = false
+mirrored = true
+
+[node name="Cards" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 48.0
+offset_top = 236.0
+offset_right = -48.0
+offset_bottom = 576.0
+grow_horizontal = 2
+alignment = 1
+theme_override_constants/separation = 14
+
+[node name="FireCard" type="Button" parent="Cards"]
+custom_minimum_size = Vector2(270, 340)
+layout_mode = 2
+script = ExtResource("6")
+
+[node name="WaterCard" type="Button" parent="Cards"]
+custom_minimum_size = Vector2(270, 340)
+layout_mode = 2
+script = ExtResource("6")
+element = 1
+hotkey = "2"
+
+[node name="EarthCard" type="Button" parent="Cards"]
+custom_minimum_size = Vector2(270, 340)
+layout_mode = 2
+script = ExtResource("6")
+element = 2
+hotkey = "3"
+
+[node name="AirCard" type="Button" parent="Cards"]
+custom_minimum_size = Vector2(270, 340)
+layout_mode = 2
+script = ExtResource("6")
+element = 3
+hotkey = "4"
+
+[node name="Footer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = -112.0
+offset_right = -48.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 26
+
+[node name="HintPick" type="HBoxContainer" parent="Footer"]
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("4")
+key_text = "1-4"
+label_text = "PICK ELEMENT"
+
+[node name="HintSwap" type="HBoxContainer" parent="Footer"]
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("4")
+key_text = "TAB"
+label_text = "SWAP BENDER"
+
+[node name="HintReady" type="HBoxContainer" parent="Footer"]
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("4")
+key_text = "ENTER"
+label_text = "READY"
+emphasis = true
+
+[node name="BackButton" type="Button" parent="Footer"]
+custom_minimum_size = Vector2(110, 34)
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"SmallButton"
+text = "ESC  LEAVE"
+
+[node name="StatusLabel" type="Label" parent="Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"BodyLabel"
+theme_override_colors/font_color = Color(0.165, 0.122, 0.09, 1)
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ReadyButton" type="Button" parent="Footer"]
+custom_minimum_size = Vector2(300, 64)
+layout_mode = 2
+theme_type_variation = &"PrimaryButton"
+theme_override_font_sizes/font_size = 28
+text = "READY"
+
+[node name="CountdownOverlay" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dim" type="ColorRect" parent="CountdownOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.165, 0.122, 0.09, 0.55)
+
+[node name="Banner" type="Control" parent="CountdownOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7")
+text = "3"
+
+[node name="CountdownCaption" type="Label" parent="CountdownOverlay"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = -210.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"EyebrowLabel"
+theme_override_colors/font_color = Color(0.973, 0.933, 0.827, 1)
+theme_override_font_sizes/font_size = 20
+text = "MATCH STARTING"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Footer/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Footer/ReadyButton" to="." method="_on_ready_pressed"]

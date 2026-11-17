@@ -1,0 +1,127 @@
+{
+  "frame_size_px": [
+    96,
+    96
+  ],
+  "ground_pivot_px": [
+    48,
+    80
+  ],
+  "animated_sprite_2d_centered": false,
+  "animated_sprite_2d_offset_px": [
+    -48,
+    -80
+  ],
+  "directions_left_to_right": [
+    "south",
+    "west",
+    "east",
+    "north"
+  ],
+  "poses_top_to_bottom": [
+    "idle",
+    "step_a",
+    "step_b",
+    "strike"
+  ],
+  "fighters": [
+    {
+      "id": "ember_captain",
+      "name": "Ember Captain",
+      "element": "fire",
+      "gender": "woman",
+      "origin": "Fire Nation duelist",
+      "atlas": "res://assets/avatar_characters/ember_captain.png",
+      "sprite_frames": "res://assets/avatar_characters/ember_captain.tres",
+      "action_atlas": "res://assets/avatar_characters/ember_captain_actions.png"
+    },
+    {
+      "id": "sun_student",
+      "name": "Sun Student",
+      "element": "fire",
+      "gender": "man",
+      "origin": "Sun Warrior student",
+      "atlas": "res://assets/avatar_characters/sun_student.png",
+      "sprite_frames": "res://assets/avatar_characters/sun_student.tres",
+      "action_atlas": "res://assets/avatar_characters/sun_student_actions.png"
+    },
+    {
+      "id": "ice_guard",
+      "name": "Ice Guard",
+      "element": "water",
+      "gender": "woman",
+      "origin": "Northern Water Tribe guard",
+      "atlas": "res://assets/avatar_characters/ice_guard.png",
+      "sprite_frames": "res://assets/avatar_characters/ice_guard.tres",
+      "action_atlas": "res://assets/avatar_characters/ice_guard_actions.png"
+    },
+    {
+      "id": "tide_runner",
+      "name": "Tide Runner",
+      "element": "water",
+      "gender": "man",
+      "origin": "Southern Water Tribe runner",
+      "atlas": "res://assets/avatar_characters/tide_runner.png",
+      "sprite_frames": "res://assets/avatar_characters/tide_runner.tres",
+      "action_atlas": "res://assets/avatar_characters/tide_runner_actions.png"
+    },
+    {
+      "id": "stone_warden",
+      "name": "Stone Warden",
+      "element": "earth",
+      "gender": "woman",
+      "origin": "Earth Kingdom warden",
+      "atlas": "res://assets/avatar_characters/stone_warden.png",
+      "sprite_frames": "res://assets/avatar_characters/stone_warden.tres",
+      "action_atlas": "res://assets/avatar_characters/stone_warden_actions.png"
+    },
+    {
+      "id": "sand_outrider",
+      "name": "Sand Outrider",
+      "element": "earth",
+      "gender": "man",
+      "origin": "Si Wong Desert sandbender",
+      "atlas": "res://assets/avatar_characters/sand_outrider.png",
+      "sprite_frames": "res://assets/avatar_characters/sand_outrider.tres",
+      "action_atlas": "res://assets/avatar_characters/sand_outrider_actions.png"
+    },
+    {
+      "id": "temple_courier",
+      "name": "Temple Courier",
+      "element": "air",
+      "gender": "woman",
+      "origin": "Air Nomad courier",
+      "atlas": "res://assets/avatar_characters/temple_courier.png",
+      "sprite_frames": "res://assets/avatar_characters/temple_courier.tres",
+      "action_atlas": "res://assets/avatar_characters/temple_courier_actions.png"
+    },
+    {
+      "id": "cloud_keeper",
+      "name": "Cloud Keeper",
+      "element": "air",
+      "gender": "man",
+      "origin": "Air Nomad bison keeper",
+      "atlas": "res://assets/avatar_characters/cloud_keeper.png",
+      "sprite_frames": "res://assets/avatar_characters/cloud_keeper.tres",
+      "action_atlas": "res://assets/avatar_characters/cloud_keeper_actions.png"
+    }
+  ],
+  "version": 2,
+  "action_poses_top_to_bottom": [
+    "jump_start",
+    "airborne",
+    "land",
+    "hit",
+    "defeat"
+  ],
+  "animation_names": [
+    "idle",
+    "walk",
+    "strike",
+    "jump_start",
+    "airborne",
+    "land",
+    "hit",
+    "defeat"
+  ]
+}
