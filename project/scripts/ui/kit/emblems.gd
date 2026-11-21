@@ -9,7 +9,18 @@ extends RefCounted
 
 const ELEMENT_KINDS := ["fire", "water", "earth", "air"]
 
+const KIT_ICONS := {"fire": "element_fire", "water": "element_water", "earth": "element_earth", "air": "element_air", "lock": "ui_lock"}
+
 static func draw(ci: CanvasItem, kind: String, rect: Rect2, color: Color) -> void:
+	# Painted ink icons from the UI kit, when installed.
+	if KIT_ICONS.has(kind):
+		var t: Texture2D = _kit(KIT_ICONS[kind])
+		if t:
+			var side := minf(rect.size.x, rect.size.y) * 1.25
+			var r := Rect2(rect.get_center() - Vector2(side, side) * 0.5, Vector2(side, side))
+			var dim := color.s < 0.15 and color.v < 0.6   # ink-faint callers = inactive
+			ci.draw_texture_rect(t, r, false, Color(1, 1, 1, color.a * (0.45 if dim else 1.0)))
+			return
 	var c := rect.get_center()
 	var r := minf(rect.size.x, rect.size.y) * 0.5
 	match kind:
@@ -24,6 +35,14 @@ static func draw(ci: CanvasItem, kind: String, rect: Rect2, color: Color) -> voi
 		"special": _special(ci, c, r, color)
 		"lock": _lock(ci, c, r, color)
 		_: ci.draw_circle(c, r * 0.4, color)
+
+static var _kit_cache: Dictionary = {}
+
+static func _kit(name: String) -> Texture2D:
+	if not _kit_cache.has(name):
+		var p := "res://assets/ui/kit/%s.png" % name
+		_kit_cache[name] = load(p) if ResourceLoader.exists(p) else null
+	return _kit_cache[name]
 
 static func element_kind(element: int) -> String:
 	return ELEMENT_KINDS[clampi(element, 0, 3)]

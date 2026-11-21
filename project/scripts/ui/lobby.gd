@@ -9,6 +9,9 @@ extends Control
 const T = preload("res://scripts/ui/kit/ui_tokens.gd")
 const Roster = preload("res://scripts/data/roster.gd")
 const Arenas = preload("res://scripts/data/arenas.gd")
+const Specials = preload("res://scripts/data/specials.gd")
+const BuildBoard = preload("res://scripts/ui/kit/build_board.gd")
+const StepTabs = preload("res://scripts/ui/kit/step_tabs.gd")
 
 @onready var you_plate = $Plates/YouPlate
 @onready var rival_plate = $Plates/RivalPlate
@@ -23,6 +26,13 @@ const Arenas = preload("res://scripts/data/arenas.gd")
 var _countdown_end: float = -1.0
 var _last_count: int = -1
 var _ping_t: float = 0.0
+var _tabs
+var _board
+var _mode: int = 0
+var _board_key: String = ""
+var _nagged: bool = false   # READY with points left asks once
+var _msg_until: float = 0.0
+var _edit_t: float = -10.0
 
 func _ready() -> void:
 	NetworkManager.players_changed.connect(_update_display)
@@ -33,11 +43,93 @@ func _ready() -> void:
 	arena_chip.can_change = multiplayer.is_server()
 	arena_chip.step_requested.connect(_step_arena)
 	NetworkManager.arena_changed.connect(func(id): arena_chip.arena_id = id)
+	status_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	status_label.custom_minimum_size.x = 260
+	status_label.add_theme_font_size_override("font_size", 15)
+	_build_ui()
+	# Bring your saved build to the host (it keeps a legal copy).
+	NetworkManager.request_set_build.rpc_id(1, UserSettings.last_build)
 	_update_display()
 	var me := _me()
 	if not me.is_empty():
 		cards[int(me["element"])].grab_focus()
 	_handle_debug_launch()
+
+# --- Build (stats + special) -------------------------------------------------
+# Two steps share the main area: 1 ELEMENT & BENDER (the cards) and
+# 2 BUILD & SPECIAL (the build board). B or the tabs switch between them.
+
+func _build_ui() -> void:
+	_tabs = StepTabs.new()
+	_tabs.position = Vector2(48, 226)
+	_tabs.size = Vector2(size.x - 96, 34)
+	_tabs.tab_selected.connect(_set_mode)
+	add_child(_tabs)
+	resized.connect(func(): _tabs.size.x = size.x - 96)
+	_board = BuildBoard.new()
+	_board.position = Vector2(48, 268)
+	_board.size = Vector2(size.x - 96, 332)
+	_board.visible = false
+	add_child(_board)
+	resized.connect(func(): _board.size.x = size.x - 96)
+	_board.build_changed.connect(func(b):
+		_edit_t = Time.get_ticks_msec() / 1000.0
+		UserSettings.last_build = b
+		UserSettings.save()
+		NetworkManager.request_set_build.rpc_id(1, b)
+		_refresh_tabs(b))
+	_board.message.connect(_say)
+
+## A status line that stays up for a few seconds over the default prompts.
+func _say(t: String) -> void:
+	status_label.text = t
+	_msg_until = Time.get_ticks_msec() / 1000.0 + 3.0
+
+## 0 = element cards, 1 = build board.
+func _set_mode(m: int) -> void:
+	_mode = m
+	_tabs.active = m
+	$Cards.visible = m == 0
+	_board.visible = m == 1
+	$Header/Titles/Title.text = "CHOOSE YOUR ELEMENT" if m == 0 else "SHAPE YOUR BUILD"
+	$Header/Titles/Subtitle.text = ("Both benders may pick the same element. Gold is you, indigo is your rival." if m == 0
+			else "Spend 8 points on your stats. Your bender's signature attack is on A.")
+	$Footer/HintPick.key_text = "1-4" if m == 0 else "B"
+	$Footer/HintPick.label_text = "PICK ELEMENT" if m == 0 else "BACK TO BENDER"
+	$Footer/HintSwap.key_text = "TAB" if m == 0 else "← →"
+	$Footer/HintSwap.label_text = "SWAP BENDER" if m == 0 else "POINTS"
+	_update_display()
+	if m == 1:
+		_sync_board(true)
+	else:
+		var me := _me()
+		if not me.is_empty():
+			cards[int(me["element"])].grab_focus()
+
+func _refresh_tabs(b: Dictionary) -> void:
+	_tabs.points_left = Specials.POINTS - Specials.spent(b)
+	var fid := str(_me().get("fighter", ""))
+	_tabs.summary = "ATK %d  ·  DEF %d  ·  MOB %d  ·  A: %s" % [int(b.get("atk", 0)), int(b.get("def", 0)), int(b.get("mob", 0)),
+			str(Specials.info(Specials.signature(fid)).get("name", "—")).to_upper()]
+
+## Load the host's copy into the board when the element, offer or ready state
+## changes (not on every echo, so quick clicks never flicker back).
+func _sync_board(force: bool = false) -> void:
+	var me := _me()
+	if me.is_empty():
+		return
+	var el := int(me["element"])
+	var fid := str(me.get("fighter", ""))
+	var hb: Dictionary = me.get("build", Specials.empty_build())
+	var base := "%d|%s|%s" % [el, fid, _local_ready()]
+	var key := base + "|%d,%d,%d" % [int(hb.get("atk", 0)), int(hb.get("def", 0)), int(hb.get("mob", 0))]
+	# Right after a local click the host's echo may lag a step behind: skip it
+	# unless the element, offer or ready state really changed.
+	var settling := Time.get_ticks_msec() / 1000.0 - _edit_t < 0.6 and _board_key.begins_with(base)
+	if force or (key != _board_key and not settling):
+		_board_key = key
+		_board.set_state(el, fid, hb, _local_ready())
+		_refresh_tabs(_board.build)
 
 func _handle_debug_launch() -> void:
 	if NetworkManager.debug_args.has("element"):
@@ -50,6 +142,7 @@ func _handle_debug_launch() -> void:
 	if NetworkManager.has_debug("auto-ready"):
 		await get_tree().create_timer(0.5).timeout
 		if not _local_ready():
+			_nagged = true
 			_on_ready_pressed()
 
 func _me() -> Dictionary:
@@ -102,14 +195,18 @@ func _update_display() -> void:
 		cards[i].rival_fighter = str(rival.get("fighter", ""))
 		cards[i].disabled = ready
 
+	if _board and not me.is_empty():
+		_sync_board()
 	ready_button.text = "CANCEL READY" if ready else "READY"
 	ready_button.theme_type_variation = &"SecondaryButton" if ready else &"PrimaryButton"
-	if ready and not rival.get("ready", false):
+	if Time.get_ticks_msec() / 1000.0 < _msg_until:
+		pass
+	elif ready and not rival.get("ready", false):
 		status_label.text = "Waiting for %s to ready up..." % rival.get("name", "rival")
 	elif not ready and rival.get("ready", false):
 		status_label.text = "%s is ready. Your move." % rival.get("name", "Rival")
 	elif not ready:
-		status_label.text = "Pick an element, then press READY."
+		status_label.text = "Pick an element, then press READY." if _mode == 0 else "Spend your points, then READY."
 	else:
 		status_label.text = ""
 
@@ -119,6 +216,18 @@ func _input(event: InputEvent) -> void:
 	if _countdown_end > 0.0:
 		return
 	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_B:
+			_set_mode(1 - _mode)
+			get_viewport().set_input_as_handled()
+			return
+		if _mode == 1:
+			if event.keycode == KEY_ESCAPE:
+				_set_mode(0)
+				get_viewport().set_input_as_handled()
+				return
+			if _board.key_input(event):
+				get_viewport().set_input_as_handled()
+				return
 		match event.keycode:
 			KEY_1, KEY_2, KEY_3, KEY_4:
 				_select_element(event.keycode - KEY_1)
@@ -179,6 +288,11 @@ func _step_arena(delta: int) -> void:
 func _on_ready_pressed() -> void:
 	if _countdown_end > 0.0:
 		return  # Locked in once the countdown has started.
+	if not _local_ready() and not _nagged and _board and _board.points_left() > 0:
+		_nagged = true
+		_set_mode(1)
+		_say("%d build points unspent. Spend them, or press READY again." % _board.points_left())
+		return
 	NetworkManager.request_set_ready.rpc_id(1, not _local_ready())
 
 func _on_back_pressed() -> void:

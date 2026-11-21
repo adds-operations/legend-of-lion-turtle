@@ -4,7 +4,7 @@ extends RefCounted
 ## Player-facing element info (lobby cards, HUD). Index = GameManager.Element.
 ## Attack names follow docs/game-design-spec.md §5. Keys follow §4.
 
-const KEYS := ["Q", "W", "E", "R"]
+const KEYS := ["Z", "X", "C", "V"]
 ## Input actions for the four attack keys.
 const ACTIONS := ["attack_1", "attack_2", "attack_3", "attack_4"]
 
@@ -84,7 +84,15 @@ static func attack(element: int, slot: int) -> Dictionary:
 	a["name"] = INFO[clampi(element, 0, 3)]["attacks"][clampi(slot, 0, 3)]
 	return a
 
-## The element a fighter throws from a key: the Avatar's Q W E R are Fire,
+## What key `key` (0–3 = Z X C V) throws: [element, attack slot, cooldown multiplier].
+## The Avatar's keys are Fire, Water, Earth and Air, each throwing that
+## element's best power (its 4th attack) at half the cooldown.
+static func attack_for(active_element: int, key: int, is_avatar: bool) -> Array:
+	if is_avatar:
+		return [key, 3, 0.5]
+	return [active_element, key, 1.0]
+
+## The element a fighter throws from a key: the Avatar's Z X C V are Fire,
 ## Water, Earth and Air (Fire Bolt, Ice Shard, Shockwave, Tornado);
 ## everyone else throws their own element.
 static func element_for_slot(active_element: int, slot: int, is_avatar: bool) -> int:

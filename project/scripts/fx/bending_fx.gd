@@ -57,6 +57,99 @@ const FX := [
 
 static var _cache: Dictionary = {}
 
+## Animated attacks. Each part of an attack (windup at the hands, travel,
+## impact, trail) plays an 8-frame row of a 128 px sheet:
+##   1. assets/avatar_bending/attacks/<id>.png (a dedicated pack: rows 0 windup,
+##      1 travel, 2 impact, 3 trail), when installed;
+##   2. otherwise rows borrowed from the signature pack
+##      (assets/avatar_bending/signatures/), drawn smaller than the signatures.
+## A part is [sheet id, row] or [sheet id, row, fixed column] (a still frame
+## that spins, e.g. a flung rock).
+const ATTACK_IDS := [
+	["fire_bolt", "flame_burst", "fire_wave", "lightning"],
+	["water_lash", "ice_shard", "pushing_wave", "ice_spikes"],
+	["stone_shot", "boulder", "shockwave", "ground_slam"],
+	["air_jab", "compressed_gust", "knockback_blast", "tornado"],
+]
+const ATTACK_DIR := "res://assets/avatar_bending/attacks/"
+const SIG_DIR := "res://assets/avatar_bending/signatures/"
+## Borrowed animation per attack: w windup, t travel, i impact, s scale, spin.
+const BORROWED := [
+	[  # Fire
+		{"w": ["sun_dragon", 0], "t": ["sun_dragon", 0], "i": ["sun_dragon", 2], "s": 0.36},                  # Fire Bolt: a spinning fire spiral
+		{"w": ["sun_dragon", 0], "t": ["sun_dragon", 1], "i": ["sun_dragon", 2], "s": 0.28},                  # Flame Burst: three little fire dragons
+		{"w": ["sun_dragon", 0], "t": ["sun_dragon", 3], "i": ["sun_dragon", 2], "s": 1.0},                   # Fire Wave: a rolling wall of flame
+		{"w": ["thunder_strike", 0], "t": ["thunder_strike", 1], "i": ["thunder_strike", 2], "s": 0.34},      # Lightning: a thinner bolt
+	],
+	[  # Water (pulled up out of the ground first)
+		{"w": ["water_draw", 0], "t": ["water_draw", 3], "i": ["tidal_surge", 2], "s": 0.55},                 # Water Lash: a jet of water
+		{"w": ["water_draw", 0], "t": ["glacier_prison", 0], "i": ["glacier_prison", 2], "s": 0.32},          # Ice Shard: a spinning ice ring
+		{"w": ["water_draw", 0], "t": ["tidal_surge", 1], "i": ["tidal_surge", 2], "s": 0.5},                 # Pushing Wave
+		{"w": ["water_draw", 0], "t": ["glacier_prison", 1], "i": ["glacier_prison", 2], "s": 0.42},          # Ice Spikes: out of the ground
+	],
+	[  # Earth (rock breaks out of the ground first)
+		{"w": ["earth_rise", 0], "t": ["earth_rise", 0, 7], "i": ["earth_rise", 3], "s": 0.55, "spin": 9.0},  # Stone Shot: a flung rock
+		{"w": ["earth_rise", 0], "t": ["pillar_eruption", 0, 7], "i": ["pillar_eruption", 2], "s": 0.5, "spin": 5.0},  # Boulder: a flung slab
+		{"w": ["earth_rise", 0], "t": ["earth_rise", 2], "i": ["earth_rise", 3], "s": 0.5},                   # Shockwave: spikes out of the ground
+		{"w": ["earth_rise", 0], "t": ["earth_rise", 2], "i": ["earth_rise", 3], "s": 0.55},                  # Ground Slam: a ring of spikes all around
+	],
+	[  # Air
+		{"w": ["air_cannon", 0], "t": ["air_cannon", 1], "i": ["air_cannon", 2], "s": 0.3},                   # Air Jab
+		{"w": ["air_cannon", 0], "t": ["air_cannon", 0], "i": ["air_cannon", 2], "s": 0.38},                  # Compressed Gust
+		{"w": ["air_cannon", 0], "t": ["air_cannon", 2], "i": ["air_cannon", 3], "s": 0.5},                   # Knockback Blast: the shockwave ring
+		{"w": ["tornado_lift", 0], "t": ["tornado_lift", 1], "i": ["tornado_lift", 2], "s": 0.42},            # Tornado: a smaller funnel
+	],
+]
+static var _sheets: Dictionary = {}
+static var _specs: Dictionary = {}
+
+static func _sheet(path: String) -> Texture2D:
+	if not _sheets.has(path):
+		_sheets[path] = load(path) if ResourceLoader.exists(path) else null
+	return _sheets[path]
+
+## {"w": [tex,row,col], "t": [...], "i": [...], "tr": [...] or [], "s": scale, "spin": rate}
+## or {} when no animated art is installed for this attack.
+static func anim_spec(element: int, slot: int) -> Dictionary:
+	var key := element * 4 + slot
+	if _specs.has(key):
+		return _specs[key]
+	var out := {}
+	var id: String = ATTACK_IDS[clampi(element, 0, 3)][clampi(slot, 0, 3)]
+	var own := _sheet(ATTACK_DIR + id + ".png")
+	if own:
+		out = {"w": [own, 0, -1], "t": [own, 1, -1], "i": [own, 2, -1], "tr": [own, 3, -1], "s": 0.5, "spin": 0.0}
+	else:
+		var b: Dictionary = BORROWED[clampi(element, 0, 3)][clampi(slot, 0, 3)]
+		var parts := {}
+		var ok := true
+		for k in ["w", "t", "i"]:
+			var p: Array = b[k]
+			var tex := _sheet(SIG_DIR + str(p[0]) + ".png")
+			if tex == null:
+				ok = false
+				break
+			parts[k] = [tex, int(p[1]), int(p[2]) if p.size() > 2 else -1]
+		if ok:
+			out = parts
+			out["tr"] = []
+			out["s"] = float(b["s"])
+			out["spin"] = float(b.get("spin", 0.0))
+	_specs[key] = out
+	return out
+
+## The frame of a part at time t (fixed column parts stay on one frame).
+static func part_frame(part: Array, t: float, fps: float = 14.0, loop: bool = true) -> AtlasTexture:
+	var col: int = part[2] if part[2] >= 0 else (int(t * fps) % 8 if loop else mini(7, int(t * fps)))
+	var key := "p%d:%d:%d" % [part[0].get_instance_id(), part[1], col]
+	if _cache.has(key):
+		return _cache[key]
+	var a := AtlasTexture.new()
+	a.atlas = part[0]
+	a.region = Rect2(col * CELL, int(part[1]) * CELL, CELL, CELL)
+	_cache[key] = a
+	return a
+
 static func fx(element: int, slot: int) -> Dictionary:
 	return FX[clampi(element, 0, 3)][clampi(slot, 0, 3)]
 

@@ -19,7 +19,7 @@ const Emblems = preload("res://scripts/ui/kit/emblems.gd")
 ## Small caps label above the keycaps ("AVATAR", or "ELEMENTS" in training).
 var title: String = "AVATAR":
 	set(v): title = v; queue_redraw()
-## Avatar: all four lit, tagged Q W E R (each key throws its element).
+## Avatar: all four lit, tagged Z X C V (each key throws its element's best power).
 ## Otherwise (training): the active one lit, tagged 1–4.
 var avatar: bool = false:
 	set(v): avatar = v; queue_redraw()
@@ -56,7 +56,7 @@ func _draw() -> void:
 		# key number tag
 		var kr := Rect2(r.position + Vector2(-4, -6), Vector2(16, 16))
 		draw_rect(kr, T.INK if on else Color(T.INK, 0.55))
-		draw_string(hf, kr.position + Vector2(4, 13), "QWER"[i] if avatar else str(i + 1), HORIZONTAL_ALIGNMENT_LEFT, -1, 12, T.PAPER_LIGHT)
+		draw_string(hf, kr.position + Vector2(4, 13), "ZXCV"[i] if avatar else str(i + 1), HORIZONTAL_ALIGNMENT_LEFT, -1, 12, T.PAPER_LIGHT)
 		if on and not avatar:
 			var ur := Rect2(Vector2(r.position.x - 2, r.end.y + 2), Vector2(w + 4, 9))
 			Paint.stroke(self, ur, T.element_glow(i))

@@ -10,6 +10,10 @@ var last_ip: String = ""
 var last_port: int = 7777
 var last_arena: String = ""
 var last_fighter: String = ""   # training: the bender you last trained with
+var last_build: Dictionary = {"atk": 0, "def": 0, "mob": 0}  # build stats (the signature comes with the bender)
+## Auto-aim: every power is aimed at the rival; the arrows only move and dodge.
+## Toggled from the in-game menu (Esc). SHIFT still aims by hand while held.
+var auto_aim: bool = true
 
 func _ready() -> void:
 	var cfg := ConfigFile.new()
@@ -19,6 +23,8 @@ func _ready() -> void:
 		last_port = cfg.get_value("network", "last_port", 7777)
 		last_arena = cfg.get_value("match", "arena", "")
 		last_fighter = cfg.get_value("training", "fighter", "")
+		last_build = cfg.get_value("build", "build", last_build)
+		auto_aim = cfg.get_value("controls", "auto_aim", true)
 	if player_name.strip_edges() == "":
 		player_name = _default_name()
 
@@ -29,6 +35,8 @@ func save() -> void:
 	cfg.set_value("network", "last_port", last_port)
 	cfg.set_value("match", "arena", last_arena)
 	cfg.set_value("training", "fighter", last_fighter)
+	cfg.set_value("build", "build", last_build)
+	cfg.set_value("controls", "auto_aim", auto_aim)
 	cfg.save(PATH)
 
 static func clean_name(n: String) -> String:

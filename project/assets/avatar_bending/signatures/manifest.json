@@ -1,0 +1,1094 @@
+{
+  "pack": "Legend of Lion Turtle signatures and bending sources",
+  "version": 1,
+  "format": {
+    "cell_width": 128,
+    "cell_height": 128,
+    "columns": 8,
+    "rows": 4,
+    "gutters": 0,
+    "color_mode": "RGBA",
+    "nearest_filter": true,
+    "mipmaps": false
+  },
+  "sheets": [
+    {
+      "id": "thunder_strike",
+      "file": "thunder_strike.png",
+      "element": "fire",
+      "fighter": "Ember Captain",
+      "type": "signature_attack",
+      "key": "A",
+      "rows": [
+        {
+          "index": 0,
+          "name": "WINDUP",
+          "frames": 8,
+          "fps": 32,
+          "loop": false,
+          "duration_seconds": 0.25,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Fast electric charge crackling between TWO EMPTY fingertip anchor points, with NO fingers or hands. Eight steps of sparks gathering into a tiny bright branching charge."
+        },
+        {
+          "index": 1,
+          "name": "TRAVEL",
+          "frames": 8,
+          "fps": 16,
+          "loop": true,
+          "duration_seconds": 0.5,
+          "tiles_horizontally": true,
+          "playback": "forward",
+          "description": "Horizontal right-directed jagged white-violet lightning bolt SEGMENT, continuous from left image edge to right edge, with no arrowhead or gap. The white core enters and exits every tile at exactly local y=80, matching colors and thickness. Eight electric flicker phases, periodic loop."
+        },
+        {
+          "index": 2,
+          "name": "IMPACT",
+          "frames": 8,
+          "fps": 20,
+          "loop": false,
+          "duration_seconds": 0.4,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Lightning electric burst at hit position, small white impact flash expands into sharp violet arcs then fades to a few tiny sparks by frame8."
+        },
+        {
+          "index": 3,
+          "name": "STATUS",
+          "frames": 8,
+          "fps": 12,
+          "loop": true,
+          "duration_seconds": 0.66667,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "SHOCKED overlay only: small arcs and violet sparks dance around a 64px-tall imaginary body, hollow center. Keep center head/face region empty. Eight periodic loop phases."
+        }
+      ],
+      "frames_per_row": 8,
+      "columns": 8,
+      "row_count": 4,
+      "cell_size": [
+        128,
+        128
+      ],
+      "image_size": [
+        1024,
+        512
+      ],
+      "alpha": true,
+      "ground_contact_y": [
+        112,
+        127
+      ],
+      "foot_anchor_px": [
+        64,
+        120
+      ],
+      "godot_centered_sprite_offset_px": [
+        0,
+        -56
+      ],
+      "facing": "right",
+      "status_body_height_px": 64,
+      "status": "SHOCKED"
+    },
+    {
+      "id": "sun_dragon",
+      "file": "sun_dragon.png",
+      "element": "fire",
+      "fighter": "Sun Student",
+      "type": "signature_attack",
+      "key": "A",
+      "rows": [
+        {
+          "index": 0,
+          "name": "WINDUP",
+          "frames": 8,
+          "fps": 32,
+          "loop": false,
+          "duration_seconds": 0.25,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Eight fast stages of a flame spiral gathering into a compact orange coil."
+        },
+        {
+          "index": 1,
+          "name": "TRAVEL",
+          "frames": 8,
+          "fps": 16,
+          "loop": true,
+          "duration_seconds": 0.5,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "An enormous coiling FIRE DRAGON with a clear dragon head facing RIGHT, white-hot yellow horns and muzzle, long curling orange flame body and ember trail. Eight slithering/swirling periodic phases. Preserve stable head location and size."
+        },
+        {
+          "index": 2,
+          "name": "IMPACT",
+          "frames": 8,
+          "fps": 20,
+          "loop": false,
+          "duration_seconds": 0.4,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Large orange-white fire explosion blossoms outward into curling tongues and dissipates into embers by frame8."
+        },
+        {
+          "index": 3,
+          "name": "STATUS",
+          "frames": 8,
+          "fps": 12,
+          "loop": true,
+          "duration_seconds": 0.66667,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "BURNING overlay: small orange flames lick UP from feet at bottom y120, flame tips reach knees, leave torso and face open. Eight continuous flicker loop frames."
+        }
+      ],
+      "frames_per_row": 8,
+      "columns": 8,
+      "row_count": 4,
+      "cell_size": [
+        128,
+        128
+      ],
+      "image_size": [
+        1024,
+        512
+      ],
+      "alpha": true,
+      "ground_contact_y": [
+        112,
+        127
+      ],
+      "foot_anchor_px": [
+        64,
+        120
+      ],
+      "godot_centered_sprite_offset_px": [
+        0,
+        -56
+      ],
+      "facing": "right",
+      "status_body_height_px": 64,
+      "status": "BURNING"
+    },
+    {
+      "id": "glacier_prison",
+      "file": "glacier_prison.png",
+      "element": "water",
+      "fighter": "Ice Guard",
+      "type": "signature_attack",
+      "key": "A",
+      "rows": [
+        {
+          "index": 0,
+          "name": "WINDUP",
+          "frames": 8,
+          "fps": 32,
+          "loop": false,
+          "duration_seconds": 0.25,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Water is visibly pulled UP from a tiny ground source at y120, curls into a ring, progressively FREEZES to ice over eight steps."
+        },
+        {
+          "index": 1,
+          "name": "TRAVEL",
+          "frames": 8,
+          "fps": 16,
+          "loop": true,
+          "duration_seconds": 0.5,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "A sequential advancing line of three or four cyan ICE SPIKES erupting UP from ground baseline y120. Rightmost new spike grows as older left spikes settle. All contact at y120. Eight repeating propagation steps moving RIGHT."
+        },
+        {
+          "index": 2,
+          "name": "IMPACT",
+          "frames": 8,
+          "fps": 20,
+          "loop": false,
+          "duration_seconds": 0.4,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Tall pointed ice-crystal CAGE forming around EMPTY SPACE, first frozen ground ring then upward crystal walls, maximum crystalline cage by middle, splinters/fades by last frames. No captive."
+        },
+        {
+          "index": 3,
+          "name": "STATUS",
+          "frames": 8,
+          "fps": 12,
+          "loop": true,
+          "duration_seconds": 0.66667,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "FROZEN overlay: translucent pale cyan ice crust around imaginary legs and lower body only at y90..123. Hollow leg spaces, crisp ice facets, small glint loop. Upper body and face unobstructed."
+        }
+      ],
+      "frames_per_row": 8,
+      "columns": 8,
+      "row_count": 4,
+      "cell_size": [
+        128,
+        128
+      ],
+      "image_size": [
+        1024,
+        512
+      ],
+      "alpha": true,
+      "ground_contact_y": [
+        112,
+        127
+      ],
+      "foot_anchor_px": [
+        64,
+        120
+      ],
+      "godot_centered_sprite_offset_px": [
+        0,
+        -56
+      ],
+      "facing": "right",
+      "status_body_height_px": 64,
+      "status": "FROZEN"
+    },
+    {
+      "id": "tidal_surge",
+      "file": "tidal_surge.png",
+      "element": "water",
+      "fighter": "Tide Runner",
+      "type": "signature_attack",
+      "key": "A",
+      "rows": [
+        {
+          "index": 0,
+          "name": "WINDUP",
+          "frames": 8,
+          "fps": 32,
+          "loop": false,
+          "duration_seconds": 0.25,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Eight stages of water drawn UP from a puddle in bottom 16px into a tall rising blue column, foam and droplets."
+        },
+        {
+          "index": 1,
+          "name": "TRAVEL",
+          "frames": 8,
+          "fps": 16,
+          "loop": true,
+          "duration_seconds": 0.5,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "A powerful large curling blue WAVE rolling RIGHT along ground y120, bright foam crest, translucent dark-blue base. Eight looping frames with crest water curling continually."
+        },
+        {
+          "index": 2,
+          "name": "IMPACT",
+          "frames": 8,
+          "fps": 20,
+          "loop": false,
+          "duration_seconds": 0.4,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Wave crashes RIGHT into a wide white splash, spray spreads then drops and disperses over eight frames."
+        },
+        {
+          "index": 3,
+          "name": "STATUS",
+          "frames": 8,
+          "fps": 12,
+          "loop": true,
+          "duration_seconds": 0.66667,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "SOAKED overlay: small pale blue rain cloud ABOVE an imaginary head (y30..46), a few drips down the sides x36 and92, little ripples at feet. Keep central head region y54..76 clear. Eight rain cycle frames."
+        }
+      ],
+      "frames_per_row": 8,
+      "columns": 8,
+      "row_count": 4,
+      "cell_size": [
+        128,
+        128
+      ],
+      "image_size": [
+        1024,
+        512
+      ],
+      "alpha": true,
+      "ground_contact_y": [
+        112,
+        127
+      ],
+      "foot_anchor_px": [
+        64,
+        120
+      ],
+      "godot_centered_sprite_offset_px": [
+        0,
+        -56
+      ],
+      "facing": "right",
+      "status_body_height_px": 64,
+      "status": "SOAKED"
+    },
+    {
+      "id": "pillar_eruption",
+      "file": "pillar_eruption.png",
+      "element": "earth",
+      "fighter": "Stone Warden",
+      "type": "signature_attack",
+      "key": "A",
+      "rows": [
+        {
+          "index": 0,
+          "name": "WINDUP",
+          "frames": 8,
+          "fps": 32,
+          "loop": false,
+          "duration_seconds": 0.25,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Ground fissures open at y120, brown rock slab breaks free and lifts through eight clear quick steps, dust flecks."
+        },
+        {
+          "index": 1,
+          "name": "TRAVEL",
+          "frames": 8,
+          "fps": 16,
+          "loop": true,
+          "duration_seconds": 0.5,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Three chunky rock PILLARS sequentially erupt UP from ground y120, propagating to RIGHT with loose debris; fronts, tops and dark outlines visible. Eight periodic repeating ground eruption steps."
+        },
+        {
+          "index": 2,
+          "name": "IMPACT",
+          "frames": 8,
+          "fps": 20,
+          "loop": false,
+          "duration_seconds": 0.4,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "One huge rectangular rock pillar shoots UP, then cracks and crumbles into angular debris, last frames rubble falling to ground."
+        },
+        {
+          "index": 3,
+          "name": "STATUS",
+          "frames": 8,
+          "fps": 12,
+          "loop": true,
+          "duration_seconds": 0.66667,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "STUNNED overlay: three tiny dizzy pebbles orbit elliptically ABOVE the imaginary head centered at (64,44), trails and tiny gold stars, the body below stays empty. Eight loop phases."
+        }
+      ],
+      "frames_per_row": 8,
+      "columns": 8,
+      "row_count": 4,
+      "cell_size": [
+        128,
+        128
+      ],
+      "image_size": [
+        1024,
+        512
+      ],
+      "alpha": true,
+      "ground_contact_y": [
+        112,
+        127
+      ],
+      "foot_anchor_px": [
+        64,
+        120
+      ],
+      "godot_centered_sprite_offset_px": [
+        0,
+        -56
+      ],
+      "facing": "right",
+      "status_body_height_px": 64,
+      "status": "STUNNED"
+    },
+    {
+      "id": "sand_tomb",
+      "file": "sand_tomb.png",
+      "element": "earth",
+      "fighter": "Sand Outrider",
+      "type": "signature_attack",
+      "key": "A",
+      "rows": [
+        {
+          "index": 0,
+          "name": "WINDUP",
+          "frames": 8,
+          "fps": 32,
+          "loop": false,
+          "duration_seconds": 0.25,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Sand granules swirl UP from ground y120, loose brown-gold spiral gathers in eight steps."
+        },
+        {
+          "index": 1,
+          "name": "TRAVEL",
+          "frames": 8,
+          "fps": 16,
+          "loop": true,
+          "duration_seconds": 0.5,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Long serpentine S-curve of ochre sand surges RIGHT close to the ground, clear serpent-like crest, grain tail. Eight repeating undulation steps."
+        },
+        {
+          "index": 2,
+          "name": "IMPACT",
+          "frames": 8,
+          "fps": 20,
+          "loop": false,
+          "duration_seconds": 0.4,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Large hollow sand vortex curls inward and closes, rises then settles into a low sand mound over eight frames."
+        },
+        {
+          "index": 3,
+          "name": "STATUS",
+          "frames": 8,
+          "fps": 12,
+          "loop": true,
+          "duration_seconds": 0.66667,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "BURIED overlay: sand piles up to knees at y98..123, with grains circling in a low ellipse. Empty upper body, small repeating shifts, not a full humanoid silhouette."
+        }
+      ],
+      "frames_per_row": 8,
+      "columns": 8,
+      "row_count": 4,
+      "cell_size": [
+        128,
+        128
+      ],
+      "image_size": [
+        1024,
+        512
+      ],
+      "alpha": true,
+      "ground_contact_y": [
+        112,
+        127
+      ],
+      "foot_anchor_px": [
+        64,
+        120
+      ],
+      "godot_centered_sprite_offset_px": [
+        0,
+        -56
+      ],
+      "facing": "right",
+      "status_body_height_px": 64,
+      "status": "BURIED"
+    },
+    {
+      "id": "air_cannon",
+      "file": "air_cannon.png",
+      "element": "air",
+      "fighter": "Temple Courier",
+      "type": "signature_attack",
+      "key": "A",
+      "rows": [
+        {
+          "index": 0,
+          "name": "WINDUP",
+          "frames": 8,
+          "fps": 32,
+          "loop": false,
+          "duration_seconds": 0.25,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Air compresses into a brilliant tight sphere between TWO EMPTY palm anchor points; eight rapid gathering steps. No hands or person."
+        },
+        {
+          "index": 1,
+          "name": "TRAVEL",
+          "frames": 8,
+          "fps": 16,
+          "loop": true,
+          "duration_seconds": 0.5,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Dense pale cyan white pressure sphere with concentric speed rings behind it on LEFT, it flies RIGHT. Eight rotating/rolling pressure loop frames, big bright distinct silhouette."
+        },
+        {
+          "index": 2,
+          "name": "IMPACT",
+          "frames": 8,
+          "fps": 20,
+          "loop": false,
+          "duration_seconds": 0.4,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Circular expanding pressure SHOCKWAVE, clear hollow ring expands and breaks into fading wind crescents over eight steps."
+        },
+        {
+          "index": 3,
+          "name": "STATUS",
+          "frames": 8,
+          "fps": 12,
+          "loop": true,
+          "duration_seconds": 0.66667,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "WINDED overlay: thin pale cyan curved wind lines orbit around imaginary torso sides, center remains transparent and head region clear. Eight continuous swirling loop frames."
+        }
+      ],
+      "frames_per_row": 8,
+      "columns": 8,
+      "row_count": 4,
+      "cell_size": [
+        128,
+        128
+      ],
+      "image_size": [
+        1024,
+        512
+      ],
+      "alpha": true,
+      "ground_contact_y": [
+        112,
+        127
+      ],
+      "foot_anchor_px": [
+        64,
+        120
+      ],
+      "godot_centered_sprite_offset_px": [
+        0,
+        -56
+      ],
+      "facing": "right",
+      "status_body_height_px": 64,
+      "status": "WINDED"
+    },
+    {
+      "id": "tornado_lift",
+      "file": "tornado_lift.png",
+      "element": "air",
+      "fighter": "Cloud Keeper",
+      "type": "signature_attack",
+      "key": "A",
+      "rows": [
+        {
+          "index": 0,
+          "name": "WINDUP",
+          "frames": 8,
+          "fps": 32,
+          "loop": false,
+          "duration_seconds": 0.25,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Dust devil visibly begins at ground y120 then grows upward into a tapered funnel in eight steps."
+        },
+        {
+          "index": 1,
+          "name": "TRAVEL",
+          "frames": 8,
+          "fps": 16,
+          "loop": true,
+          "duration_seconds": 0.5,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Tall white-cyan tornado with warm gray dust at bottom y120, curls subtly leaning RIGHT and a few trailing streaks on left. Eight continuous spinning loop frames."
+        },
+        {
+          "index": 2,
+          "name": "IMPACT",
+          "frames": 8,
+          "fps": 20,
+          "loop": false,
+          "duration_seconds": 0.4,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Tornado widens at top and lifts dust/debris, flares into a large spiral then dissipates across eight frames."
+        },
+        {
+          "index": 3,
+          "name": "STATUS",
+          "frames": 8,
+          "fps": 12,
+          "loop": true,
+          "duration_seconds": 0.66667,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "SWEPT UP overlay: small cyclone UNDER the imaginary feet at y110..123 with debris and low wisps around ankles, upper part clear. Eight looping spins."
+        }
+      ],
+      "frames_per_row": 8,
+      "columns": 8,
+      "row_count": 4,
+      "cell_size": [
+        128,
+        128
+      ],
+      "image_size": [
+        1024,
+        512
+      ],
+      "alpha": true,
+      "ground_contact_y": [
+        112,
+        127
+      ],
+      "foot_anchor_px": [
+        64,
+        120
+      ],
+      "godot_centered_sprite_offset_px": [
+        0,
+        -56
+      ],
+      "facing": "right",
+      "status_body_height_px": 64,
+      "status": "SWEPT_UP"
+    },
+    {
+      "id": "water_draw",
+      "file": "water_draw.png",
+      "element": "water",
+      "fighter": null,
+      "type": "bending_source",
+      "key": null,
+      "rows": [
+        {
+          "index": 0,
+          "name": "DRAW",
+          "frames": 8,
+          "fps": 16,
+          "loop": false,
+          "duration_seconds": 0.5,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Water pulled visibly UP out of a ground puddle at y120, thin stream rising into a gathered ribbon over eight frames."
+        },
+        {
+          "index": 1,
+          "name": "ORBIT",
+          "frames": 8,
+          "fps": 12,
+          "loop": true,
+          "duration_seconds": 0.66667,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Held blue water ribbon orbiting a hollow ring around an imaginary 64px body. All body and face are transparent empty spaces, eight loop phases."
+        },
+        {
+          "index": 2,
+          "name": "CONSUME",
+          "frames": 8,
+          "fps": 16,
+          "loop": false,
+          "duration_seconds": 0.5,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "The held ribbon steadily shrinks as water is consumed, fragments into smaller droplets and nearly disappears in frame8."
+        },
+        {
+          "index": 3,
+          "name": "STREAM",
+          "frames": 8,
+          "fps": 16,
+          "loop": true,
+          "duration_seconds": 0.5,
+          "tiles_horizontally": true,
+          "playback": "forward",
+          "description": "A thin blue water stream flowing horizontally RIGHT, continuous edge to edge. Blue core enters left x0 and leaves right x127 at local y96, matching profile and thickness, with internal flowing highlights. Eight seamless flow-loop frames."
+        }
+      ],
+      "frames_per_row": 8,
+      "columns": 8,
+      "row_count": 4,
+      "cell_size": [
+        128,
+        128
+      ],
+      "image_size": [
+        1024,
+        512
+      ],
+      "alpha": true,
+      "ground_contact_y": [
+        112,
+        127
+      ],
+      "foot_anchor_px": [
+        64,
+        120
+      ],
+      "godot_centered_sprite_offset_px": [
+        0,
+        -56
+      ],
+      "facing": "right",
+      "status_body_height_px": null,
+      "status": null
+    },
+    {
+      "id": "earth_rise",
+      "file": "earth_rise.png",
+      "element": "earth",
+      "fighter": null,
+      "type": "bending_source",
+      "key": null,
+      "rows": [
+        {
+          "index": 0,
+          "name": "RISE",
+          "frames": 8,
+          "fps": 53.333333333333336,
+          "loop": false,
+          "duration_seconds": 0.15,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "A large brown rock chunk breaks UP out of the ground at y120 and rises to imaginary waist height y88, dust and debris. Eight steps for a rapid 0.15-second lift."
+        },
+        {
+          "index": 1,
+          "name": "CRACK",
+          "frames": 8,
+          "fps": 16,
+          "loop": false,
+          "duration_seconds": 0.5,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "A flat ground CRACK DECAL around local y116, cracks appear, spread and then fade across eight steps."
+        },
+        {
+          "index": 2,
+          "name": "SPIKES",
+          "frames": 8,
+          "fps": 20,
+          "loop": false,
+          "duration_seconds": 0.4,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "Small rock spikes burst UP out of ground y120 in sequence, then collapse into loose stone."
+        },
+        {
+          "index": 3,
+          "name": "DUST",
+          "frames": 8,
+          "fps": 16,
+          "loop": false,
+          "duration_seconds": 0.5,
+          "tiles_horizontally": false,
+          "playback": "forward",
+          "description": "A low brown-gray DUST PUFF near the feet, small to large and then dissipating over eight frames."
+        }
+      ],
+      "frames_per_row": 8,
+      "columns": 8,
+      "row_count": 4,
+      "cell_size": [
+        128,
+        128
+      ],
+      "image_size": [
+        1024,
+        512
+      ],
+      "alpha": true,
+      "ground_contact_y": [
+        112,
+        127
+      ],
+      "foot_anchor_px": [
+        64,
+        120
+      ],
+      "godot_centered_sprite_offset_px": [
+        0,
+        -56
+      ],
+      "facing": "right",
+      "status_body_height_px": null,
+      "status": null
+    }
+  ],
+  "loop_playback": "Play all eight cells left to right and repeat only rows marked loop. Lightning flicker, ground ice, air sphere, and traveling tornado use five-pose forward-and-return cycles; the water stream advances right 16px per frame over a 128px period. Other loops use all eight generated phases.",
+  "provenance": {
+    "tool": "built-in image_gen",
+    "style_reference": "existing assets/avatar_bending/specials",
+    "prompts": {
+      "thunder_strike": "Production transparent pixel-art game VFX sprite atlas for Legend of Lion Turtle. REFERENCE IMAGE IS STYLE AND PALETTE ONLY, IGNORE its layout and its faint rectangular glows. Thick dark colored outlines, sharp chunky pixel clusters, bright material highlights, limited colors closely match reference. EFFECTS ONLY: no characters, no body, no face, no hands or fingers, no dummy. Output EXACTLY EIGHT columns and FOUR rows in an unbroken equal grid, 32 sprites total. Target sheet 1024x512, each logical cell 128x128, no gutters, no borders or text. Each effect fits its own equal cell. Keep scale and anchor identical across frames within each row. View is side-on to a top-down three-quarter arena. Every traveling form moves RIGHT. Ground-attached art touches local y120 (within bottom 16 pixels), no platforms or ground plane. Flying art centered around (64,80). For victim status row, imagine a 64px-tall fighter occupying x44..84, y56..120, but leave that fighter entirely blank. Keep x48..80,y54..76 clear for face. Eight frames in order left-to-right. Periodic rows have a smooth frame8-to-frame1 transition, stable volume and shape. Alpha zero everywhere outside the actual effect, especially corners and hollow centers. No color backdrop, no rectangular haze, no checkerboard. Windup grows rapidly. Impact runs from contact through dissipation.\nROW 0: Fast electric charge crackling between TWO EMPTY fingertip anchor points, with NO fingers or hands. Eight steps of sparks gathering into a tiny bright branching charge.\nROW 1: Horizontal right-directed jagged white-violet lightning bolt SEGMENT, continuous from left image edge to right edge, with no arrowhead or gap. The white core enters and exits every tile at exactly local y=80, matching colors and thickness. Eight electric flicker phases, periodic loop.\nROW 2: Lightning electric burst at hit position, small white impact flash expands into sharp violet arcs then fades to a few tiny sparks by frame8.\nROW 3: SHOCKED overlay only: small arcs and violet sparks dance around a 64px-tall imaginary body, hollow center. Keep center head/face region empty. Eight periodic loop phases.",
+      "sun_dragon": "Production transparent pixel-art game VFX sprite atlas for Legend of Lion Turtle. REFERENCE IMAGE IS STYLE AND PALETTE ONLY, IGNORE its layout and its faint rectangular glows. Thick dark colored outlines, sharp chunky pixel clusters, bright material highlights, limited colors closely match reference. EFFECTS ONLY: no characters, no body, no face, no hands or fingers, no dummy. Output EXACTLY EIGHT columns and FOUR rows in an unbroken equal grid, 32 sprites total. Target sheet 1024x512, each logical cell 128x128, no gutters, no borders or text. Each effect fits its own equal cell. Keep scale and anchor identical across frames within each row. View is side-on to a top-down three-quarter arena. Every traveling form moves RIGHT. Ground-attached art touches local y120 (within bottom 16 pixels), no platforms or ground plane. Flying art centered around (64,80). For victim status row, imagine a 64px-tall fighter occupying x44..84, y56..120, but leave that fighter entirely blank. Keep x48..80,y54..76 clear for face. Eight frames in order left-to-right. Periodic rows have a smooth frame8-to-frame1 transition, stable volume and shape. Alpha zero everywhere outside the actual effect, especially corners and hollow centers. No color backdrop, no rectangular haze, no checkerboard. Windup grows rapidly. Impact runs from contact through dissipation.\nROW 0: Eight fast stages of a flame spiral gathering into a compact orange coil.\nROW 1: An enormous coiling FIRE DRAGON with a clear dragon head facing RIGHT, white-hot yellow horns and muzzle, long curling orange flame body and ember trail. Eight slithering/swirling periodic phases. Preserve stable head location and size.\nROW 2: Large orange-white fire explosion blossoms outward into curling tongues and dissipates into embers by frame8.\nROW 3: BURNING overlay: small orange flames lick UP from feet at bottom y120, flame tips reach knees, leave torso and face open. Eight continuous flicker loop frames.",
+      "glacier_prison": "Production transparent pixel-art game VFX sprite atlas for Legend of Lion Turtle. REFERENCE IMAGE IS STYLE AND PALETTE ONLY, IGNORE its layout and its faint rectangular glows. Thick dark colored outlines, sharp chunky pixel clusters, bright material highlights, limited colors closely match reference. EFFECTS ONLY: no characters, no body, no face, no hands or fingers, no dummy. Output EXACTLY EIGHT columns and FOUR rows in an unbroken equal grid, 32 sprites total. Target sheet 1024x512, each logical cell 128x128, no gutters, no borders or text. Each effect fits its own equal cell. Keep scale and anchor identical across frames within each row. View is side-on to a top-down three-quarter arena. Every traveling form moves RIGHT. Ground-attached art touches local y120 (within bottom 16 pixels), no platforms or ground plane. Flying art centered around (64,80). For victim status row, imagine a 64px-tall fighter occupying x44..84, y56..120, but leave that fighter entirely blank. Keep x48..80,y54..76 clear for face. Eight frames in order left-to-right. Periodic rows have a smooth frame8-to-frame1 transition, stable volume and shape. Alpha zero everywhere outside the actual effect, especially corners and hollow centers. No color backdrop, no rectangular haze, no checkerboard. Windup grows rapidly. Impact runs from contact through dissipation.\nROW 0: Water is visibly pulled UP from a tiny ground source at y120, curls into a ring, progressively FREEZES to ice over eight steps.\nROW 1: A sequential advancing line of three or four cyan ICE SPIKES erupting UP from ground baseline y120. Rightmost new spike grows as older left spikes settle. All contact at y120. Eight repeating propagation steps moving RIGHT.\nROW 2: Tall pointed ice-crystal CAGE forming around EMPTY SPACE, first frozen ground ring then upward crystal walls, maximum crystalline cage by middle, splinters/fades by last frames. No captive.\nROW 3: FROZEN overlay: translucent pale cyan ice crust around imaginary legs and lower body only at y90..123. Hollow leg spaces, crisp ice facets, small glint loop. Upper body and face unobstructed.",
+      "tidal_surge": "Production transparent pixel-art game VFX sprite atlas for Legend of Lion Turtle. REFERENCE IMAGE IS STYLE AND PALETTE ONLY, IGNORE its layout and its faint rectangular glows. Thick dark colored outlines, sharp chunky pixel clusters, bright material highlights, limited colors closely match reference. EFFECTS ONLY: no characters, no body, no face, no hands or fingers, no dummy. Output EXACTLY EIGHT columns and FOUR rows in an unbroken equal grid, 32 sprites total. Target sheet 1024x512, each logical cell 128x128, no gutters, no borders or text. Each effect fits its own equal cell. Keep scale and anchor identical across frames within each row. View is side-on to a top-down three-quarter arena. Every traveling form moves RIGHT. Ground-attached art touches local y120 (within bottom 16 pixels), no platforms or ground plane. Flying art centered around (64,80). For victim status row, imagine a 64px-tall fighter occupying x44..84, y56..120, but leave that fighter entirely blank. Keep x48..80,y54..76 clear for face. Eight frames in order left-to-right. Periodic rows have a smooth frame8-to-frame1 transition, stable volume and shape. Alpha zero everywhere outside the actual effect, especially corners and hollow centers. No color backdrop, no rectangular haze, no checkerboard. Windup grows rapidly. Impact runs from contact through dissipation.\nROW 0: Eight stages of water drawn UP from a puddle in bottom 16px into a tall rising blue column, foam and droplets.\nROW 1: A powerful large curling blue WAVE rolling RIGHT along ground y120, bright foam crest, translucent dark-blue base. Eight looping frames with crest water curling continually.\nROW 2: Wave crashes RIGHT into a wide white splash, spray spreads then drops and disperses over eight frames.\nROW 3: SOAKED overlay: small pale blue rain cloud ABOVE an imaginary head (y30..46), a few drips down the sides x36 and92, little ripples at feet. Keep central head region y54..76 clear. Eight rain cycle frames.",
+      "pillar_eruption": "Production transparent pixel-art game VFX sprite atlas for Legend of Lion Turtle. REFERENCE IMAGE IS STYLE AND PALETTE ONLY, IGNORE its layout and its faint rectangular glows. Thick dark colored outlines, sharp chunky pixel clusters, bright material highlights, limited colors closely match reference. EFFECTS ONLY: no characters, no body, no face, no hands or fingers, no dummy. Output EXACTLY EIGHT columns and FOUR rows in an unbroken equal grid, 32 sprites total. Target sheet 1024x512, each logical cell 128x128, no gutters, no borders or text. Each effect fits its own equal cell. Keep scale and anchor identical across frames within each row. View is side-on to a top-down three-quarter arena. Every traveling form moves RIGHT. Ground-attached art touches local y120 (within bottom 16 pixels), no platforms or ground plane. Flying art centered around (64,80). For victim status row, imagine a 64px-tall fighter occupying x44..84, y56..120, but leave that fighter entirely blank. Keep x48..80,y54..76 clear for face. Eight frames in order left-to-right. Periodic rows have a smooth frame8-to-frame1 transition, stable volume and shape. Alpha zero everywhere outside the actual effect, especially corners and hollow centers. No color backdrop, no rectangular haze, no checkerboard. Windup grows rapidly. Impact runs from contact through dissipation.\nROW 0: Ground fissures open at y120, brown rock slab breaks free and lifts through eight clear quick steps, dust flecks.\nROW 1: Three chunky rock PILLARS sequentially erupt UP from ground y120, propagating to RIGHT with loose debris; fronts, tops and dark outlines visible. Eight periodic repeating ground eruption steps.\nROW 2: One huge rectangular rock pillar shoots UP, then cracks and crumbles into angular debris, last frames rubble falling to ground.\nROW 3: STUNNED overlay: three tiny dizzy pebbles orbit elliptically ABOVE the imaginary head centered at (64,44), trails and tiny gold stars, the body below stays empty. Eight loop phases.",
+      "sand_tomb": "Production transparent pixel-art game VFX sprite atlas for Legend of Lion Turtle. REFERENCE IMAGE IS STYLE AND PALETTE ONLY, IGNORE its layout and its faint rectangular glows. Thick dark colored outlines, sharp chunky pixel clusters, bright material highlights, limited colors closely match reference. EFFECTS ONLY: no characters, no body, no face, no hands or fingers, no dummy. Output EXACTLY EIGHT columns and FOUR rows in an unbroken equal grid, 32 sprites total. Target sheet 1024x512, each logical cell 128x128, no gutters, no borders or text. Each effect fits its own equal cell. Keep scale and anchor identical across frames within each row. View is side-on to a top-down three-quarter arena. Every traveling form moves RIGHT. Ground-attached art touches local y120 (within bottom 16 pixels), no platforms or ground plane. Flying art centered around (64,80). For victim status row, imagine a 64px-tall fighter occupying x44..84, y56..120, but leave that fighter entirely blank. Keep x48..80,y54..76 clear for face. Eight frames in order left-to-right. Periodic rows have a smooth frame8-to-frame1 transition, stable volume and shape. Alpha zero everywhere outside the actual effect, especially corners and hollow centers. No color backdrop, no rectangular haze, no checkerboard. Windup grows rapidly. Impact runs from contact through dissipation.\nROW 0: Sand granules swirl UP from ground y120, loose brown-gold spiral gathers in eight steps.\nROW 1: Long serpentine S-curve of ochre sand surges RIGHT close to the ground, clear serpent-like crest, grain tail. Eight repeating undulation steps.\nROW 2: Large hollow sand vortex curls inward and closes, rises then settles into a low sand mound over eight frames.\nROW 3: BURIED overlay: sand piles up to knees at y98..123, with grains circling in a low ellipse. Empty upper body, small repeating shifts, not a full humanoid silhouette.",
+      "air_cannon": "Production transparent pixel-art game VFX sprite atlas for Legend of Lion Turtle. REFERENCE IMAGE IS STYLE AND PALETTE ONLY, IGNORE its layout and its faint rectangular glows. Thick dark colored outlines, sharp chunky pixel clusters, bright material highlights, limited colors closely match reference. EFFECTS ONLY: no characters, no body, no face, no hands or fingers, no dummy. Output EXACTLY EIGHT columns and FOUR rows in an unbroken equal grid, 32 sprites total. Target sheet 1024x512, each logical cell 128x128, no gutters, no borders or text. Each effect fits its own equal cell. Keep scale and anchor identical across frames within each row. View is side-on to a top-down three-quarter arena. Every traveling form moves RIGHT. Ground-attached art touches local y120 (within bottom 16 pixels), no platforms or ground plane. Flying art centered around (64,80). For victim status row, imagine a 64px-tall fighter occupying x44..84, y56..120, but leave that fighter entirely blank. Keep x48..80,y54..76 clear for face. Eight frames in order left-to-right. Periodic rows have a smooth frame8-to-frame1 transition, stable volume and shape. Alpha zero everywhere outside the actual effect, especially corners and hollow centers. No color backdrop, no rectangular haze, no checkerboard. Windup grows rapidly. Impact runs from contact through dissipation.\nROW 0: Air compresses into a brilliant tight sphere between TWO EMPTY palm anchor points; eight rapid gathering steps. No hands or person.\nROW 1: Dense pale cyan white pressure sphere with concentric speed rings behind it on LEFT, it flies RIGHT. Eight rotating/rolling pressure loop frames, big bright distinct silhouette.\nROW 2: Circular expanding pressure SHOCKWAVE, clear hollow ring expands and breaks into fading wind crescents over eight steps.\nROW 3: WINDED overlay: thin pale cyan curved wind lines orbit around imaginary torso sides, center remains transparent and head region clear. Eight continuous swirling loop frames.",
+      "tornado_lift": "Production transparent pixel-art game VFX sprite atlas for Legend of Lion Turtle. REFERENCE IMAGE IS STYLE AND PALETTE ONLY, IGNORE its layout and its faint rectangular glows. Thick dark colored outlines, sharp chunky pixel clusters, bright material highlights, limited colors closely match reference. EFFECTS ONLY: no characters, no body, no face, no hands or fingers, no dummy. Output EXACTLY EIGHT columns and FOUR rows in an unbroken equal grid, 32 sprites total. Target sheet 1024x512, each logical cell 128x128, no gutters, no borders or text. Each effect fits its own equal cell. Keep scale and anchor identical across frames within each row. View is side-on to a top-down three-quarter arena. Every traveling form moves RIGHT. Ground-attached art touches local y120 (within bottom 16 pixels), no platforms or ground plane. Flying art centered around (64,80). For victim status row, imagine a 64px-tall fighter occupying x44..84, y56..120, but leave that fighter entirely blank. Keep x48..80,y54..76 clear for face. Eight frames in order left-to-right. Periodic rows have a smooth frame8-to-frame1 transition, stable volume and shape. Alpha zero everywhere outside the actual effect, especially corners and hollow centers. No color backdrop, no rectangular haze, no checkerboard. Windup grows rapidly. Impact runs from contact through dissipation.\nROW 0: Dust devil visibly begins at ground y120 then grows upward into a tapered funnel in eight steps.\nROW 1: Tall white-cyan tornado with warm gray dust at bottom y120, curls subtly leaning RIGHT and a few trailing streaks on left. Eight continuous spinning loop frames.\nROW 2: Tornado widens at top and lifts dust/debris, flares into a large spiral then dissipates across eight frames.\nROW 3: SWEPT UP overlay: small cyclone UNDER the imaginary feet at y110..123 with debris and low wisps around ankles, upper part clear. Eight looping spins.",
+      "water_draw": "Production transparent pixel-art game VFX sprite atlas for Legend of Lion Turtle. REFERENCE IMAGE IS STYLE AND PALETTE ONLY, IGNORE its layout and its faint rectangular glows. Thick dark colored outlines, sharp chunky pixel clusters, bright material highlights, limited colors closely match reference. EFFECTS ONLY: no characters, no body, no face, no hands or fingers, no dummy. Output EXACTLY EIGHT columns and FOUR rows in an unbroken equal grid, 32 sprites total. Target sheet 1024x512, each logical cell 128x128, no gutters, no borders or text. Each effect fits its own equal cell. Keep scale and anchor identical across frames within each row. View is side-on to a top-down three-quarter arena. Every traveling form moves RIGHT. Ground-attached art touches local y120 (within bottom 16 pixels), no platforms or ground plane. Flying art centered around (64,80). For victim status row, imagine a 64px-tall fighter occupying x44..84, y56..120, but leave that fighter entirely blank. Keep x48..80,y54..76 clear for face. Eight frames in order left-to-right. Periodic rows have a smooth frame8-to-frame1 transition, stable volume and shape. Alpha zero everywhere outside the actual effect, especially corners and hollow centers. No color backdrop, no rectangular haze, no checkerboard. Windup grows rapidly. Impact runs from contact through dissipation.\nROW 0: Water pulled visibly UP out of a ground puddle at y120, thin stream rising into a gathered ribbon over eight frames.\nROW 1: Held blue water ribbon orbiting a hollow ring around an imaginary 64px body. All body and face are transparent empty spaces, eight loop phases.\nROW 2: The held ribbon steadily shrinks as water is consumed, fragments into smaller droplets and nearly disappears in frame8.\nROW 3: A thin blue water stream flowing horizontally RIGHT, continuous edge to edge. Blue core enters left x0 and leaves right x127 at local y96, matching profile and thickness, with internal flowing highlights. Eight seamless flow-loop frames.",
+      "earth_rise": "Production transparent pixel-art game VFX sprite atlas for Legend of Lion Turtle. REFERENCE IMAGE IS STYLE AND PALETTE ONLY, IGNORE its layout and its faint rectangular glows. Thick dark colored outlines, sharp chunky pixel clusters, bright material highlights, limited colors closely match reference. EFFECTS ONLY: no characters, no body, no face, no hands or fingers, no dummy. Output EXACTLY EIGHT columns and FOUR rows in an unbroken equal grid, 32 sprites total. Target sheet 1024x512, each logical cell 128x128, no gutters, no borders or text. Each effect fits its own equal cell. Keep scale and anchor identical across frames within each row. View is side-on to a top-down three-quarter arena. Every traveling form moves RIGHT. Ground-attached art touches local y120 (within bottom 16 pixels), no platforms or ground plane. Flying art centered around (64,80). For victim status row, imagine a 64px-tall fighter occupying x44..84, y56..120, but leave that fighter entirely blank. Keep x48..80,y54..76 clear for face. Eight frames in order left-to-right. Periodic rows have a smooth frame8-to-frame1 transition, stable volume and shape. Alpha zero everywhere outside the actual effect, especially corners and hollow centers. No color backdrop, no rectangular haze, no checkerboard. Windup grows rapidly. Impact runs from contact through dissipation.\nROW 0: A large brown rock chunk breaks UP out of the ground at y120 and rises to imaginary waist height y88, dust and debris. Eight steps for a rapid 0.15-second lift.\nROW 1: A flat ground CRACK DECAL around local y116, cracks appear, spread and then fade across eight steps.\nROW 2: Small rock spikes burst UP out of ground y120 in sequence, then collapse into loose stone.\nROW 3: A low brown-gray DUST PUFF near the feet, small to large and then dissipating over eight frames."
+    },
+    "correction_prompts": {
+      "earth_rise": "EDIT the provided pixel-art VFX atlas. Keep its earth palette, dark outlines, effects-only appearance and FOUR rows / EIGHT columns. Correct ONLY the first row: it must show a SINGLE detached rock chunk breaking out of the ground and then rising to waist height in eight frames. In frame1 the chunk is underground and only fissures/dust show; frames2-3 it emerges; frames4-5 there is a clear AIR GAP below the rock; frames6-8 it hovers at imaginary character waist height y85 while the ground fissure stays at y120. The rock stays at horizontal center64, not moving sideways. It is a raised projectile, not a spike still attached to ground. Ground dust must not rise with the rock. Remaining rows retain ground crack appearing/fading, small ground spikes erupting then settling, dust puff. No figures, hands or characters. Every logical cell128x128; total1024x512; no gutter. Leave all actual artwork inside own cell with 5px transparent margin; ground baseline120. Transparent background, NO checkerboard, NO rectangle, no text.",
+      "pillar_eruption": "EDIT the provided pixel-art effects atlas. Preserve the palette, outlined pixel shapes, effects-only and EIGHT columns FOUR rows. Correct the second row TRAVEL into a PERIODIC ground eruption cycle. EVERY frame must contain a tall pillar about70 pixels tall plus medium and low pillars, all touching ground at y120. Animate THREE staggered pillars in a traveling sequence toward the RIGHT: left pillar rises then crumbles as center rises, then right rises while left respawns low; repeat seamlessly. At all times there are different phases (low, medium, tall), never all low and never monotonically growing larger across the entire row. Frame8 returns almost to frame1 with one small motion step. Keep base positions fixed x25,64,103 and add small flying debris. This is a traveling terrain effect, no floating rocks. Keep other rows: windup crack and lifted slab, huge central impact pillar launching then crumbling, small pebbles circling above imaginary head. All 32 cells128x128, sheet1024x512; exact grid no gutters. Effect-only, no person or hands. Everything in each cell within local x5..123 and y5..123 with transparent space between cells. True transparent alpha, no checkerboard or colored haze. Ground y120. No text."
+    }
+  },
+  "validation": {
+    "godot_version": "4.4-stable (official)",
+    "load_verified": true,
+    "method": "Godot 4.4 headless editor import, Texture2D load, 320 AtlasTexture regions, 40 SpriteFrames animations, AnimatedSprite2D playback initialization.",
+    "godot": {
+      "animations_created": 40,
+      "engine": "4.4-stable (official)",
+      "frames_loaded": 320,
+      "result": "PASS",
+      "sheets_loaded": [
+        "thunder_strike",
+        "sun_dragon",
+        "glacier_prison",
+        "tidal_surge",
+        "pillar_eruption",
+        "sand_tomb",
+        "air_cannon",
+        "tornado_lift",
+        "water_draw",
+        "earth_rise"
+      ]
+    },
+    "png_checks": {
+      "result": "PASS",
+      "sheets": 10,
+      "cells": 320,
+      "image_size": [
+        1024,
+        512
+      ],
+      "cell_size": [
+        128,
+        128
+      ],
+      "format": "RGBA PNG",
+      "all_cells_have_transparency": true,
+      "ground_contact_checked": true,
+      "status_face_region_max_opaque_fraction": 0.352,
+      "tile_seams_checked": true,
+      "loop_seams_checked": true,
+      "checks": [
+        {
+          "id": "thunder_strike",
+          "sha256": "42fa6f96ced344ded77b9b5cf4b1b5c6811672dfc2c829b99c744715cb6fc8a4",
+          "cells": 32,
+          "min_transparent_fraction": 0.332,
+          "loop_checks": [
+            {
+              "row": 1,
+              "seam_alpha_delta": 10.052,
+              "max_internal_alpha_delta": 14.234,
+              "distinct_frames": 5
+            },
+            {
+              "row": 3,
+              "seam_alpha_delta": 7.165,
+              "max_internal_alpha_delta": 20.133,
+              "distinct_frames": 8
+            }
+          ]
+        },
+        {
+          "id": "sun_dragon",
+          "sha256": "ea387c8c5286f49886f4ce8a0f6c98de8d712946175ff01eaa20d5962c51fdfb",
+          "cells": 32,
+          "min_transparent_fraction": 0.304,
+          "loop_checks": [
+            {
+              "row": 1,
+              "seam_alpha_delta": 33.836,
+              "max_internal_alpha_delta": 38.935,
+              "distinct_frames": 8
+            },
+            {
+              "row": 3,
+              "seam_alpha_delta": 3.238,
+              "max_internal_alpha_delta": 7.54,
+              "distinct_frames": 8
+            }
+          ]
+        },
+        {
+          "id": "glacier_prison",
+          "sha256": "c893d5feb34a9e321ff6fa37f7129161568db8f6f2a26da6b0b7a56ace4f92d3",
+          "cells": 32,
+          "min_transparent_fraction": 0.38,
+          "loop_checks": [
+            {
+              "row": 1,
+              "seam_alpha_delta": 15.139,
+              "max_internal_alpha_delta": 15.139,
+              "distinct_frames": 5
+            },
+            {
+              "row": 3,
+              "seam_alpha_delta": 2.565,
+              "max_internal_alpha_delta": 2.823,
+              "distinct_frames": 8
+            }
+          ]
+        },
+        {
+          "id": "tidal_surge",
+          "sha256": "65174633306aa603f39cfb2290cac47dd757414e07b41ceebf9fa1d6fa433a2b",
+          "cells": 32,
+          "min_transparent_fraction": 0.329,
+          "loop_checks": [
+            {
+              "row": 1,
+              "seam_alpha_delta": 12.568,
+              "max_internal_alpha_delta": 31.878,
+              "distinct_frames": 8
+            },
+            {
+              "row": 3,
+              "seam_alpha_delta": 5.463,
+              "max_internal_alpha_delta": 13.365,
+              "distinct_frames": 8
+            }
+          ]
+        },
+        {
+          "id": "pillar_eruption",
+          "sha256": "3a90f95b2a401ed735155291264c9e913f802bb2d4d04ea728fa7b9fe449216c",
+          "cells": 32,
+          "min_transparent_fraction": 0.338,
+          "loop_checks": [
+            {
+              "row": 1,
+              "seam_alpha_delta": 16.812,
+              "max_internal_alpha_delta": 37.882,
+              "distinct_frames": 8
+            },
+            {
+              "row": 3,
+              "seam_alpha_delta": 3.729,
+              "max_internal_alpha_delta": 5.383,
+              "distinct_frames": 8
+            }
+          ]
+        },
+        {
+          "id": "sand_tomb",
+          "sha256": "3f30485ddefe3c6fc08544081476b91fa28f06d390ef70b031ebbff009375458",
+          "cells": 32,
+          "min_transparent_fraction": 0.462,
+          "loop_checks": [
+            {
+              "row": 1,
+              "seam_alpha_delta": 20.464,
+              "max_internal_alpha_delta": 25.414,
+              "distinct_frames": 8
+            },
+            {
+              "row": 3,
+              "seam_alpha_delta": 6.462,
+              "max_internal_alpha_delta": 7.76,
+              "distinct_frames": 8
+            }
+          ]
+        },
+        {
+          "id": "air_cannon",
+          "sha256": "eafbf1d4a9b3ba62eeab8a50bd4e1aa208eda59bf6d43ffea1098555d42a4dd3",
+          "cells": 32,
+          "min_transparent_fraction": 0.349,
+          "loop_checks": [
+            {
+              "row": 1,
+              "seam_alpha_delta": 19.427,
+              "max_internal_alpha_delta": 21.353,
+              "distinct_frames": 5
+            },
+            {
+              "row": 3,
+              "seam_alpha_delta": 8.859,
+              "max_internal_alpha_delta": 17.01,
+              "distinct_frames": 8
+            }
+          ]
+        },
+        {
+          "id": "tornado_lift",
+          "sha256": "637ccedc00ffcba6eff9041ef35bb01a6ca9d7986ff4bdd94ef03b894535c7b4",
+          "cells": 32,
+          "min_transparent_fraction": 0.309,
+          "loop_checks": [
+            {
+              "row": 1,
+              "seam_alpha_delta": 18.237,
+              "max_internal_alpha_delta": 18.237,
+              "distinct_frames": 5
+            },
+            {
+              "row": 3,
+              "seam_alpha_delta": 4.502,
+              "max_internal_alpha_delta": 7.194,
+              "distinct_frames": 8
+            }
+          ]
+        },
+        {
+          "id": "water_draw",
+          "sha256": "e0eecd11d9a833edc7eaa580fa6229e88ae73fa1a8a80a1980e4b5bedb6002a6",
+          "cells": 32,
+          "min_transparent_fraction": 0.443,
+          "loop_checks": [
+            {
+              "row": 1,
+              "seam_alpha_delta": 11.188,
+              "max_internal_alpha_delta": 25.547,
+              "distinct_frames": 8
+            },
+            {
+              "row": 3,
+              "seam_alpha_delta": 6.239,
+              "max_internal_alpha_delta": 6.239,
+              "distinct_frames": 8
+            }
+          ]
+        },
+        {
+          "id": "earth_rise",
+          "sha256": "b73b18dd9a29631def2890b68a769ad4d97d52702608e9961b3ac26ceac0602d",
+          "cells": 32,
+          "min_transparent_fraction": 0.583,
+          "loop_checks": []
+        }
+      ]
+    },
+    "loop_seam_method": "Visual review plus alpha difference across the final-to-first boundary at no more than 1.2 times the largest within-loop step. Four loops use reversible phases; water stream uses exact periodic rightward translation.",
+    "editor_import_notes": "Headless editor printed progress-dialog message-queue errors and exited 0; subsequent runtime asset verification passed without errors.",
+    "scope": "Asset loading and animation resource construction in an isolated Godot 4.4 project; no integration into the game project."
+  },
+  "integration": {
+    "sampling": "Nearest; disable mipmaps; standard alpha blending.",
+    "atlas_region": "Rect2(column * 128, row * 128, 128, 128)",
+    "playback": "Use row fps and loop flags. Nonloop effects finish after eight frames.",
+    "anchoring": "At a ground or victim-feet position use cell anchor [64,120], equivalent to a centered 128px AnimatedSprite2D with offset [0,-56].",
+    "orientation": "Travel faces right. Rotate the travel effect in game as needed.",
+    "source_anchor": "Draw water-source and earth-rise animations at the source/ground position. The water stream is a separate horizontal repeating tile.",
+    "status": "Overlay only; fighter is not included. Intended character height is 64 pixels.",
+    "normal_attack_source_duration_seconds": {
+      "water_draw": 0.5,
+      "earth_rise": 0.15
+    }
+  }
+}

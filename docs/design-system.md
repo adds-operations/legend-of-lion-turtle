@@ -109,7 +109,7 @@ The Raava event borrows the same paper-and-light language.
 - **The descent:** frames 1–3 raise the beam from the ring with the spirit star inside it, and frames 4–8 hold it in a loop. A soft additive glow pools at the base. A flat ink ring around the ground ring fills in the channeler's side color, or pulses vermilion while contested.
 - **Status strip:** a paper strip under the score plate:
   - RAAVA IS ARRIVING · 10
-  - RAAVA HAS DESCENDED · HOLD F IN THE LIGHT (vermilion)
+  - RAAVA HAS DESCENDED · HOLD A IN THE LIGHT (vermilion)
   - MERGING WITH RAAVA · 44% · STAY STILL
   - MEERA IS MERGING · STOP THEM (danger)
   - CONTESTED · NEITHER CAN MERGE (warning)
@@ -120,7 +120,7 @@ The Raava event borrows the same paper-and-light language.
   - A hint follows: "1 2 3 4 · SWITCH ELEMENT" for you, or "MEERA IS THE AVATAR" for the other player.
 - **On the Avatar:**
   - **Character accent:** `AvatarAura`, a separate node behind the sprite. It draws a Raava-blue ring at the feet, an element-colored arc that orbits it, and the four elements circling at waist height with the active one large. Switching flashes it.
-  - **HUD:** the `ElementSwitcher` sits above the card: four lit paper keycaps tagged Q W E R with the four element emblems. The Q W E R ability tiles take each element's color and emblem. In training, the same bar is tagged 1–4, with the active element raised and brush-underlined; a thin line drains during the 0.3 s switch recovery.
+  - **HUD:** the `ElementSwitcher` sits above the card: four lit paper keycaps tagged Z X C V with the four element emblems. The Z X C V ability tiles take each element's color and emblem. In training, the same bar is tagged 1–4, with the active element raised and brush-underlined; a thin line drains during the 0.3 s switch recovery.
 
 ## Training Grounds
 
@@ -207,7 +207,7 @@ The Raava event borrows the same paper-and-light language.
 | `SlashBanner` | The big-moment brush banner with a ribbon tail: `play(text, band, text_color)`. |
 | `KeyHint` | A keycap plus a label; `on_dark` for the ink ridge. |
 | `SegBar` | A segmented HP bar in an ink well, with a recent-damage trail. |
-| `ElementSwitcher` | The Avatar's Q W E R element keycaps (or training's 1–4 element picker). |
+| `ElementSwitcher` | The Avatar's Z X C V element keycaps (or training's 1–4 element picker). |
 | `AbilitySlot`, `EmblemTile`, `SideRing`, `DamageNumber`, `HurtVignette` | HUD and arena pieces. |
 
 ## Screens

@@ -8,6 +8,7 @@ extends Control
 const T = preload("res://scripts/ui/kit/ui_tokens.gd")
 const Emblems = preload("res://scripts/ui/kit/emblems.gd")
 const Paint = preload("res://scripts/ui/kit/ui_paint.gd")
+const Kit = preload("res://scripts/ui/kit/ui_kit.gd")
 
 @export var key_text: String = "LMB":
 	set(v): key_text = v; queue_redraw()
@@ -34,7 +35,10 @@ func _ready() -> void:
 	_resize()
 
 func _resize() -> void:
-	custom_minimum_size = Vector2(76, 96) if large else Vector2(60, 82)
+	if Kit.has("ability_slot_normal"):
+		custom_minimum_size = Vector2(82, 110) if large else Vector2(66, 94)
+	else:
+		custom_minimum_size = Vector2(76, 96) if large else Vector2(60, 82)
 
 func set_cooldown(remaining: float, total: float) -> void:
 	var was_cooling := _remaining > 0.0
@@ -50,6 +54,9 @@ func _process(delta: float) -> void:
 		queue_redraw()
 
 func _draw() -> void:
+	if Kit.has("ability_slot_normal"):
+		_draw_kit()
+		return
 	var side := size.x - 6.0
 	var frame := Rect2(Vector2(3, 0), Vector2(side, side))
 	var ready := not locked and _remaining <= 0.0
@@ -93,3 +100,42 @@ func _draw() -> void:
 	draw_rect(cap, T.PAPER_LIGHT if not locked else Color(T.PAPER_LIGHT, 0.5))
 	draw_rect(cap, T.INK if not locked else Color(T.INK, 0.4), false, 1.0)
 	draw_string(kf, cap.position + Vector2(7, 13.5), key_text, HORIZONTAL_ALIGNMENT_LEFT, -1, ks, T.INK if not locked else T.INK_FAINT)
+
+## The painted bronze medallion frames: ready (gold glow), cooldown (dim),
+## locked; the power's art sits in the dark well, the key on a paper keycap.
+func _draw_kit() -> void:
+	var side := size.x - 2.0
+	var frame := Rect2(Vector2(1, 0), Vector2(side, side))
+	var ready := not locked and _remaining <= 0.0
+	var state := "locked" if locked else ("ready" if ready else "cooldown")
+	var name := ("ability_slot_large_" if large else "ability_slot_") + state
+	var well := frame.grow(-side * 0.2)
+	Kit.draw_icon(self, name, frame)   # the frame's well is opaque: the art goes on top
+	if ready:
+		draw_circle(well.get_center(), well.size.x * 0.46, Color(color.lightened(0.3), 0.28))
+	if icon and not locked:
+		var isz := icon.get_size()
+		var k := minf(well.size.x * 1.15 / isz.x, well.size.y * 1.15 / isz.y)
+		var r := Rect2(well.get_center() - isz * k / 2.0, isz * k)
+		draw_texture_rect(icon, r, false, Color.WHITE if ready else Color(1, 1, 1, 0.4))
+	else:
+		Emblems.draw(self, "lock" if locked else emblem, well.grow(-well.size.x * 0.12), T.INK_FAINT if locked else color)
+	if not locked and _remaining > 0.0:
+		var frac := clampf(_remaining / _total, 0.0, 1.0)
+		draw_rect(Rect2(well.position, Vector2(well.size.x, well.size.y * frac)), Color(0, 0, 0, 0.55))
+		var f := T.font("heading")
+		var txt := ("%.1f" % _remaining) if _remaining < 1.0 else str(ceili(_remaining))
+		var fs := 22 if large else 18
+		var tw := f.get_string_size(txt, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x
+		draw_string_outline(f, frame.get_center() + Vector2(-tw / 2.0, fs * 0.36), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, 4, T.INK)
+		draw_string(f, frame.get_center() + Vector2(-tw / 2.0, fs * 0.36), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, T.PAPER_LIGHT)
+	if _flash > 0.0:
+		draw_circle(frame.get_center(), side * 0.45, Color(T.SUN, _flash * 0.5))
+	# keycap
+	var kf := T.font("heading")
+	var ks := 15
+	var kw := maxf(30.0, kf.get_string_size(key_text, HORIZONTAL_ALIGNMENT_LEFT, -1, ks).x + 20.0)
+	var cap := Rect2(Vector2((size.x - kw) / 2.0, side + 2.0), Vector2(kw, 26))
+	Kit.draw_box(self, "keycap", cap, "keycap", Color(1, 1, 1, 0.55 if locked else 1.0))
+	draw_string(kf, Vector2(cap.position.x + (kw - kf.get_string_size(key_text, HORIZONTAL_ALIGNMENT_LEFT, -1, ks).x) / 2.0, cap.position.y + 18.5),
+			key_text, HORIZONTAL_ALIGNMENT_LEFT, -1, ks, T.INK if not locked else T.INK_FAINT)

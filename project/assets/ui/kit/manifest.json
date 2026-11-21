@@ -1,0 +1,4074 @@
+{
+  "pack": "Legend of Lion Turtle - Scroll & Ink UI Kit",
+  "version": 1,
+  "reference_screen": [
+    1280,
+    720
+  ],
+  "palette": {
+    "paper": "#F2E2B8",
+    "paper_light": "#F8EED3",
+    "ink": "#2A1F17",
+    "vermilion": "#B52A1A",
+    "wood": "#6B4A2B",
+    "wood_dark": "#3A2716",
+    "player_gold": "#F2A516",
+    "rival_indigo": "#3E3F86",
+    "fire": "#D9541E",
+    "water": "#2E86C1",
+    "earth": "#7A9A3A",
+    "air": "#E8C66A"
+  },
+  "format": {
+    "type": "PNG",
+    "mode": "RGBA",
+    "slice_margin_order": [
+      "left",
+      "top",
+      "right",
+      "bottom"
+    ],
+    "text_baked_in": false,
+    "characters_baked_in": false,
+    "intentional_pictogram_symbols": [
+      "plus",
+      "minus",
+      "check",
+      "arrows",
+      "lock",
+      "crown",
+      "settings gear",
+      "element/stat/status emblems"
+    ]
+  },
+  "assets": [
+    {
+      "id": "button_primary_normal",
+      "file": "button_primary_normal.png",
+      "size": [
+        240,
+        64
+      ],
+      "nine_slice_margins": [
+        24,
+        18,
+        24,
+        18
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "normal",
+      "family": "button_primary",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Text-free button_primary button, normal state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "36560d80b7a0246aecc57e9cd4f282fcc9e279cff6f302514e700ac6e0b9154a",
+      "minimum_size": [
+        49,
+        37
+      ],
+      "content_padding": [
+        24,
+        18,
+        24,
+        18
+      ],
+      "suggested_text_color": "#F8EED3",
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "button_primary_hover",
+      "file": "button_primary_hover.png",
+      "size": [
+        240,
+        64
+      ],
+      "nine_slice_margins": [
+        24,
+        18,
+        24,
+        18
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "hover",
+      "family": "button_primary",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Text-free button_primary button, hover state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "8033c2d75f55b4bb2c084ea436e5257d56970471914330885c24eee15420b922",
+      "minimum_size": [
+        49,
+        37
+      ],
+      "content_padding": [
+        24,
+        18,
+        24,
+        18
+      ],
+      "suggested_text_color": "#F8EED3",
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "button_primary_pressed",
+      "file": "button_primary_pressed.png",
+      "size": [
+        240,
+        64
+      ],
+      "nine_slice_margins": [
+        24,
+        18,
+        24,
+        18
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "pressed",
+      "family": "button_primary",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Text-free button_primary button, pressed state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "c75274f7956dcd7232c7ab0c15c7c0a3e3c5414f4ed3d829302dc1368fa04299",
+      "minimum_size": [
+        49,
+        37
+      ],
+      "content_padding": [
+        24,
+        18,
+        24,
+        18
+      ],
+      "suggested_text_color": "#F8EED3",
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "button_primary_disabled",
+      "file": "button_primary_disabled.png",
+      "size": [
+        240,
+        64
+      ],
+      "nine_slice_margins": [
+        24,
+        18,
+        24,
+        18
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "disabled",
+      "family": "button_primary",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Text-free button_primary button, disabled state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "ba91ceba4fcb1a0be9cbc9d7d0c600883f445ea64cdec562072639664e324234",
+      "minimum_size": [
+        49,
+        37
+      ],
+      "content_padding": [
+        24,
+        18,
+        24,
+        18
+      ],
+      "suggested_text_color": "#F8EED3",
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "button_secondary_normal",
+      "file": "button_secondary_normal.png",
+      "size": [
+        240,
+        64
+      ],
+      "nine_slice_margins": [
+        28,
+        18,
+        28,
+        18
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "normal",
+      "family": "button_secondary",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Text-free button_secondary button, normal state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "f811c14ea35b6d63ffeb7e60dad2529bbefc1e7e1d825b3f4e7463876dcb9cad",
+      "minimum_size": [
+        57,
+        37
+      ],
+      "content_padding": [
+        28,
+        18,
+        28,
+        18
+      ],
+      "suggested_text_color": "#2A1F17",
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "button_secondary_hover",
+      "file": "button_secondary_hover.png",
+      "size": [
+        240,
+        64
+      ],
+      "nine_slice_margins": [
+        28,
+        18,
+        28,
+        18
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "hover",
+      "family": "button_secondary",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Text-free button_secondary button, hover state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "7081a49dbb29691b84a8cc42d8942b4f2980890d75b993769f71b157214168f9",
+      "minimum_size": [
+        57,
+        37
+      ],
+      "content_padding": [
+        28,
+        18,
+        28,
+        18
+      ],
+      "suggested_text_color": "#2A1F17",
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "button_secondary_pressed",
+      "file": "button_secondary_pressed.png",
+      "size": [
+        240,
+        64
+      ],
+      "nine_slice_margins": [
+        28,
+        18,
+        28,
+        18
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "pressed",
+      "family": "button_secondary",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Text-free button_secondary button, pressed state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "553426ee9d81f7b0682522847ac948a3db9cc3e0d74e5becacd484350bd12adc",
+      "minimum_size": [
+        57,
+        37
+      ],
+      "content_padding": [
+        28,
+        18,
+        28,
+        18
+      ],
+      "suggested_text_color": "#2A1F17",
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "button_secondary_disabled",
+      "file": "button_secondary_disabled.png",
+      "size": [
+        240,
+        64
+      ],
+      "nine_slice_margins": [
+        28,
+        18,
+        28,
+        18
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "disabled",
+      "family": "button_secondary",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Text-free button_secondary button, disabled state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "7f33a781ad1404e1132b8dccb3e25259390c46ab7d90e52a9f5aaa23f128328e",
+      "minimum_size": [
+        57,
+        37
+      ],
+      "content_padding": [
+        28,
+        18,
+        28,
+        18
+      ],
+      "suggested_text_color": "#2A1F17",
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "button_small_normal",
+      "file": "button_small_normal.png",
+      "size": [
+        120,
+        40
+      ],
+      "nine_slice_margins": [
+        14,
+        12,
+        14,
+        12
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "normal",
+      "family": "button_small",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Text-free button_small button, normal state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "82ddd3795ee435dd139077ecdc7af7df6acaabb464f609feaef84f4872ba7dfb",
+      "minimum_size": [
+        29,
+        25
+      ],
+      "content_padding": [
+        14,
+        12,
+        14,
+        12
+      ],
+      "suggested_text_color": "#F8EED3",
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "button_small_hover",
+      "file": "button_small_hover.png",
+      "size": [
+        120,
+        40
+      ],
+      "nine_slice_margins": [
+        14,
+        12,
+        14,
+        12
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "hover",
+      "family": "button_small",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Text-free button_small button, hover state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "868bd74570d06c7e4e3651071f449e682fdfba581696672da8fa714da3569409",
+      "minimum_size": [
+        29,
+        25
+      ],
+      "content_padding": [
+        14,
+        12,
+        14,
+        12
+      ],
+      "suggested_text_color": "#F8EED3",
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "button_small_pressed",
+      "file": "button_small_pressed.png",
+      "size": [
+        120,
+        40
+      ],
+      "nine_slice_margins": [
+        14,
+        12,
+        14,
+        12
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "pressed",
+      "family": "button_small",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Text-free button_small button, pressed state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "4ebe786d917d005a6f03220a2a678e6d50298b5efcdd17aa14447eaac47980b8",
+      "minimum_size": [
+        29,
+        25
+      ],
+      "content_padding": [
+        14,
+        12,
+        14,
+        12
+      ],
+      "suggested_text_color": "#F8EED3",
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "button_small_disabled",
+      "file": "button_small_disabled.png",
+      "size": [
+        120,
+        40
+      ],
+      "nine_slice_margins": [
+        14,
+        12,
+        14,
+        12
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "disabled",
+      "family": "button_small",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Text-free button_small button, disabled state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "e14e0213e6cdd4c75f39bfa39dc7fc04e932b19098efde60d6ec19b5cfd2cbae",
+      "minimum_size": [
+        29,
+        25
+      ],
+      "content_padding": [
+        14,
+        12,
+        14,
+        12
+      ],
+      "suggested_text_color": "#F8EED3",
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "panel_scroll",
+      "file": "panel_scroll.png",
+      "size": [
+        400,
+        300
+      ],
+      "nine_slice_margins": [
+        40,
+        36,
+        40,
+        36
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": null,
+      "family": "panel_scroll",
+      "states": [],
+      "intended_use": "Primary parchment scroll panel for menus, lobby, results.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "bf99fde4b2818e703081018881607483cfeda6a5a4b3e33008d32aa220b2eb1f",
+      "minimum_size": [
+        81,
+        73
+      ],
+      "content_padding": [
+        40,
+        36,
+        40,
+        36
+      ],
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "panel_card",
+      "file": "panel_card.png",
+      "size": [
+        320,
+        240
+      ],
+      "nine_slice_margins": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": null,
+      "family": "panel_card",
+      "states": [],
+      "intended_use": "Framed parchment information card.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "97c110c0d8acb52883e812547759f58a0644c672529b4c8b804206f7d98b6fe9",
+      "minimum_size": [
+        129,
+        129
+      ],
+      "content_padding": [
+        64,
+        48,
+        64,
+        48
+      ],
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "panel_dark",
+      "file": "panel_dark.png",
+      "size": [
+        320,
+        180
+      ],
+      "nine_slice_margins": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": null,
+      "family": "panel_dark",
+      "states": [],
+      "intended_use": "Translucent ink-wash HUD panel over gameplay.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "b69d67bada297377d717b8569807587bf68f64231a894befe99a31f34d853a69",
+      "minimum_size": [
+        65,
+        65
+      ],
+      "content_padding": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "export_alpha_multiplier": 0.75,
+      "resize_axes": [
+        "horizontal",
+        "vertical"
+      ],
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "tooltip_toast",
+      "file": "tooltip_toast.png",
+      "size": [
+        256,
+        64
+      ],
+      "nine_slice_margins": [
+        40,
+        16,
+        20,
+        16
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": null,
+      "family": "tooltip_toast",
+      "states": [],
+      "intended_use": "Shared tooltip/toast paper slip; text is rendered by the game.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "d7be8585431d1b10eeaff3d4553b764505077f7a376dfbb6010ee26efeb237d5",
+      "minimum_size": [
+        61,
+        33
+      ],
+      "content_padding": [
+        40,
+        16,
+        20,
+        16
+      ],
+      "resize_axes": [
+        "horizontal"
+      ],
+      "preferred_height": 64,
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "tab_active",
+      "file": "tab_active.png",
+      "size": [
+        180,
+        48
+      ],
+      "nine_slice_margins": [
+        24,
+        14,
+        24,
+        14
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "active",
+      "family": "tabs",
+      "states": [
+        "active",
+        "inactive"
+      ],
+      "intended_use": "Horizontal brush tab, active.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "fab8bff179043122d4109128468cc211028855b2a7ce46c2603e62ec552ca629",
+      "minimum_size": [
+        49,
+        29
+      ],
+      "content_padding": [
+        24,
+        14,
+        24,
+        14
+      ],
+      "resize_axes": [
+        "horizontal"
+      ],
+      "preferred_height": 48,
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "tab_inactive",
+      "file": "tab_inactive.png",
+      "size": [
+        180,
+        48
+      ],
+      "nine_slice_margins": [
+        24,
+        14,
+        24,
+        14
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "inactive",
+      "family": "tabs",
+      "states": [
+        "active",
+        "inactive"
+      ],
+      "intended_use": "Horizontal brush tab, inactive.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "744fac6cb999430d0d3c0bf38eb384925c45e8539835f1405a83f8b5cbad2af4",
+      "minimum_size": [
+        49,
+        29
+      ],
+      "content_padding": [
+        24,
+        14,
+        24,
+        14
+      ],
+      "resize_axes": [
+        "horizontal"
+      ],
+      "preferred_height": 48,
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "keycap",
+      "file": "keycap.png",
+      "size": [
+        48,
+        48
+      ],
+      "nine_slice_margins": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "normal",
+      "family": "keycap",
+      "states": [
+        "normal",
+        "pressed"
+      ],
+      "intended_use": "Paper keycap; widen with 9-slice for SPACE or longer labels.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "6d01b7c118fbff1e99a24d42253be58f7f69af4581bc0a44591264e9654105a5",
+      "minimum_size": [
+        25,
+        25
+      ],
+      "content_padding": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "resize_axes": [
+        "horizontal"
+      ],
+      "preferred_height": 48,
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "keycap_pressed",
+      "file": "keycap_pressed.png",
+      "size": [
+        48,
+        48
+      ],
+      "nine_slice_margins": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": "pressed",
+      "family": "keycap",
+      "states": [
+        "normal",
+        "pressed"
+      ],
+      "intended_use": "Paper keycap; widen with 9-slice for SPACE or longer labels.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "bd517c5f8a830f38a3cd6577e9f5697c8dc5e35905d3242dc61b0b3a0a5c0618",
+      "minimum_size": [
+        25,
+        25
+      ],
+      "content_padding": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "resize_axes": [
+        "horizontal"
+      ],
+      "preferred_height": 48,
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "hp_frame",
+      "file": "hp_frame.png",
+      "size": [
+        420,
+        36
+      ],
+      "nine_slice_margins": [
+        34,
+        14,
+        34,
+        14
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": null,
+      "family": "hp_frame",
+      "states": [],
+      "intended_use": "HUD health-bar border; fill is rendered underneath the transparent well.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": false,
+      "scale_mode": "9_slice",
+      "sha256": "58fb180b1d26c79f8befbaf3b6cf565774870e738d93ceee3d49080e09d5e13b",
+      "minimum_size": [
+        69,
+        29
+      ],
+      "content_padding": [
+        34,
+        14,
+        34,
+        14
+      ],
+      "resize_axes": [
+        "horizontal"
+      ],
+      "preferred_height": 36,
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "hp_fill_you",
+      "file": "hp_fill_you.png",
+      "size": [
+        64,
+        16
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "hp_fill_you",
+      "states": [],
+      "intended_use": "Player gold health; tile horizontally inside hp_frame.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": true,
+      "draw_center": true,
+      "scale_mode": "tile_horizontal",
+      "sha256": "312abc39ed267d907175b3ef16273e9297ce18cdb42de5dd8ee770c3f0416571",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "hp_fill_rival",
+      "file": "hp_fill_rival.png",
+      "size": [
+        64,
+        16
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "hp_fill_rival",
+      "states": [],
+      "intended_use": "Rival indigo health; tile horizontally inside hp_frame.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": true,
+      "draw_center": true,
+      "scale_mode": "tile_horizontal",
+      "sha256": "546ee5b035cae268d78b8274a2ba00c77c8c807b1a47f20e18df6282cb9593b7",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "hp_fill_lag",
+      "file": "hp_fill_lag.png",
+      "size": [
+        64,
+        16
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "hp_fill_lag",
+      "states": [],
+      "intended_use": "Cream recent-damage lag; tile horizontally inside hp_frame.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": true,
+      "draw_center": true,
+      "scale_mode": "tile_horizontal",
+      "sha256": "bd962bd0034cf631bf628e41321e10da962a52a0b46fbebe981be2c31efc8331",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ability_slot_normal",
+      "file": "ability_slot_normal.png",
+      "size": [
+        72,
+        72
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "normal",
+      "family": "ability_slot",
+      "states": [
+        "normal",
+        "ready",
+        "cooldown",
+        "locked"
+      ],
+      "intended_use": "Regular Z/X/C/V ability frame, normal state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "3682661fc90ea866e39e61e63ce2f711054a62d1506cd7a702ace66ea08ef8de",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ability_slot_large_normal",
+      "file": "ability_slot_large_normal.png",
+      "size": [
+        88,
+        88
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "normal",
+      "family": "ability_slot",
+      "states": [
+        "normal",
+        "ready",
+        "cooldown",
+        "locked"
+      ],
+      "intended_use": "Large A signature ability frame, normal state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "564a7943771d5d7a0cb36c6076b374447bc869edad7a9736f3a5dce2d2b4a45e",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ability_slot_ready",
+      "file": "ability_slot_ready.png",
+      "size": [
+        72,
+        72
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "ready",
+      "family": "ability_slot",
+      "states": [
+        "normal",
+        "ready",
+        "cooldown",
+        "locked"
+      ],
+      "intended_use": "Regular Z/X/C/V ability frame, ready state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "eeceb43415760adb34113d8b07627c201205ef11c7510bc5e4dd9ee2523eee9c",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ability_slot_large_ready",
+      "file": "ability_slot_large_ready.png",
+      "size": [
+        88,
+        88
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "ready",
+      "family": "ability_slot",
+      "states": [
+        "normal",
+        "ready",
+        "cooldown",
+        "locked"
+      ],
+      "intended_use": "Large A signature ability frame, ready state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "be30c464a274b3a44edfb57fe1edb7e7b180e8c6112d27f6d24379cf05926242",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ability_slot_cooldown",
+      "file": "ability_slot_cooldown.png",
+      "size": [
+        72,
+        72
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "cooldown",
+      "family": "ability_slot",
+      "states": [
+        "normal",
+        "ready",
+        "cooldown",
+        "locked"
+      ],
+      "intended_use": "Regular Z/X/C/V ability frame, cooldown state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "930f5c53260990e42d735df5b04e0eb634a215c405ee98017711ddf8db86ced4",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ability_slot_large_cooldown",
+      "file": "ability_slot_large_cooldown.png",
+      "size": [
+        88,
+        88
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "cooldown",
+      "family": "ability_slot",
+      "states": [
+        "normal",
+        "ready",
+        "cooldown",
+        "locked"
+      ],
+      "intended_use": "Large A signature ability frame, cooldown state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "cbeed86b7b541509f34430dcf4f4f675595bc5437033fab2ea3345280e34e497",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ability_slot_locked",
+      "file": "ability_slot_locked.png",
+      "size": [
+        72,
+        72
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "locked",
+      "family": "ability_slot",
+      "states": [
+        "normal",
+        "ready",
+        "cooldown",
+        "locked"
+      ],
+      "intended_use": "Regular Z/X/C/V ability frame, locked state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "35e2ec26eeee3060bddb4c5499b03518be29a66980d402d9d357e063ccf0eca6",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ability_slot_large_locked",
+      "file": "ability_slot_large_locked.png",
+      "size": [
+        88,
+        88
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "locked",
+      "family": "ability_slot",
+      "states": [
+        "normal",
+        "ready",
+        "cooldown",
+        "locked"
+      ],
+      "intended_use": "Large A signature ability frame, locked state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "20d9698e678ead9544ed22613edce5fd842b0cb1168f1c513487513c126df61b",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "portrait_frame",
+      "file": "portrait_frame.png",
+      "size": [
+        96,
+        96
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "portrait_frame",
+      "states": [],
+      "intended_use": "Fixed square portrait border; transparent center reveals portrait placed below.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "0fb4cabc36b8e43c66e167f516cc2230e96a8b8344bd84c39e6aa1dc132d4f92",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "divider",
+      "file": "divider.png",
+      "size": [
+        320,
+        28
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "divider",
+      "states": [],
+      "intended_use": "Fixed-width horizontal ink divider with small central red seal-knot ornament.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "1b78905f27f28686ce1855441fe4163e7ec9851509b21bcd677833720ab05436",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "corner_flourish",
+      "file": "corner_flourish.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "corner_flourish",
+      "states": [],
+      "intended_use": "Top-left ink cloud corner ornament; rotate/mirror for other corners.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "8fb5ae43d4d4294e13909fea5d193c2963754d6a5d17a4e30492dd093cecf48e",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "seal_stamp_blank",
+      "file": "seal_stamp_blank.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "seal_stamp_blank",
+      "states": [],
+      "intended_use": "Blank vermilion chop stamp; game may overlay a custom mark.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "79a8a263cbb635c9166f888df12676c3e87f256ba449e76a21d925369176fe0c",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ribbon_banner",
+      "file": "ribbon_banner.png",
+      "size": [
+        480,
+        96
+      ],
+      "nine_slice_margins": [
+        64,
+        24,
+        64,
+        24
+      ],
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": true,
+      "state": null,
+      "family": "ribbon_banner",
+      "states": [],
+      "intended_use": "Resizable VICTORY/ROUND banner; text rendered separately.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "9_slice",
+      "sha256": "fe93bc2351b821a1f10173b77533a63e84248704971f4cf2d913d11c5744da5a",
+      "minimum_size": [
+        129,
+        49
+      ],
+      "content_padding": [
+        64,
+        24,
+        64,
+        24
+      ],
+      "resize_axes": [
+        "horizontal"
+      ],
+      "preferred_height": 96,
+      "godot_resource": "StyleBoxTexture or NinePatchRect"
+    },
+    {
+      "id": "pip_empty",
+      "file": "pip_empty.png",
+      "size": [
+        28,
+        28
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "empty",
+      "family": "pips",
+      "states": [
+        "empty",
+        "full"
+      ],
+      "intended_use": "Stat point brush-square pip, empty.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "3f2c953f52ec5b9bb65d80bb415dfb546d71002c620c1ef78ee690e980f0bf29",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "pip_full",
+      "file": "pip_full.png",
+      "size": [
+        28,
+        28
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "full",
+      "family": "pips",
+      "states": [
+        "empty",
+        "full"
+      ],
+      "intended_use": "Stat point brush-square pip, full.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "9d803fc88021293e70e2809ccef3065c33c14562c67ff04be21e907f8b64f5bc",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "stepper_minus_normal",
+      "file": "stepper_minus_normal.png",
+      "size": [
+        40,
+        40
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "normal",
+      "family": "stepper_minus",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Round minus stepper button, normal state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "92b6dbf86df5466b297c0ad3b8146ba62914a9c3a8591dae76edba73154ed06b",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "stepper_minus_hover",
+      "file": "stepper_minus_hover.png",
+      "size": [
+        40,
+        40
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "hover",
+      "family": "stepper_minus",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Round minus stepper button, hover state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "3866428c710de162a3eacc8df45906ca548f7df18b6e84f378265162326702e9",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "stepper_minus_pressed",
+      "file": "stepper_minus_pressed.png",
+      "size": [
+        40,
+        40
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "pressed",
+      "family": "stepper_minus",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Round minus stepper button, pressed state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "76fe86d4bd67bc4e88ee6acffaa1a8780a571428955dd78376f79bd476c24f06",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "stepper_minus_disabled",
+      "file": "stepper_minus_disabled.png",
+      "size": [
+        40,
+        40
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "disabled",
+      "family": "stepper_minus",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Round minus stepper button, disabled state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "77ac26030d2d1ebf1722905f923787c11c60d5376c12933845cadb64c082a5e3",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "stepper_plus_normal",
+      "file": "stepper_plus_normal.png",
+      "size": [
+        40,
+        40
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "normal",
+      "family": "stepper_plus",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Round plus stepper button, normal state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "3db9db17cb16a076ad3d122ab312a1feeb86d478f6c69ffad3b05653996fee71",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "stepper_plus_hover",
+      "file": "stepper_plus_hover.png",
+      "size": [
+        40,
+        40
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "hover",
+      "family": "stepper_plus",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Round plus stepper button, hover state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "c5e52305cba9da28d06a74a04fab703c790b21e7e6d7882cb108e4a36df4c5aa",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "stepper_plus_pressed",
+      "file": "stepper_plus_pressed.png",
+      "size": [
+        40,
+        40
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "pressed",
+      "family": "stepper_plus",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Round plus stepper button, pressed state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "d51fd9b84bc16d41cae733bfceebeaeb94a7744290abddaf3e6f38509100bf24",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "stepper_plus_disabled",
+      "file": "stepper_plus_disabled.png",
+      "size": [
+        40,
+        40
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "disabled",
+      "family": "stepper_plus",
+      "states": [
+        "normal",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "intended_use": "Round plus stepper button, disabled state.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "4d86fb1f579529ef81313598bfb2804c21b02bffe40eb1d8b5f1be9aee3fcf4e",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "stat_attack",
+      "file": "stat_attack.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "stat_attack",
+      "states": [],
+      "intended_use": "A compact clenched FIST formed from bold sumi-ink brush shapes, a small orange #D9541E flame licking over the knuckles. This is a symbolic fist pictogram only, no arm/body/person.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "6f9628afea454db1e3e157fd36b100757bfcab6e23ca3dd161ff9431d88c5c7c",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "stat_defense",
+      "file": "stat_defense.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "stat_defense",
+      "states": [],
+      "intended_use": "A simple protective SHIELD silhouette in dark ink with a pale-paper CLOUD curl cutout and muted earth #7A9A3A accent along one edge.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "ad7fcd0373b1f63e95db40037f07d44e0092fd52282ead82e1db66701bc2457a",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "stat_mobility",
+      "file": "stat_mobility.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "stat_mobility",
+      "states": [],
+      "intended_use": "Two tiny stylized FOOT silhouettes stepping with three flowing wind brush marks, dark ink plus air gold #E8C66A. Icon only, no legs or character.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "6d7be0574b72ad6d94c06a576c5d8233921ffe3f24c6f51a33b6cb76a2217134",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "element_fire",
+      "file": "element_fire.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "element_fire",
+      "states": [],
+      "intended_use": "An ORIGINAL elemental FIRE emblem: three asymmetric flame brush tongues rise from a short broken circular base, dark ink and orange #D9541E. Evoke elemental martial arts, do not copy an existing franchise logo.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "3af425ed23f89522fe5d51438c14aad7d00600fe13a2a723e8ac47b3a4d9eb04",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "element_water",
+      "file": "element_water.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "element_water",
+      "states": [],
+      "intended_use": "An ORIGINAL elemental WATER emblem: two flowing wave hooks fold around one teardrop-shaped hollow center, dark ink and blue #2E86C1, a spare open crescent at base. No existing franchise symbol copy.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "066a48a1bb9debd2e7775ceda3e112c2c13b955234b864903056b79b7e76c650",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "element_earth",
+      "file": "element_earth.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "element_earth",
+      "states": [],
+      "intended_use": "An ORIGINAL elemental EARTH emblem: a compact angular mountain/stone glyph inside an incomplete diamond brush enclosure, dark ink with earthy green #7A9A3A. No letters or existing franchise emblem.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "1f5a97400cff64b8d9293aa136a7e19d471c3f9cdf8218c0b9aabd27defcaf37",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "element_air",
+      "file": "element_air.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "element_air",
+      "states": [],
+      "intended_use": "An ORIGINAL elemental AIR emblem: three elegant curving wind strokes sweep around a small empty center in a loose asymmetric spiral, dark ink and muted air-gold #E8C66A. No existing franchise symbol copy.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "0041c4c55bd81891412ab4fc98d2e1f16b4bf3020f1f3982b24adae0ae905e6b",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "status_shocked",
+      "file": "status_shocked.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "status_shocked",
+      "states": [],
+      "intended_use": "SHOCKED status pictogram: a short jagged lightning fork inside a broken ink arc with two tiny sparks, warm gold #F2A516 accents. No body.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "f8d108f904242225e72f7762d22496916286f5e02f245eed1d8b8099e475b003",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "status_burning",
+      "file": "status_burning.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "status_burning",
+      "states": [],
+      "intended_use": "BURNING status pictogram: one bold flame with two small ember marks, ink and vermilion/orange #D9541E. Hollow paper-colored flame center, no body.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "14821e9dabecdcf55291fe1d9d74a3b6b11f64dec584e1afa9b5b4bfdd3ff32c",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "status_frozen",
+      "file": "status_frozen.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "status_frozen",
+      "states": [],
+      "intended_use": "FROZEN status pictogram: a faceted upright ICE CRYSTAL with three short frost branches, ink with blue #2E86C1 and paper-light highlights. No body.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "753aafc75a9a7db72d3a91c7ba9f60a11592e54b52be8b14314e7e5722227d9d",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "status_soaked",
+      "file": "status_soaked.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "status_soaked",
+      "states": [],
+      "intended_use": "SOAKED status pictogram: a compact cloud and three descending water drops, dark ink and blue #2E86C1. Clear readable silhouette, no body.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "1c39a40ee2c12be1b5f2f71a3b24cf4fd66b3512b1dfeeab3ca76da625353234",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "status_stunned",
+      "file": "status_stunned.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "status_stunned",
+      "states": [],
+      "intended_use": "STUNNED status pictogram: three little pebbles and one four-point star orbit a short elliptical ink swoosh, warm gold accent. Hollow center, no head or face.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "cd348af61f37495bb03b0f55d569e913d5733430f6e47ed7a174e033066f5c63",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "status_buried",
+      "file": "status_buried.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "status_buried",
+      "states": [],
+      "intended_use": "BURIED status pictogram: a low mound of sand and two small stones with a partly submerged short abstract bar, ink and earthy green #7A9A3A/wood brown. No body, hand or person.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "869856020d5be116722cc0aab0f2a9a102296a7de320af2fe85b3e1e329e29e5",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "status_winded",
+      "file": "status_winded.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "status_winded",
+      "states": [],
+      "intended_use": "WINDED status pictogram: two thin broken wind curls with a short interrupted arc, dark ink and pale gold #E8C66A. Show fading/strained wind, not a tornado or face.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "5d578772112df981300046f9919a71660e949fa26cff9efdea5dcd3c7ba232dc",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "status_swept_up",
+      "file": "status_swept_up.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "status_swept_up",
+      "states": [],
+      "intended_use": "SWEPT UP status pictogram: a small tapered cyclone lifting two pebbles, bold sumi ink and air-gold #E8C66A. No person.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "d79e157540c8c92f3cffd06b87af0e055f90d65dd584de8f14d2c005bf8d84ba",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ui_back",
+      "file": "ui_back.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "ui_back",
+      "states": [],
+      "intended_use": "A bold LEFT-pointing arrow with a dry sumi-ink brush shaft and short vermilion accent at the tail, instantly readable BACK control.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "9fe9b50c3c227ee26e6357b14475be2159abac7e31eee9e9995e067418c8ed0e",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ui_settings",
+      "file": "ui_settings.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "ui_settings",
+      "states": [],
+      "intended_use": "A simple six-tooth settings GEAR made from dark ink brush shapes with a warm aged-bronze center ring, hollow center, no glossy machine texture.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "c7cd0661827f76f0d9dda65598e5c8070bfb9d3ed88f228667cf51deaccf2c5b",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ui_ready_check",
+      "file": "ui_ready_check.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "ui_ready_check",
+      "states": [],
+      "intended_use": "A strong READY CHECKMARK in dark ink, nestled over one incomplete earth-green #7A9A3A brush circle. Clear check shape, not lettering.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "e18ca67a7df1aaa72b5f1846dfe81e313be4c52bb124286678087130420ce90e",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ui_lock",
+      "file": "ui_lock.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "ui_lock",
+      "states": [],
+      "intended_use": "A small old-fashioned PADLOCK pictogram: dark ink arch/shackle and matte warm bronze rectangular body with one tiny simple keyhole cutout. No text.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "99104e0e7b9e4db7d82cec0e80a62249a50c80862c8da541bf55bcd1f36a9998",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ui_crown",
+      "file": "ui_crown.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "ui_crown",
+      "states": [],
+      "intended_use": "A simple THREE-POINT CROWN for a round win, dark ink outline and matte player gold #F2A516 infill, broad clear silhouette, no jewels or shine.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "9a3658b09c4ac5bd804b7fa594108a1a404633f536eec5cd99d75c9f2b3038b6",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "ui_defeat",
+      "file": "ui_defeat.png",
+      "size": [
+        64,
+        64
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "ui_defeat",
+      "states": [],
+      "intended_use": "A SKULL-FREE DEFEAT mark made only of a broad diagonal vermilion brush stroke broken cleanly in its middle, with two small dark ink fracture slashes. No skull, bones, face, character, text or crossbones.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "3c500f52805b03725f2615c65dc51ab0cc4e2cafb2a51705907d4aa6a2f58b19",
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "aim_ring",
+      "file": "aim_ring.png",
+      "size": [
+        96,
+        40
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "free",
+      "family": "aim_ring",
+      "states": [
+        "free",
+        "locked"
+      ],
+      "intended_use": "Ground aiming ellipse for the player, gold.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "a8df3e416db2b40e068aaaf325d30260f4ba693f0aa42b17ae636aeb69cbb04d",
+      "ground_center_px": [
+        48,
+        20
+      ],
+      "ellipse_aspect_ratio": 2.4,
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "aim_ring_lock",
+      "file": "aim_ring_lock.png",
+      "size": [
+        96,
+        40
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": "locked",
+      "family": "aim_ring",
+      "states": [
+        "free",
+        "locked"
+      ],
+      "intended_use": "Ground aiming ellipse when locked on rival, vermilion.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "d4a7678eeffc43f02223321e7e28c58b9948b368a4acecfda72e1ad2cd5a3c1d",
+      "ground_center_px": [
+        48,
+        20
+      ],
+      "ellipse_aspect_ratio": 2.4,
+      "godot_resource": "TextureRect or Sprite2D"
+    },
+    {
+      "id": "aim_arrow",
+      "file": "aim_arrow.png",
+      "size": [
+        32,
+        32
+      ],
+      "nine_slice_margins": null,
+      "slice_order": [
+        "left",
+        "top",
+        "right",
+        "bottom"
+      ],
+      "resizable": false,
+      "state": null,
+      "family": "aim_arrow",
+      "states": [],
+      "intended_use": "Separate aiming chevron pointing RIGHT; rotate around aim_ring at runtime.",
+      "color_mode": "RGBA",
+      "alpha": true,
+      "tileable_horizontal": false,
+      "draw_center": true,
+      "scale_mode": "fixed_size",
+      "sha256": "a895a3b7be7848e8cbfb9924c370ec660a19f93f9cf051d7f967facde0e66a6a",
+      "facing": "right",
+      "pivot_px": [
+        16,
+        16
+      ],
+      "godot_resource": "TextureRect or Sprite2D"
+    }
+  ],
+  "families": [
+    {
+      "id": "button_primary",
+      "files": [
+        "button_primary_normal.png",
+        "button_primary_hover.png",
+        "button_primary_pressed.png",
+        "button_primary_disabled.png"
+      ],
+      "states": {
+        "normal": "button_primary_normal.png",
+        "hover": "button_primary_hover.png",
+        "pressed": "button_primary_pressed.png",
+        "disabled": "button_primary_disabled.png"
+      }
+    },
+    {
+      "id": "button_secondary",
+      "files": [
+        "button_secondary_normal.png",
+        "button_secondary_hover.png",
+        "button_secondary_pressed.png",
+        "button_secondary_disabled.png"
+      ],
+      "states": {
+        "normal": "button_secondary_normal.png",
+        "hover": "button_secondary_hover.png",
+        "pressed": "button_secondary_pressed.png",
+        "disabled": "button_secondary_disabled.png"
+      }
+    },
+    {
+      "id": "button_small",
+      "files": [
+        "button_small_normal.png",
+        "button_small_hover.png",
+        "button_small_pressed.png",
+        "button_small_disabled.png"
+      ],
+      "states": {
+        "normal": "button_small_normal.png",
+        "hover": "button_small_hover.png",
+        "pressed": "button_small_pressed.png",
+        "disabled": "button_small_disabled.png"
+      }
+    },
+    {
+      "id": "panel_scroll",
+      "files": [
+        "panel_scroll.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "panel_card",
+      "files": [
+        "panel_card.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "panel_dark",
+      "files": [
+        "panel_dark.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "tooltip_toast",
+      "files": [
+        "tooltip_toast.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "tabs",
+      "files": [
+        "tab_active.png",
+        "tab_inactive.png"
+      ],
+      "states": {
+        "active": "tab_active.png",
+        "inactive": "tab_inactive.png"
+      }
+    },
+    {
+      "id": "keycap",
+      "files": [
+        "keycap.png",
+        "keycap_pressed.png"
+      ],
+      "states": {
+        "normal": "keycap.png",
+        "pressed": "keycap_pressed.png"
+      }
+    },
+    {
+      "id": "hp_frame",
+      "files": [
+        "hp_frame.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "hp_fill_you",
+      "files": [
+        "hp_fill_you.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "hp_fill_rival",
+      "files": [
+        "hp_fill_rival.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "hp_fill_lag",
+      "files": [
+        "hp_fill_lag.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "ability_slot",
+      "files": [
+        "ability_slot_normal.png",
+        "ability_slot_large_normal.png",
+        "ability_slot_ready.png",
+        "ability_slot_large_ready.png",
+        "ability_slot_cooldown.png",
+        "ability_slot_large_cooldown.png",
+        "ability_slot_locked.png",
+        "ability_slot_large_locked.png"
+      ],
+      "states": {
+        "normal": [
+          "ability_slot_normal.png",
+          "ability_slot_large_normal.png"
+        ],
+        "ready": [
+          "ability_slot_ready.png",
+          "ability_slot_large_ready.png"
+        ],
+        "cooldown": [
+          "ability_slot_cooldown.png",
+          "ability_slot_large_cooldown.png"
+        ],
+        "locked": [
+          "ability_slot_locked.png",
+          "ability_slot_large_locked.png"
+        ]
+      }
+    },
+    {
+      "id": "portrait_frame",
+      "files": [
+        "portrait_frame.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "divider",
+      "files": [
+        "divider.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "corner_flourish",
+      "files": [
+        "corner_flourish.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "seal_stamp_blank",
+      "files": [
+        "seal_stamp_blank.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "ribbon_banner",
+      "files": [
+        "ribbon_banner.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "pips",
+      "files": [
+        "pip_empty.png",
+        "pip_full.png"
+      ],
+      "states": {
+        "empty": "pip_empty.png",
+        "full": "pip_full.png"
+      }
+    },
+    {
+      "id": "stepper_minus",
+      "files": [
+        "stepper_minus_normal.png",
+        "stepper_minus_hover.png",
+        "stepper_minus_pressed.png",
+        "stepper_minus_disabled.png"
+      ],
+      "states": {
+        "normal": "stepper_minus_normal.png",
+        "hover": "stepper_minus_hover.png",
+        "pressed": "stepper_minus_pressed.png",
+        "disabled": "stepper_minus_disabled.png"
+      }
+    },
+    {
+      "id": "stepper_plus",
+      "files": [
+        "stepper_plus_normal.png",
+        "stepper_plus_hover.png",
+        "stepper_plus_pressed.png",
+        "stepper_plus_disabled.png"
+      ],
+      "states": {
+        "normal": "stepper_plus_normal.png",
+        "hover": "stepper_plus_hover.png",
+        "pressed": "stepper_plus_pressed.png",
+        "disabled": "stepper_plus_disabled.png"
+      }
+    },
+    {
+      "id": "stat_attack",
+      "files": [
+        "stat_attack.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "stat_defense",
+      "files": [
+        "stat_defense.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "stat_mobility",
+      "files": [
+        "stat_mobility.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "element_fire",
+      "files": [
+        "element_fire.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "element_water",
+      "files": [
+        "element_water.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "element_earth",
+      "files": [
+        "element_earth.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "element_air",
+      "files": [
+        "element_air.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "status_shocked",
+      "files": [
+        "status_shocked.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "status_burning",
+      "files": [
+        "status_burning.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "status_frozen",
+      "files": [
+        "status_frozen.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "status_soaked",
+      "files": [
+        "status_soaked.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "status_stunned",
+      "files": [
+        "status_stunned.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "status_buried",
+      "files": [
+        "status_buried.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "status_winded",
+      "files": [
+        "status_winded.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "status_swept_up",
+      "files": [
+        "status_swept_up.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "ui_back",
+      "files": [
+        "ui_back.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "ui_settings",
+      "files": [
+        "ui_settings.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "ui_ready_check",
+      "files": [
+        "ui_ready_check.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "ui_lock",
+      "files": [
+        "ui_lock.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "ui_crown",
+      "files": [
+        "ui_crown.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "ui_defeat",
+      "files": [
+        "ui_defeat.png"
+      ],
+      "states": {}
+    },
+    {
+      "id": "aim_ring",
+      "files": [
+        "aim_ring.png",
+        "aim_ring_lock.png"
+      ],
+      "states": {
+        "free": "aim_ring.png",
+        "locked": "aim_ring_lock.png"
+      }
+    },
+    {
+      "id": "aim_arrow",
+      "files": [
+        "aim_arrow.png"
+      ],
+      "states": {}
+    }
+  ],
+  "provenance": {
+    "tool": "built-in image_gen",
+    "style_reference": "existing project/assets/ui/paint/parchment.png and rod.png",
+    "prompts": {
+      "button_primary": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nCreate FOUR state frames of ONE UI button asset, arranged ONE column FOUR rows in order NORMAL, HOVER, PRESSED, DISABLED. Each row is the identical 240:64 rectangular shape and identical position/size. VERMILION #B52A1A matte lacquer plaque, a rough narrow sumi-ink outer edge and hairline warm gold-leaf inlay around its perimeter. Flat vermilion center. Rectangular with tiny clipped uneven corners, not glossy or beveled. States: normal uses base palette; hover gently warmer with a fine warm edge lift, no bloom/neon; pressed darker matte center with the inner ink seam inset by one final pixel; disabled lower saturation and softer contrast but still readable. Keep exterior geometry fixed. Every frame has a blank center for text. At final 240x64, all ornaments stay in slice margins LEFT 24, TOP 18, RIGHT 24, BOTTOM 18. Center inside these margins is a single flat paint field, no gradients or motifs. Separate all four frames with ample transparent breathing space. DO NOT draw labels.",
+      "button_secondary": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nCreate FOUR state frames of ONE UI button asset, arranged ONE column FOUR rows in order NORMAL, HOVER, PRESSED, DISABLED. Each row is the identical 240:64 rectangular shape and identical position/size. Aged PAPER #F2E2B8 flat tablet with fine #2A1F17 sumi-ink border, gently rough torn edges. Flat light paper center, faint grain only at the rim. States: normal uses base palette; hover gently warmer with a fine warm edge lift, no bloom/neon; pressed darker matte center with the inner ink seam inset by one final pixel; disabled lower saturation and softer contrast but still readable. Keep exterior geometry fixed. Every frame has a blank center for text. At final 240x64, all ornaments stay in slice margins LEFT 20, TOP 16, RIGHT 20, BOTTOM 16. Center inside these margins is a single flat paint field, no gradients or motifs. Separate all four frames with ample transparent breathing space. DO NOT draw labels.",
+      "button_small": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nCreate FOUR state frames of ONE UI button asset, arranged ONE column FOUR rows in order NORMAL, HOVER, PRESSED, DISABLED. Each row is the identical 120:40 rectangular shape and identical position/size. Dark WOOD #3A2716 small tablet, thin warm bronze corner brackets confined to the four corners. Flat matte dark-wood center, horizontal woodgrain ONLY at edge strips, no central detail. States: normal uses base palette; hover gently warmer with a fine warm edge lift, no bloom/neon; pressed darker matte center with the inner ink seam inset by one final pixel; disabled lower saturation and softer contrast but still readable. Keep exterior geometry fixed. Every frame has a blank center for text. At final 120x40, all ornaments stay in slice margins LEFT 14, TOP 12, RIGHT 14, BOTTOM 12. Center inside these margins is a single flat paint field, no gradients or motifs. Separate all four frames with ample transparent breathing space. DO NOT draw labels.",
+      "panel_scroll": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne front-facing 400x300 parchment SCROLL panel, burnt gently torn paper edge, dark lacquer WOOD #3A2716 rods along TOP and BOTTOM with warm bronze caps at both ends. Rods slender and matte, their caps fully inside left/right40px margins. Decorative torn-edge staining limited to outer36px. The entire center is FLAT PAPER #F2E2B8 with almost imperceptible paper grain, no stains, ink, symbols, folds or tonal gradients. Nine-slice: margins40,36,40,36; corners and rod endcaps must remain within these margins, top/bottom middle strips show only straight repeatable rod shafts. Straight orthographic UI elevation, no perspective. Fully transparent outside silhouette.",
+      "panel_card": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne front-facing320x240 framed parchment CARD, flat #F8EED3 paper center. Thin dark #2A1F17 sumi ink frame, restrained hand-painted CLOUD-CURL corner ornaments in all four corners with tiny worn gold-leaf touches. All ornaments lie entirely within four32px corner squares and the outer border. Nine-slice32,32,32,32: big center completely flat and empty, straight middle edge strips simple and clean. Transparent outside rough silhouette. No text or central emblem.",
+      "panel_dark": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne front-facing320x180 rectangular dark lacquer HUD PANEL, very matte translucent #2A1F17 sumi ink wash, rough crisp brush edges and restrained dark wood corners. Nine-slice24px on all sides. The whole large center must be flat solid-color INK at about75 percent opacity, so actual alpha roughly190/255 allows gameplay to show through. Not a solid opaque black box. No opaque background. Alpha tapers only at the rough outside edge. No brush streaks, highlights, icons or gradients across the center.",
+      "tooltip_toast": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne horizontal256x64 small paper slip for tooltip/toast: flat pale #F8EED3 parchment with irregular ink-trim edge. A thin vermilion RED CORD loops through a tiny hole at the LEFT and has a short tidy knot, wholly confined to the left40px edge region. Right edge simple torn paper. Nine-slice40,16,20,16. The center must remain flat, blank, evenly pale. Cord must not cross the text area. No writing.",
+      "tabs": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nTwo states of ONE horizontal brush-stroke tab asset, ONE column TWO rows: top ACTIVE and bottom INACTIVE. Each180x48 same silhouette/size. Active matte vermilion with a thin gold lower edge; inactive muted paper with dark ink outline and no gold emphasis. Broad flat rectangular text field; dry tapered brush tips only within left/right24px endcaps. Top/bottom14px slice margins. No text. No slant, neon or shine.",
+      "keycap": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nTwo states of ONE square48x48 PAPER KEYCAP side by side: LEFT normal, RIGHT pressed. A slightly rough rectangular paper tile #F8EED3, strong dark #2A1F17 ink outline, very subtle lower paper fold within outer12px. Normal flat pale center; pressed darker warmer paper and inner edge one pixel inset, same outside shape. Nine-slice12px all sides allows wide SPACE key. Both blank: DO NOT draw any glyph, letter or symbol.",
+      "hp_frame": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne extremely wide slim health-bar FRAME,420x36 ratio11.667:1. Matte dark lacquer wood rails with warm bronze endcaps. Thin bronze edging, small hand-worn scuffs only along rails. Center is a fully TRANSPARENT long empty rectangular window, not paper or dark paint. At final size, transparent inner well spans x24..396,y10..26; four margins24,10,24,10. Straight repeatable rails in the horizontal middle, decorative endcaps confined to left/right24px. Orthographic2D, no numbers or symbols.",
+      "hp_fill_you": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne horizontal TILEABLE PAINT STRIP,64x16 final size, #F2A516 matte pigment. Essentially flat color with barely perceptible handmade pigment flecks, NO lighting gradient, NO outline, NO border, NO central stripe, NO endcaps. Top/bottom two pixels transparent; painted band covers y2..13 and extends unbroken to BOTH left and right edges with the identical edge color/alpha profile, for seamless horizontal repeats. No objects or symbols.",
+      "hp_fill_rival": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne horizontal TILEABLE PAINT STRIP,64x16 final size, #3E3F86 matte pigment. Essentially flat color with barely perceptible handmade pigment flecks, NO lighting gradient, NO outline, NO border, NO central stripe, NO endcaps. Top/bottom two pixels transparent; painted band covers y2..13 and extends unbroken to BOTH left and right edges with the identical edge color/alpha profile, for seamless horizontal repeats. No objects or symbols.",
+      "hp_fill_lag": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne horizontal TILEABLE PAINT STRIP,64x16 final size, #F8EED3 matte pigment. Essentially flat color with barely perceptible handmade pigment flecks, NO lighting gradient, NO outline, NO border, NO central stripe, NO endcaps. Top/bottom two pixels transparent; painted band covers y2..13 and extends unbroken to BOTH left and right edges with the identical edge color/alpha profile, for seamless horizontal repeats. No objects or symbols.",
+      "ability_slot": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nFOUR states of ONE SQUARE bronze-medallion ability slot in a2x2 grid: top-left NORMAL, top-right READY, bottom-left COOLDOWN, bottom-right LOCKED. All exactly same outside square silhouette, corner geometry, inner well and size. Each final72x72 (also exported88x88). Dark wood square frame with rounded restrained bronze medallion-like rim, not a circular coin. Inner dark #2A1F17 flat empty well for a game ability icon, open square roughly46x46. Normal warm aged bronze; ready brighter warm gold edge glints without glow bloom; cooldown dark dim bronze; locked desaturated dull bronze, a very tiny dark padlock rivet at lower-right rim ONLY, no central symbol. Transparent outside corners. No text, numbers or ability icons.",
+      "portrait_frame": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne square96x96 portrait FRAME of dark lacquer wood and aged bronze corner plates, crisp ink outline, light hand-painted wear. Border thickness12px, center72x72 is truly TRANSPARENT and empty. No portrait, silhouette, face, writing or fill. Bronze caps at all four corners, thin straight wood rails, matte subtle gold-leaf scratches only at corners.",
+      "divider": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne fixed-size320x28 horizontal divider: a thin dark sumi-ink brush line, dry tapered tips at both ends, a SMALL vermilion seal-knot ornament at its center. Knot abstract cord loops, no glyphs or writing. Warm paper-colored tiny highlight permissible. Empty transparent background. Straight, balanced, subtle.",
+      "corner_flourish": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne small64x64 TOP-LEFT CORNER FLOURISH: two short perpendicular sumi-ink brush strokes with one simple cloud curl nested into the corner, small muted gold-leaf accent. Mostly dark #2A1F17 ink. Open lower-right area. Hand-painted crisp silhouette, restrained rather than baroque, transparent.",
+      "seal_stamp_blank": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne square64x64 BLANK vermilion chop seal imprint: roughly square hand-stamped #B52A1A pigment, worn ink edge, a thin uneven inset double-square border. Center intentionally EMPTY of any writing: a flat red field without Chinese characters, pseudo-glyphs, logos or icons. Minor paper-through pinholes only near edge, strong readable silhouette, transparent outside.",
+      "ribbon_banner": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne front-facing horizontal480x96 RED CLOTH ribbon banner with restrained thin gold edge, matte vermilion #B52A1A cloth. Forked folded tails ONLY in the left/right64px endcaps; no cloth folds or texture crossing the broad flat rectangular center. Gold trim in top/bottom24px. Nine-slice64,24,64,24, chiefly horizontal stretching. Blank center for large game text. No text. Soft painted cloth texture only on the fixed ends, no glossy gradients.",
+      "pips": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nTwo states of one28x28 brush-SQUARE stat pip side by side. LEFT empty: rough dark ink square outline with transparent hollow center. RIGHT full: same outline shape filled with matte player gold #F2A516, tiny irregular ink pinholes at edge. Same size and stroke. No letters or symbols.",
+      "stepper_minus": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nFour states of ONE small ROUND40x40 MINUS stepper button in2x2 grid: top-left NORMAL, top-right HOVER, bottom-left PRESSED, bottom-right DISABLED. Matte paper disk with dark wood/sumi-ink rim and tiny warm bronze edging. CENTER HAS ONLY A STRONG SIMPLE MINUS SYMBOL in ink, thick brush strokes readable at40px; no text labels. These arithmetic symbols are intentional pictograms. All states identical circular geometry. Hover warmer gold rim; pressed darker paper and inset inner rim; disabled desaturated and low contrast. No glossy bevels.",
+      "stepper_plus": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nFour states of ONE small ROUND40x40 PLUS stepper button in2x2 grid: top-left NORMAL, top-right HOVER, bottom-left PRESSED, bottom-right DISABLED. Matte paper disk with dark wood/sumi-ink rim and tiny warm bronze edging. CENTER HAS ONLY A STRONG SIMPLE PLUS SYMBOL in ink, thick brush strokes readable at40px; no text labels. These arithmetic symbols are intentional pictograms. All states identical circular geometry. Hover warmer gold rim; pressed darker paper and inset inner rim; disabled desaturated and low contrast. No glossy bevels.",
+      "stat_attack": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. A compact clenched FIST formed from bold sumi-ink brush shapes, a small orange #D9541E flame licking over the knuckles. This is a symbolic fist pictogram only, no arm/body/person. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "stat_defense": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. A simple protective SHIELD silhouette in dark ink with a pale-paper CLOUD curl cutout and muted earth #7A9A3A accent along one edge. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "stat_mobility": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. Two tiny stylized FOOT silhouettes stepping with three flowing wind brush marks, dark ink plus air gold #E8C66A. Icon only, no legs or character. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "element_fire": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. An ORIGINAL elemental FIRE emblem: three asymmetric flame brush tongues rise from a short broken circular base, dark ink and orange #D9541E. Evoke elemental martial arts, do not copy an existing franchise logo. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "element_water": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. An ORIGINAL elemental WATER emblem: two flowing wave hooks fold around one teardrop-shaped hollow center, dark ink and blue #2E86C1, a spare open crescent at base. No existing franchise symbol copy. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "element_earth": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. An ORIGINAL elemental EARTH emblem: a compact angular mountain/stone glyph inside an incomplete diamond brush enclosure, dark ink with earthy green #7A9A3A. No letters or existing franchise emblem. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "element_air": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. An ORIGINAL elemental AIR emblem: three elegant curving wind strokes sweep around a small empty center in a loose asymmetric spiral, dark ink and muted air-gold #E8C66A. No existing franchise symbol copy. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "status_shocked": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. SHOCKED status pictogram: a short jagged lightning fork inside a broken ink arc with two tiny sparks, warm gold #F2A516 accents. No body. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "status_burning": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. BURNING status pictogram: one bold flame with two small ember marks, ink and vermilion/orange #D9541E. Hollow paper-colored flame center, no body. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "status_frozen": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. FROZEN status pictogram: a faceted upright ICE CRYSTAL with three short frost branches, ink with blue #2E86C1 and paper-light highlights. No body. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "status_soaked": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. SOAKED status pictogram: a compact cloud and three descending water drops, dark ink and blue #2E86C1. Clear readable silhouette, no body. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "status_stunned": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. STUNNED status pictogram: three little pebbles and one four-point star orbit a short elliptical ink swoosh, warm gold accent. Hollow center, no head or face. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "status_buried": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. BURIED status pictogram: a low mound of sand and two small stones with a partly submerged short abstract bar, ink and earthy green #7A9A3A/wood brown. No body, hand or person. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "status_winded": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. WINDED status pictogram: two thin broken wind curls with a short interrupted arc, dark ink and pale gold #E8C66A. Show fading/strained wind, not a tornado or face. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "status_swept_up": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. SWEPT UP status pictogram: a small tapered cyclone lifting two pebbles, bold sumi ink and air-gold #E8C66A. No person. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "ui_back": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. A bold LEFT-pointing arrow with a dry sumi-ink brush shaft and short vermilion accent at the tail, instantly readable BACK control. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "ui_settings": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. A simple six-tooth settings GEAR made from dark ink brush shapes with a warm aged-bronze center ring, hollow center, no glossy machine texture. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "ui_ready_check": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. A strong READY CHECKMARK in dark ink, nestled over one incomplete earth-green #7A9A3A brush circle. Clear check shape, not lettering. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "ui_lock": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. A small old-fashioned PADLOCK pictogram: dark ink arch/shackle and matte warm bronze rectangular body with one tiny simple keyhole cutout. No text. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "ui_crown": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. A simple THREE-POINT CROWN for a round win, dark ink outline and matte player gold #F2A516 infill, broad clear silhouette, no jewels or shine. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "ui_defeat": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne standalone64x64 UI pictogram. A SKULL-FREE DEFEAT mark made only of a broad diagonal vermilion brush stroke broken cleanly in its middle, with two small dark ink fracture slashes. No skull, bones, face, character, text or crossbones. Large simple legible silhouette, 4px transparent breathing margin at final size. Sumi-ink outline2-3px at final size, no enclosing rectangular background. Sparse hand-painted dry-brush texture at edges; clear flat accent fills. No words, numbers, kanji or pseudo-writing. No character illustration.",
+      "aim_ring": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nTWO color states of the same GROUND AIM RING, one above the other: TOP player gold #F2A516, BOTTOM lock-on vermilion #B52A1A. Each a thin hand-inked elliptical ring seen in3/4 top-down, EXACT width-to-height2.4:1, exported96x40. Geometrically identical ellipse and same irregular brush stroke in both states. Empty transparent center, no fill, no symbol, no arrow. Stroke about2px at final size, restrained darker ink under-edge, no glow bloom or neon. Full ellipse visible, slightly worn dry brush but largely unbroken enough to track. Transparent outside. No ground plane.",
+      "aim_arrow": "Create a production UI raster asset for Legend of Lion Turtle, theme SCROLL & INK. Reference images show the existing painted parchment and lacquered-wood material language, NOT layouts to copy. Hand-made Avatar-inspired aesthetic: aged parchment, black-brown sumi brushwork, vermilion lacquer, chop stamps, dark lacquered wood, aged bronze caps, restrained gold leaf. HIGHER-RES PAINTED but PIXEL-ART FRIENDLY: crisp edges, strong readable shapes at final1x sizes on1280x720 screen, no photorealism, no blur. STRICT palette: paper #F2E2B8/light #F8EED3, ink #2A1F17, vermilion #B52A1A, wood #6B4A2B/dark #3A2716, player gold #F2A516, rival indigo #3E3F86, fire #D9541E, water #2E86C1, earth #7A9A3A, air #E8C66A. Subtle darker/lighter hand-painted shades permitted at edges. Never glossy, never neon, no plastic gradients or 3D bevels. Transparent alpha PNG outside the isolated asset(s). No checkerboard, scenery, captions, labels, watermarks, characters or decorative pseudo-text. No baked-in text. Only explicitly requested icon pictograms or +/- symbols are allowed. Front-facing orthographic UI, not an angled object. For 9-slices keep corners/edge decorations within stated fixed margins, the center is uniformly flat so stretching is clean. Render at high resolution for precise downsampling.\nOne crisp32x32 hand-brushed arrowhead / chevron pointing unmistakably RIGHT. Matte player gold #F2A516 fill, thin dark ink outer stroke, slight dry-brush split at tail. No long shaft, no ring, no background. Large readable shape within2px transparent margin. No neon/glow."
+    },
+    "correction_prompts": {
+      "panel_card": {
+        "source": "panel_scroll.png",
+        "prompt": "Edit this SOLID PARCHMENT SHEET into a UI card. PRESERVE THE ENTIRE OPAQUE PAPER SURFACE EXACTLY as material: its warm cream color, very faint grain, uniform lighting and continuous solid alpha across the whole center. Do not cut a hole or erase ANY of the paper. Change ONLY the decorations: remove the two wooden scroll rods; replace them with a thin dark-brown rectangular ink border just inside the existing torn edge. Add small hand-painted cloud-curl ink ornaments at the four corners, with tiny vermilion and gold-leaf accents. These ornaments must stay in the outer one-sixth width/height near corners. The center remains an ordinary SOLID sheet of warm pale parchment with faint fine fibers, opaque all the way across, unmarked writing area. No shadow, vignette, dark fade or transparent cutout anywhere within the paper. This is a filled paper card, NOT a picture-frame border. Outside the torn outline stays transparent. Final aspect4:3 for320x240 pixels. No text, characters or glyphs. Preserve the flat painted style."
+      }
+    },
+    "technical_export": [
+      "Generated artwork cropped from state atlases and resampled to exact requested native PNG dimensions.",
+      "HP fill strips use edge-matched periodic halves with transparent top/bottom padding.",
+      "panel_dark preserves generated color and alpha shape with a 0.75 alpha multiplier baked into the PNG for visible HUD translucency."
+    ]
+  },
+  "validation": {
+    "godot_version": "4.4-stable (official)",
+    "load_verified": true,
+    "godot": {
+      "engine": "4.4-stable (official)",
+      "pngs_loaded": [
+        "button_primary_normal",
+        "button_primary_hover",
+        "button_primary_pressed",
+        "button_primary_disabled",
+        "button_secondary_normal",
+        "button_secondary_hover",
+        "button_secondary_pressed",
+        "button_secondary_disabled",
+        "button_small_normal",
+        "button_small_hover",
+        "button_small_pressed",
+        "button_small_disabled",
+        "panel_scroll",
+        "panel_card",
+        "panel_dark",
+        "tooltip_toast",
+        "tab_active",
+        "tab_inactive",
+        "keycap",
+        "keycap_pressed",
+        "hp_frame",
+        "hp_fill_you",
+        "hp_fill_rival",
+        "hp_fill_lag",
+        "ability_slot_normal",
+        "ability_slot_large_normal",
+        "ability_slot_ready",
+        "ability_slot_large_ready",
+        "ability_slot_cooldown",
+        "ability_slot_large_cooldown",
+        "ability_slot_locked",
+        "ability_slot_large_locked",
+        "portrait_frame",
+        "divider",
+        "corner_flourish",
+        "seal_stamp_blank",
+        "ribbon_banner",
+        "pip_empty",
+        "pip_full",
+        "stepper_minus_normal",
+        "stepper_minus_hover",
+        "stepper_minus_pressed",
+        "stepper_minus_disabled",
+        "stepper_plus_normal",
+        "stepper_plus_hover",
+        "stepper_plus_pressed",
+        "stepper_plus_disabled",
+        "stat_attack",
+        "stat_defense",
+        "stat_mobility",
+        "element_fire",
+        "element_water",
+        "element_earth",
+        "element_air",
+        "status_shocked",
+        "status_burning",
+        "status_frozen",
+        "status_soaked",
+        "status_stunned",
+        "status_buried",
+        "status_winded",
+        "status_swept_up",
+        "ui_back",
+        "ui_settings",
+        "ui_ready_check",
+        "ui_lock",
+        "ui_crown",
+        "ui_defeat",
+        "aim_ring",
+        "aim_ring_lock",
+        "aim_arrow"
+      ],
+      "result": "PASS",
+      "styleboxes_and_ninepatches": 22,
+      "textures": 71,
+      "tileable_fills": 3
+    },
+    "png_checks": {
+      "result": "PASS",
+      "png_assets": 71,
+      "nine_slice_assets": 22,
+      "horizontal_fill_tiles": 3,
+      "dimensions_verified": true,
+      "transparency_verified": true,
+      "nine_slice_corners_preserved": true,
+      "four_state_controls_distinct": true,
+      "reviews": [],
+      "checks": [
+        {
+          "id": "button_primary_normal",
+          "size": [
+            240,
+            64
+          ],
+          "visible_fraction": 0.895,
+          "sha256": "36560d80b7a0246aecc57e9cd4f282fcc9e279cff6f302514e700ac6e0b9154a",
+          "center_mean_rgba": [
+            157.99,
+            41.03,
+            20.71,
+            253.01
+          ],
+          "center_stddev_rgba": [
+            1.37,
+            0.95,
+            0.82,
+            0.11
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "button_primary_hover",
+          "size": [
+            240,
+            64
+          ],
+          "visible_fraction": 0.8917,
+          "sha256": "8033c2d75f55b4bb2c084ea436e5257d56970471914330885c24eee15420b922",
+          "center_mean_rgba": [
+            176.52,
+            48.57,
+            20.92,
+            253.02
+          ],
+          "center_stddev_rgba": [
+            1.77,
+            1.09,
+            0.8,
+            0.13
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "button_primary_pressed",
+          "size": [
+            240,
+            64
+          ],
+          "visible_fraction": 0.8923,
+          "sha256": "c75274f7956dcd7232c7ab0c15c7c0a3e3c5414f4ed3d829302dc1368fa04299",
+          "center_mean_rgba": [
+            122.27,
+            28.83,
+            14.12,
+            253.0
+          ],
+          "center_stddev_rgba": [
+            1.41,
+            0.77,
+            0.66,
+            0.09
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "button_primary_disabled",
+          "size": [
+            240,
+            64
+          ],
+          "visible_fraction": 0.8938,
+          "sha256": "ba91ceba4fcb1a0be9cbc9d7d0c600883f445ea64cdec562072639664e324234",
+          "center_mean_rgba": [
+            142.59,
+            60.53,
+            43.23,
+            253.01
+          ],
+          "center_stddev_rgba": [
+            1.51,
+            1.03,
+            0.93,
+            0.11
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "button_secondary_normal",
+          "size": [
+            240,
+            64
+          ],
+          "visible_fraction": 0.7245,
+          "sha256": "f811c14ea35b6d63ffeb7e60dad2529bbefc1e7e1d825b3f4e7463876dcb9cad",
+          "center_mean_rgba": [
+            238.56,
+            216.27,
+            175.79,
+            253.06
+          ],
+          "center_stddev_rgba": [
+            1.12,
+            1.35,
+            1.82,
+            0.24
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "button_secondary_hover",
+          "size": [
+            240,
+            64
+          ],
+          "visible_fraction": 0.7206,
+          "sha256": "7081a49dbb29691b84a8cc42d8942b4f2980890d75b993769f71b157214168f9",
+          "center_mean_rgba": [
+            247.08,
+            224.26,
+            182.31,
+            253.02
+          ],
+          "center_stddev_rgba": [
+            0.8,
+            1.59,
+            2.64,
+            0.15
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "button_secondary_pressed",
+          "size": [
+            240,
+            64
+          ],
+          "visible_fraction": 0.7238,
+          "sha256": "553426ee9d81f7b0682522847ac948a3db9cc3e0d74e5becacd484350bd12adc",
+          "center_mean_rgba": [
+            211.35,
+            181.86,
+            131.51,
+            253.04
+          ],
+          "center_stddev_rgba": [
+            1.92,
+            2.59,
+            3.87,
+            0.19
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "button_secondary_disabled",
+          "size": [
+            240,
+            64
+          ],
+          "visible_fraction": 0.7202,
+          "sha256": "7f33a781ad1404e1132b8dccb3e25259390c46ab7d90e52a9f5aaa23f128328e",
+          "center_mean_rgba": [
+            217.65,
+            203.52,
+            184.15,
+            253.04
+          ],
+          "center_stddev_rgba": [
+            1.18,
+            1.3,
+            1.56,
+            0.2
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "button_small_normal",
+          "size": [
+            120,
+            40
+          ],
+          "visible_fraction": 0.8692,
+          "sha256": "82ddd3795ee435dd139077ecdc7af7df6acaabb464f609feaef84f4872ba7dfb",
+          "center_mean_rgba": [
+            50.53,
+            29.98,
+            17.78,
+            252.89
+          ],
+          "center_stddev_rgba": [
+            0.99,
+            0.59,
+            0.56,
+            0.32
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "button_small_hover",
+          "size": [
+            120,
+            40
+          ],
+          "visible_fraction": 0.8692,
+          "sha256": "868bd74570d06c7e4e3651071f449e682fdfba581696672da8fa714da3569409",
+          "center_mean_rgba": [
+            60.33,
+            33.33,
+            17.28,
+            252.99
+          ],
+          "center_stddev_rgba": [
+            0.8,
+            0.64,
+            0.6,
+            0.07
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "button_small_pressed",
+          "size": [
+            120,
+            40
+          ],
+          "visible_fraction": 0.8692,
+          "sha256": "4ebe786d917d005a6f03220a2a678e6d50298b5efcdd17aa14447eaac47980b8",
+          "center_mean_rgba": [
+            40.81,
+            22.22,
+            12.37,
+            252.83
+          ],
+          "center_stddev_rgba": [
+            0.71,
+            0.6,
+            0.52,
+            0.38
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "button_small_disabled",
+          "size": [
+            120,
+            40
+          ],
+          "visible_fraction": 0.8692,
+          "sha256": "e14e0213e6cdd4c75f39bfa39dc7fc04e932b19098efde60d6ec19b5cfd2cbae",
+          "center_mean_rgba": [
+            62.96,
+            44.65,
+            33.2,
+            253.0
+          ],
+          "center_stddev_rgba": [
+            0.3,
+            0.74,
+            0.67,
+            0.06
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "panel_scroll",
+          "size": [
+            400,
+            300
+          ],
+          "visible_fraction": 0.9229,
+          "sha256": "bf99fde4b2818e703081018881607483cfeda6a5a4b3e33008d32aa220b2eb1f",
+          "center_mean_rgba": [
+            237.58,
+            216.97,
+            176.43,
+            253.02
+          ],
+          "center_stddev_rgba": [
+            1.92,
+            3.2,
+            4.72,
+            0.16
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "panel_card",
+          "size": [
+            320,
+            240
+          ],
+          "visible_fraction": 0.9155,
+          "sha256": "97c110c0d8acb52883e812547759f58a0644c672529b4c8b804206f7d98b6fe9",
+          "center_mean_rgba": [
+            235.99,
+            215.57,
+            178.13,
+            253.12
+          ],
+          "center_stddev_rgba": [
+            0.7,
+            0.85,
+            1.28,
+            0.32
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "panel_dark",
+          "size": [
+            320,
+            180
+          ],
+          "visible_fraction": 0.9297,
+          "sha256": "b69d67bada297377d717b8569807587bf68f64231a894befe99a31f34d853a69",
+          "center_mean_rgba": [
+            41.12,
+            30.07,
+            25.47,
+            190.0
+          ],
+          "center_stddev_rgba": [
+            0.69,
+            0.61,
+            0.58,
+            0.0
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "tooltip_toast",
+          "size": [
+            256,
+            64
+          ],
+          "visible_fraction": 0.8098,
+          "sha256": "d7be8585431d1b10eeaff3d4553b764505077f7a376dfbb6010ee26efeb237d5",
+          "center_mean_rgba": [
+            245.4,
+            227.04,
+            190.98,
+            253.0
+          ],
+          "center_stddev_rgba": [
+            0.75,
+            1.16,
+            1.36,
+            0.12
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "tab_active",
+          "size": [
+            180,
+            48
+          ],
+          "visible_fraction": 0.8002,
+          "sha256": "fab8bff179043122d4109128468cc211028855b2a7ce46c2603e62ec552ca629",
+          "center_mean_rgba": [
+            162.15,
+            41.5,
+            17.02,
+            253.03
+          ],
+          "center_stddev_rgba": [
+            6.47,
+            2.25,
+            1.33,
+            0.18
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "tab_inactive",
+          "size": [
+            180,
+            48
+          ],
+          "visible_fraction": 0.8162,
+          "sha256": "744fac6cb999430d0d3c0bf38eb384925c45e8539835f1405a83f8b5cbad2af4",
+          "center_mean_rgba": [
+            240.22,
+            220.15,
+            173.62,
+            253.02
+          ],
+          "center_stddev_rgba": [
+            2.6,
+            3.25,
+            4.59,
+            0.22
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "keycap",
+          "size": [
+            48,
+            48
+          ],
+          "visible_fraction": 0.8268,
+          "sha256": "6d01b7c118fbff1e99a24d42253be58f7f69af4581bc0a44591264e9654105a5",
+          "center_mean_rgba": [
+            247.34,
+            228.95,
+            190.9,
+            253.0
+          ],
+          "center_stddev_rgba": [
+            0.65,
+            0.9,
+            0.94,
+            0.0
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "keycap_pressed",
+          "size": [
+            48,
+            48
+          ],
+          "visible_fraction": 0.826,
+          "sha256": "bd517c5f8a830f38a3cd6577e9f5697c8dc5e35905d3242dc61b0b3a0a5c0618",
+          "center_mean_rgba": [
+            236.62,
+            201.44,
+            144.52,
+            253.0
+          ],
+          "center_stddev_rgba": [
+            1.09,
+            1.85,
+            2.31,
+            0.04
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "hp_frame",
+          "size": [
+            420,
+            36
+          ],
+          "visible_fraction": 0.5353,
+          "sha256": "58fb180b1d26c79f8befbaf3b6cf565774870e738d93ceee3d49080e09d5e13b",
+          "center_mean_rgba": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "center_stddev_rgba": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "hp_fill_you",
+          "size": [
+            64,
+            16
+          ],
+          "visible_fraction": 0.75,
+          "sha256": "312abc39ed267d907175b3ef16273e9297ce18cdb42de5dd8ee770c3f0416571",
+          "horizontal_seam": "PASS"
+        },
+        {
+          "id": "hp_fill_rival",
+          "size": [
+            64,
+            16
+          ],
+          "visible_fraction": 0.75,
+          "sha256": "546ee5b035cae268d78b8274a2ba00c77c8c807b1a47f20e18df6282cb9593b7",
+          "horizontal_seam": "PASS"
+        },
+        {
+          "id": "hp_fill_lag",
+          "size": [
+            64,
+            16
+          ],
+          "visible_fraction": 0.75,
+          "sha256": "bd962bd0034cf631bf628e41321e10da962a52a0b46fbebe981be2c31efc8331",
+          "horizontal_seam": "PASS"
+        },
+        {
+          "id": "ability_slot_normal",
+          "size": [
+            72,
+            72
+          ],
+          "visible_fraction": 0.8736,
+          "sha256": "3682661fc90ea866e39e61e63ce2f711054a62d1506cd7a702ace66ea08ef8de"
+        },
+        {
+          "id": "ability_slot_large_normal",
+          "size": [
+            88,
+            88
+          ],
+          "visible_fraction": 0.8837,
+          "sha256": "564a7943771d5d7a0cb36c6076b374447bc869edad7a9736f3a5dce2d2b4a45e"
+        },
+        {
+          "id": "ability_slot_ready",
+          "size": [
+            72,
+            72
+          ],
+          "visible_fraction": 0.8735,
+          "sha256": "eeceb43415760adb34113d8b07627c201205ef11c7510bc5e4dd9ee2523eee9c"
+        },
+        {
+          "id": "ability_slot_large_ready",
+          "size": [
+            88,
+            88
+          ],
+          "visible_fraction": 0.8835,
+          "sha256": "be30c464a274b3a44edfb57fe1edb7e7b180e8c6112d27f6d24379cf05926242"
+        },
+        {
+          "id": "ability_slot_cooldown",
+          "size": [
+            72,
+            72
+          ],
+          "visible_fraction": 0.874,
+          "sha256": "930f5c53260990e42d735df5b04e0eb634a215c405ee98017711ddf8db86ced4"
+        },
+        {
+          "id": "ability_slot_large_cooldown",
+          "size": [
+            88,
+            88
+          ],
+          "visible_fraction": 0.8949,
+          "sha256": "cbeed86b7b541509f34430dcf4f4f675595bc5437033fab2ea3345280e34e497"
+        },
+        {
+          "id": "ability_slot_locked",
+          "size": [
+            72,
+            72
+          ],
+          "visible_fraction": 0.8742,
+          "sha256": "35e2ec26eeee3060bddb4c5499b03518be29a66980d402d9d357e063ccf0eca6"
+        },
+        {
+          "id": "ability_slot_large_locked",
+          "size": [
+            88,
+            88
+          ],
+          "visible_fraction": 0.895,
+          "sha256": "20d9698e678ead9544ed22613edce5fd842b0cb1168f1c513487513c126df61b"
+        },
+        {
+          "id": "portrait_frame",
+          "size": [
+            96,
+            96
+          ],
+          "visible_fraction": 0.2935,
+          "sha256": "0fb4cabc36b8e43c66e167f516cc2230e96a8b8344bd84c39e6aa1dc132d4f92"
+        },
+        {
+          "id": "divider",
+          "size": [
+            320,
+            28
+          ],
+          "visible_fraction": 0.1126,
+          "sha256": "1b78905f27f28686ce1855441fe4163e7ec9851509b21bcd677833720ab05436"
+        },
+        {
+          "id": "corner_flourish",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.145,
+          "sha256": "8fb5ae43d4d4294e13909fea5d193c2963754d6a5d17a4e30492dd093cecf48e"
+        },
+        {
+          "id": "seal_stamp_blank",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.802,
+          "sha256": "79a8a263cbb635c9166f888df12676c3e87f256ba449e76a21d925369176fe0c"
+        },
+        {
+          "id": "ribbon_banner",
+          "size": [
+            480,
+            96
+          ],
+          "visible_fraction": 0.8131,
+          "sha256": "fe93bc2351b821a1f10173b77533a63e84248704971f4cf2d913d11c5744da5a",
+          "center_mean_rgba": [
+            162.72,
+            35.12,
+            18.55,
+            253.1
+          ],
+          "center_stddev_rgba": [
+            6.79,
+            1.7,
+            1.04,
+            0.31
+          ],
+          "corner_preservation": "PASS"
+        },
+        {
+          "id": "pip_empty",
+          "size": [
+            28,
+            28
+          ],
+          "visible_fraction": 0.273,
+          "sha256": "3f2c953f52ec5b9bb65d80bb415dfb546d71002c620c1ef78ee690e980f0bf29"
+        },
+        {
+          "id": "pip_full",
+          "size": [
+            28,
+            28
+          ],
+          "visible_fraction": 0.6735,
+          "sha256": "9d803fc88021293e70e2809ccef3065c33c14562c67ff04be21e907f8b64f5bc"
+        },
+        {
+          "id": "stepper_minus_normal",
+          "size": [
+            40,
+            40
+          ],
+          "visible_fraction": 0.6194,
+          "sha256": "92b6dbf86df5466b297c0ad3b8146ba62914a9c3a8591dae76edba73154ed06b"
+        },
+        {
+          "id": "stepper_minus_hover",
+          "size": [
+            40,
+            40
+          ],
+          "visible_fraction": 0.6081,
+          "sha256": "3866428c710de162a3eacc8df45906ca548f7df18b6e84f378265162326702e9"
+        },
+        {
+          "id": "stepper_minus_pressed",
+          "size": [
+            40,
+            40
+          ],
+          "visible_fraction": 0.6075,
+          "sha256": "76fe86d4bd67bc4e88ee6acffaa1a8780a571428955dd78376f79bd476c24f06"
+        },
+        {
+          "id": "stepper_minus_disabled",
+          "size": [
+            40,
+            40
+          ],
+          "visible_fraction": 0.6056,
+          "sha256": "77ac26030d2d1ebf1722905f923787c11c60d5376c12933845cadb64c082a5e3"
+        },
+        {
+          "id": "stepper_plus_normal",
+          "size": [
+            40,
+            40
+          ],
+          "visible_fraction": 0.6212,
+          "sha256": "3db9db17cb16a076ad3d122ab312a1feeb86d478f6c69ffad3b05653996fee71"
+        },
+        {
+          "id": "stepper_plus_hover",
+          "size": [
+            40,
+            40
+          ],
+          "visible_fraction": 0.6219,
+          "sha256": "c5e52305cba9da28d06a74a04fab703c790b21e7e6d7882cb108e4a36df4c5aa"
+        },
+        {
+          "id": "stepper_plus_pressed",
+          "size": [
+            40,
+            40
+          ],
+          "visible_fraction": 0.6225,
+          "sha256": "d51fd9b84bc16d41cae733bfceebeaeb94a7744290abddaf3e6f38509100bf24"
+        },
+        {
+          "id": "stepper_plus_disabled",
+          "size": [
+            40,
+            40
+          ],
+          "visible_fraction": 0.6219,
+          "sha256": "4d86fb1f579529ef81313598bfb2804c21b02bffe40eb1d8b5f1be9aee3fcf4e"
+        },
+        {
+          "id": "stat_attack",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.3867,
+          "sha256": "6f9628afea454db1e3e157fd36b100757bfcab6e23ca3dd161ff9431d88c5c7c"
+        },
+        {
+          "id": "stat_defense",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.4771,
+          "sha256": "ad7fcd0373b1f63e95db40037f07d44e0092fd52282ead82e1db66701bc2457a"
+        },
+        {
+          "id": "stat_mobility",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.3647,
+          "sha256": "6d7be0574b72ad6d94c06a576c5d8233921ffe3f24c6f51a33b6cb76a2217134"
+        },
+        {
+          "id": "element_fire",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.2595,
+          "sha256": "3af425ed23f89522fe5d51438c14aad7d00600fe13a2a723e8ac47b3a4d9eb04"
+        },
+        {
+          "id": "element_water",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.3623,
+          "sha256": "066a48a1bb9debd2e7775ceda3e112c2c13b955234b864903056b79b7e76c650"
+        },
+        {
+          "id": "element_earth",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.2712,
+          "sha256": "1f5a97400cff64b8d9293aa136a7e19d471c3f9cdf8218c0b9aabd27defcaf37"
+        },
+        {
+          "id": "element_air",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.3389,
+          "sha256": "0041c4c55bd81891412ab4fc98d2e1f16b4bf3020f1f3982b24adae0ae905e6b"
+        },
+        {
+          "id": "status_shocked",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.2893,
+          "sha256": "f8d108f904242225e72f7762d22496916286f5e02f245eed1d8b8099e475b003"
+        },
+        {
+          "id": "status_burning",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.3997,
+          "sha256": "14821e9dabecdcf55291fe1d9d74a3b6b11f64dec584e1afa9b5b4bfdd3ff32c"
+        },
+        {
+          "id": "status_frozen",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.2815,
+          "sha256": "753aafc75a9a7db72d3a91c7ba9f60a11592e54b52be8b14314e7e5722227d9d"
+        },
+        {
+          "id": "status_soaked",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.4153,
+          "sha256": "1c39a40ee2c12be1b5f2f71a3b24cf4fd66b3512b1dfeeab3ca76da625353234"
+        },
+        {
+          "id": "status_stunned",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.1802,
+          "sha256": "cd348af61f37495bb03b0f55d569e913d5733430f6e47ed7a174e033066f5c63"
+        },
+        {
+          "id": "status_buried",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.1914,
+          "sha256": "869856020d5be116722cc0aab0f2a9a102296a7de320af2fe85b3e1e329e29e5"
+        },
+        {
+          "id": "status_winded",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.1743,
+          "sha256": "5d578772112df981300046f9919a71660e949fa26cff9efdea5dcd3c7ba232dc"
+        },
+        {
+          "id": "status_swept_up",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.3257,
+          "sha256": "d79e157540c8c92f3cffd06b87af0e055f90d65dd584de8f14d2c005bf8d84ba"
+        },
+        {
+          "id": "ui_back",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.1887,
+          "sha256": "9fe9b50c3c227ee26e6357b14475be2159abac7e31eee9e9995e067418c8ed0e"
+        },
+        {
+          "id": "ui_settings",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.4514,
+          "sha256": "c7cd0661827f76f0d9dda65598e5c8070bfb9d3ed88f228667cf51deaccf2c5b"
+        },
+        {
+          "id": "ui_ready_check",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.3137,
+          "sha256": "e18ca67a7df1aaa72b5f1846dfe81e313be4c52bb124286678087130420ce90e"
+        },
+        {
+          "id": "ui_lock",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.4729,
+          "sha256": "99104e0e7b9e4db7d82cec0e80a62249a50c80862c8da541bf55bcd1f36a9998"
+        },
+        {
+          "id": "ui_crown",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.3596,
+          "sha256": "9a3658b09c4ac5bd804b7fa594108a1a404633f536eec5cd99d75c9f2b3038b6"
+        },
+        {
+          "id": "ui_defeat",
+          "size": [
+            64,
+            64
+          ],
+          "visible_fraction": 0.2063,
+          "sha256": "3c500f52805b03725f2615c65dc51ab0cc4e2cafb2a51705907d4aa6a2f58b19"
+        },
+        {
+          "id": "aim_ring",
+          "size": [
+            96,
+            40
+          ],
+          "visible_fraction": 0.2859,
+          "sha256": "a8df3e416db2b40e068aaaf325d30260f4ba693f0aa42b17ae636aeb69cbb04d"
+        },
+        {
+          "id": "aim_ring_lock",
+          "size": [
+            96,
+            40
+          ],
+          "visible_fraction": 0.2854,
+          "sha256": "d4a7678eeffc43f02223321e7e28c58b9948b368a4acecfda72e1ad2cd5a3c1d"
+        },
+        {
+          "id": "aim_arrow",
+          "size": [
+            32,
+            32
+          ],
+          "visible_fraction": 0.2705,
+          "sha256": "a895a3b7be7848e8cbfb9924c370ec660a19f93f9cf051d7f967facde0e66a6a"
+        }
+      ]
+    },
+    "method": "Godot 4.4 headless import and Texture2D alpha/dimension checks for all 71 assets; construction of 22 StyleBoxTexture and NinePatchRect controls at enlarged sizes; three tiled-fill TextureRects. Independent pixel checks reconstruct 9-slices at native, double-width and double-size with byte-identical corners.",
+    "editor_import_notes": "Headless editor printed progress-dialog message-queue errors and exited 0. Separate runtime resource validation passed.",
+    "visual_review": "All icons, state variants, text-free writing areas and enlarged 9-slice previews were inspected.",
+    "scope": "Assets and UI resources tested in an isolated project; the existing game was not modified."
+  },
+  "integration": {
+    "nine_slice": "For each resizable asset, use nine_slice_margins in left,top,right,bottom order as StyleBoxTexture texture margins or NinePatchRect patch margins. Resize the control rather than scaling the whole texture.",
+    "stretch_mode": "Use stretch for the middle regions; corners are fixed. Keep the base height for assets marked horizontal-only.",
+    "sampling": "Native 1x sizes target a 1280x720 canvas. Pixel-aligned positions with nearest filtering keep edges crisp. Disable mipmaps for these GUI textures.",
+    "text": "No text is baked into assets. Render labels independently. Stepper + and - marks and other requested UI symbols are intentional pictograms.",
+    "states": "File/state mappings are in families; both 72px and 88px ability slots have normal, ready, cooldown and locked variants.",
+    "hp": "Draw hp_fill_you/hp_fill_rival/hp_fill_lag behind hp_frame. Tile fill textures horizontally and clip to the current value. hp_frame has draw_center=false.",
+    "hud_opacity": "panel_dark already contains partial alpha (about 75% opacity). Use normal modulate alpha=1 unless further fading is desired.",
+    "portrait": "portrait_frame has a transparent central window. Place portrait art below it.",
+    "aim": "Center aim_ring or aim_ring_lock under player feet at [48,20]. aim_arrow faces RIGHT with pivot[16,16] and is a separate rotating sprite.",
+    "tooltip_toast": "The same tooltip_toast.png slip is supplied for tooltips and toasts.",
+    "fixed_ornaments": "Divider, corner flourish, seal, pips, stepper disks, portrait/ability frames and icons are fixed-size decorations; only resizable=true assets are intended for 9-slice stretching."
+  }
+}

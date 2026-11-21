@@ -181,12 +181,23 @@ static func tassel(ci: CanvasItem, at: Vector2, length: float = 26.0, sway: floa
 
 ## Vermilion seal stamp (square chop) with text.
 static func seal(ci: CanvasItem, rect: Rect2, text: String, seed: int = 3) -> void:
-	ci.draw_colored_polygon(brush_poly(rect, seed, 1.5, 6.0), T.VERMILION)
-	ci.draw_polyline(_closed(brush_poly(rect.grow(-3), seed + 1, 1.0, 6.0)), Color(T.PAPER_LIGHT, 0.55), 1.0, true)
+	var st := tex_kit("seal_stamp_blank")
+	if st:
+		ci.draw_texture_rect(st, rect, false)
+	else:
+		ci.draw_colored_polygon(brush_poly(rect, seed, 1.5, 6.0), T.VERMILION)
+		ci.draw_polyline(_closed(brush_poly(rect.grow(-3), seed + 1, 1.0, 6.0)), Color(T.PAPER_LIGHT, 0.55), 1.0, true)
 	var f := T.font("label")
 	var fs := int(rect.size.y * 0.5)
 	var w := f.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x
 	ci.draw_string(f, rect.get_center() + Vector2(-w / 2.0, fs * 0.36), text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, T.PAPER_LIGHT)
+
+static func tex_kit(name: String) -> Texture2D:
+	var key := "kit:" + name
+	if not _cache.has(key):
+		var p := "res://assets/ui/kit/%s.png" % name
+		_cache[key] = load(p) if ResourceLoader.exists(p) else null
+	return _cache[key]
 
 ## Ink frame around a rect (brushed, slightly uneven).
 static func ink_frame(ci: CanvasItem, rect: Rect2, color: Color = T.INK, width: float = T.BORDER_INK, seed: int = 5) -> void:

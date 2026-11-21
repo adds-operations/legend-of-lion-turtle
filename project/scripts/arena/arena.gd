@@ -14,8 +14,10 @@ const T = preload("res://scripts/ui/kit/ui_tokens.gd")
 const Arenas = preload("res://scripts/data/arenas.gd")
 const RaavaEvent = preload("res://scripts/arena/raava_event.gd")
 const Elements = preload("res://scripts/data/elements.gd")
+const Specials = preload("res://scripts/data/specials.gd")
 const BendingFX = preload("res://scripts/fx/bending_fx.gd")
 const FxSprite = preload("res://scripts/fx/fx_sprite.gd")
+const AnimFX = preload("res://scripts/fx/anim_fx.gd")
 const INTRO_TIME := 1.2
 const FIGHT_BANNER_TIME := 1.0
 const RESULT_SCREEN_TIME := 4.0
@@ -100,9 +102,9 @@ func _start_training() -> void:
 	var me = get_local_fighter()
 	var partner = fighters.get(NetworkManager.TRAINING_PARTNER_ID)
 	me.free_switch = true
-	partner.ai_mode = 0
+	partner.ai_mode = 1   # MOVING by default; G cycles STANDING → MOVING → SPARRING
 	hud.bind(me, partner)
-	hud.setup_training(PARTNER_MODES[0])
+	hud.setup_training(PARTNER_MODES[1])
 	for f in fighters.values():
 		f.net_ready = true
 	hud.play_intro(Arenas.display_name(arena_id).to_upper(), "Training")
@@ -142,6 +144,10 @@ func _training_revive(peer: int) -> void:
 	var f = fighters.get(peer)
 	if f == null:
 		return
+	# A knockdown ends any Avatar state, yours or your partner's.
+	for other in fighters.values():
+		if other.is_avatar:
+			other.clear_avatar()
 	hud.flash_hint("BACK ON YOUR FEET" if f == get_local_fighter() else "PARTNER RECOVERS", 1.2)
 	await get_tree().create_timer(1.4).timeout
 	if is_instance_valid(f):
@@ -270,29 +276,43 @@ func _begin_round(round_number: int) -> void:
 
 ## Host only. Throws the power on key `slot` for `owner_id`: one or more
 ## projectiles (fans and rings per scripts/data/elements.gd), the same on every peer.
-func spawn_attack(owner_id: int, element: int, slot: int, dir: Vector2, airborne: bool, bend: float = 0.0) -> void:
+## combo: 0 none, 1 dash (already moved), 2 power (+50% dmg, bigger), 3 curve (bend), 4 spread (two extra at ±18°).
+func spawn_attack(owner_id: int, element: int, slot: int, dir: Vector2, airborne: bool, bend: float = 0.0, combo: int = 0) -> void:
 	if not multiplayer.is_server() or not round_live:
 		return
 	var caster = fighters.get(owner_id)
 	if caster == null:
 		return
-	var a := Elements.attack(element, slot)
+	var a := Elements.attack(element, slot).duplicate()
+	var power := 1.5 if combo == 2 else 1.0
+	a["dmg"] = int(round(float(a["dmg"]) * power * caster.damage_mult()))
+	if combo == 2:
+		a["radius"] = float(a["radius"]) * 1.3
+	var dirs := [dir]
+	if combo == 4:
+		dirs = [dir.rotated(-deg_to_rad(18.0)), dir, dir.rotated(deg_to_rad(18.0))]
 	if a["kind"] == "beam":
-		# a beam can't bend: a two-arrow combo sends it on the diagonal instead
-		_host_beam(caster, element, slot, dir.rotated(bend * PI / 4.0), airborne, a)
+		# a beam can't bend: a curve combo sends it on the diagonal instead
+		for d0 in dirs:
+			_host_beam(caster, element, slot, d0.rotated(bend * PI / 4.0), airborne, a)
 		return
 	if a["kind"] == "burst":
 		_host_burst(caster, element, slot, airborne, a)
 		return
 	var count: int = a["count"]
 	var spread: float = deg_to_rad(a["spread"])
-	for i in count:
-		var d := dir
-		if count > 1:
-			if a["spread"] >= 360.0:
-				d = dir.rotated(TAU * i / count)
-			else:
-				d = dir.rotated(lerpf(-spread / 2.0, spread / 2.0, float(i) / (count - 1)))
+	var shots := []
+	for d0 in dirs:
+		for i in count:
+			var d: Vector2 = d0
+			if count > 1:
+				if a["spread"] >= 360.0:
+					d = d0.rotated(TAU * i / count)
+				else:
+					d = d0.rotated(lerpf(-spread / 2.0, spread / 2.0, float(i) / (count - 1)))
+			shots.append(d)
+	for i in shots.size():
+		var d: Vector2 = shots[i]
 		var pos: Vector2 = caster.global_position + d * 24.0
 		# Never spawn past a wall or rock: start just in front of it instead.
 		var space := get_world_2d().direct_space_state
@@ -301,21 +321,36 @@ func spawn_attack(owner_id: int, element: int, slot: int, dir: Vector2, airborne
 		if not hit.is_empty():
 			pos = hit["position"] - d * 6.0
 		_projectile_counter += 1
-		_spawn_projectile_rpc.rpc("Bolt_%d_%d" % [owner_id, _projectile_counter], owner_id, element, slot, pos, d, airborne, i == 0, bend)
+		_spawn_projectile_rpc.rpc("Bolt_%d_%d" % [owner_id, _projectile_counter], owner_id, element, slot, pos, d, airborne, i == 0, bend, power)
+		# the host's copy carries the build- and combo-adjusted damage
+		var proj = projectiles_root.get_node_or_null("Bolt_%d_%d" % [owner_id, _projectile_counter])
+		if proj:
+			proj.damage = int(a["dmg"])
+
+## Every peer: a combo's name pops up for both players.
+func announce_move(owner_id: int, move_name: String) -> void:
+	_announce_rpc.rpc(owner_id, move_name)
 
 @rpc("authority", "reliable", "call_local")
-func _spawn_projectile_rpc(proj_name: String, owner_id: int, element: int, slot: int, pos: Vector2, dir: Vector2, airborne: bool, lead: bool, bend: float = 0.0) -> void:
+func _announce_rpc(owner_id: int, move_name: String) -> void:
+	hud.show_move(owner_id == multiplayer.get_unique_id(), move_name)
+
+@rpc("authority", "reliable", "call_local")
+func _spawn_projectile_rpc(proj_name: String, owner_id: int, element: int, slot: int, pos: Vector2, dir: Vector2, airborne: bool, lead: bool, bend: float = 0.0, power: float = 1.0) -> void:
 	var p = PROJECTILE_SCENE.instantiate()
 	p.name = proj_name
 	p.position = projectiles_root.to_local(pos)
 	p.setup(dir, element, owner_id, slot, airborne, bend)
+	if power > 1.0:
+		p.radius *= 1.3
+		p.power = power
 	projectiles_root.add_child(p)
 	if lead:
 		# this attack's own windup art at the bender's hands
-		_windup(element, slot, pos + Vector2(0, -58.0 if airborne else -26.0))
+		_windup(element, slot, pos + dir * 14.0 + Vector2(0, -58.0 if airborne else -26.0))
 		var caster = fighters.get(owner_id)
 		if caster:
-			caster.play_strike(dir)
+			caster.play_strike(dir, element)
 
 ## Lightning: instant along a line (stopped by walls). Hits whoever stands
 ## on that line at the same height as the caster.
@@ -328,11 +363,13 @@ func _host_beam(caster, element: int, slot: int, dir: Vector2, airborne: bool, a
 	if not hit.is_empty():
 		end = hit["position"]
 	for f in fighters.values():
-		if f == caster or f.is_defeated or f.is_jumping != airborne:
+		if f == caster or f.is_defeated or f.is_airborne() != airborne:
 			continue
-		var closest := Geometry2D.get_closest_point_to_segment(f.global_position, start, end)
-		if closest.distance_to(f.global_position) <= float(a["width"]):
-			f.take_damage(combo_damage(caster.peer_id, int(a["dmg"])))
+		# the bender's body (feet to chest), not just the feet
+		var body_c: Vector2 = f.global_position + Vector2(0, -8)
+		var closest := Geometry2D.get_closest_point_to_segment(body_c, start, end)
+		if closest.distance_to(body_c) <= float(a["width"]) + 14.0:
+			f.take_damage(combo_damage(caster.peer_id, int(a["dmg"])), start)
 			if float(a["knock"]) > 0.0:
 				f.apply_knockback(dir * float(a["knock"]))
 	_fx_beam.rpc(caster.peer_id, element, slot, start, end, airborne)
@@ -341,11 +378,11 @@ func _host_beam(caster, element: int, slot: int, dir: Vector2, airborne: bool, a
 func _host_burst(caster, element: int, slot: int, airborne: bool, a: Dictionary) -> void:
 	var center: Vector2 = caster.global_position
 	for f in fighters.values():
-		if f == caster or f.is_defeated or f.is_jumping != airborne:
+		if f == caster or f.is_defeated or f.is_airborne() != airborne:
 			continue
 		var d: Vector2 = f.global_position - center
 		if d.length() <= float(a["radius"]):
-			f.take_damage(combo_damage(caster.peer_id, int(a["dmg"])))
+			f.take_damage(combo_damage(caster.peer_id, int(a["dmg"])), center)
 			if float(a["knock"]) > 0.0:
 				f.apply_knockback((d.normalized() if d.length() > 0.1 else caster.aim_direction) * float(a["knock"]))
 	_fx_burst.rpc(caster.peer_id, element, slot, center, airborne)
@@ -354,6 +391,25 @@ func _host_burst(caster, element: int, slot: int, airborne: bool, a: Dictionary)
 func _fx_beam(owner_id: int, element: int, slot: int, start: Vector2, end: Vector2, airborne: bool) -> void:
 	var fx := BendingFX.fx(element, slot)
 	var lift := Vector2(0, -58.0 if airborne else -26.0)
+	var spec := BendingFX.anim_spec(element, slot)
+	if not spec.is_empty():
+		# animated bolt segments tiled along the line, then the impact
+		var d := (end - start).normalized()
+		var length := start.distance_to(end)
+		var sc: float = spec["s"]
+		var step := 128.0 * sc
+		var k := 0.0
+		while k < length:
+			var seg := AnimFX.part(spec["t"], start + lift + d * (k + step * 0.5), sc, 0.3, true, false, d.angle())
+			projectiles_root.add_child(seg)
+			k += step
+		_windup(element, slot, start + lift)
+		projectiles_root.add_child(AnimFX.part(spec["i"], end + lift, 0.5, 0.4))
+		_bloom(end + lift, T.element_glow(element), 34.0, 0.3)
+		var c = fighters.get(owner_id)
+		if c:
+			c.play_strike(d)
+		return
 	var tex := BendingFX.frame(element, fx["beam"])
 	var length := start.distance_to(end)
 	var b := FxSprite.make(tex, (start + end) / 2.0 + lift, 1.0, 0.3)
@@ -372,6 +428,27 @@ func _fx_beam(owner_id: int, element: int, slot: int, start: Vector2, end: Vecto
 func _fx_burst(owner_id: int, element: int, slot: int, center: Vector2, airborne: bool) -> void:
 	var fx := BendingFX.fx(element, slot)
 	var a := Elements.attack(element, slot)
+	var spec := BendingFX.anim_spec(element, slot)
+	if not spec.is_empty():
+		var sc := float(a["radius"]) * 2.0 / 128.0 * 1.1
+		var lift0 := Vector2(0, -26.0 if airborne else 0.0)
+		if element == 2:
+			# earth: a ring of stone erupting out of the ground around the bender
+			var r := float(a["radius"]) * 0.75
+			for i in 8:
+				var ang := TAU * i / 8.0
+				var at: Vector2 = center + Vector2(cos(ang) * r, sin(ang) * r * 0.55) + Vector2(0, 8)
+				var e := AnimFX.part(spec["t"], at, float(spec["s"]) * 0.75, 0.5, false, true)
+				e.flip = cos(ang) < 0.0
+				projectiles_root.add_child(e)
+		else:
+			projectiles_root.add_child(AnimFX.part(spec["t"], center + lift0 + Vector2(0, 10), sc, 0.5, false, false))
+			projectiles_root.add_child(AnimFX.part(spec["i"], center + lift0 + Vector2(0, 10), sc * 0.8, 0.6, false, false))
+		_windup(element, slot, center + Vector2(0, -26) + lift0)
+		var cc = fighters.get(owner_id)
+		if cc:
+			cc.play_strike(cc.aim_direction)
+		return
 	var tex := BendingFX.frame(element, fx["burst"])
 	# sized so the art covers the hit radius
 	var s := float(a["radius"]) * 2.0 / tex.get_size().x * 1.15
@@ -386,6 +463,14 @@ func _fx_burst(owner_id: int, element: int, slot: int, center: Vector2, airborne
 
 ## The attack's windup frame (column 0 of its sheet row), flashed at the hands.
 func _windup(element: int, slot: int, at: Vector2) -> void:
+	var spec := BendingFX.anim_spec(element, slot)
+	if not spec.is_empty():
+		if element == 1 or element == 2:
+			# water is pulled, rock breaks, up out of the ground in front of the bender
+			projectiles_root.add_child(AnimFX.part(spec["w"], at + Vector2(0, 30), 0.42, 0.2, false, true))
+		else:
+			projectiles_root.add_child(AnimFX.part(spec["w"], at, 0.4, 0.18))
+		return
 	var fx := BendingFX.fx(element, slot)
 	if fx.has("wind"):
 		var w := FxSprite.make(BendingFX.frame(element, fx["wind"]), at, 0.42, 0.2)
@@ -513,19 +598,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if not event.is_action_pressed("pause_menu"):
 		return
+	# Esc: the in-game menu (resume, auto-aim on/off, leave). Training pauses;
+	# a LAN match keeps running for your rival.
+	get_viewport().set_input_as_handled()
+	hud.toggle_menu()
+
+## From the in-game menu.
+func leave_match() -> void:
+	get_tree().paused = false
 	if NetworkManager.training:
-		var t := Time.get_ticks_msec() / 1000.0
-		if t < _leave_armed_until:
-			NetworkManager.leave_training()
-		else:
-			_leave_armed_until = t + 2.0
-			hud.flash_hint("Press Esc again to leave training")
-		return
-	# Full match menu (Resume / Request Pause / Leave) arrives with Stage 4.
-	# For now: press Esc twice within 2 s to leave the match.
-	var now := Time.get_ticks_msec() / 1000.0
-	if now < _leave_armed_until:
-		NetworkManager.abort_to_menu("You left the match.")
+		NetworkManager.leave_training()
 	else:
-		_leave_armed_until = now + 2.0
-		hud.flash_hint("Press Esc again to leave")
+		NetworkManager.abort_to_menu("You left the match.")

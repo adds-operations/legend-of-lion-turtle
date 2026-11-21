@@ -35,4 +35,9 @@ func _draw() -> void:
 		draw_texture_rect_region(at.atlas, dst, Rect2(at.region.position + BUST.position, BUST.size))
 	else:
 		Emblems.draw(self, Emblems.element_kind(element), r.grow(-r.size.y * 0.2), T.element_color(element))
-	Paint.ink_frame(self, r, border, 3.0, element + 4)
+	var frame_tex := Paint.tex_kit("portrait_frame")
+	if frame_tex:
+		draw_rect(r.grow(-7), border, false, 2.0)   # your side colour, just inside the frame
+		draw_texture_rect(frame_tex, r.grow(4), false)
+	else:
+		Paint.ink_frame(self, r, border, 3.0, element + 4)

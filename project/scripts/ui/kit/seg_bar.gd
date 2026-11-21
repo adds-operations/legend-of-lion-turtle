@@ -6,6 +6,7 @@ extends Control
 
 const T = preload("res://scripts/ui/kit/ui_tokens.gd")
 const Paint = preload("res://scripts/ui/kit/ui_paint.gd")
+const Kit = preload("res://scripts/ui/kit/ui_kit.gd")
 
 @export var max_value: float = 300.0:
 	set(v): max_value = maxf(v, 1.0); queue_redraw()
@@ -28,6 +29,7 @@ var _lag_tween: Tween
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
 	_lag = value
 
 func _set_value(v: float) -> void:
@@ -53,6 +55,9 @@ func _part(frac: float) -> Rect2:
 	return Rect2(Vector2(size.x - w, 0) if reverse else Vector2.ZERO, Vector2(w, size.y))
 
 func _draw() -> void:
+	if Kit.has("hp_frame"):
+		_draw_kit()
+		return
 	var full := Rect2(Vector2.ZERO, size)
 	# ink well
 	draw_colored_polygon(Paint.brush_poly(full.grow(2), 4, 1.2, 12.0), T.INK)
@@ -78,3 +83,25 @@ func _draw() -> void:
 func _process(_d: float) -> void:
 	if value / max_value <= 0.25 and value > 0.0:
 		queue_redraw()
+
+## Painted kit: a bronze-capped wood frame around textured gold / indigo fills.
+func _draw_kit() -> void:
+	var full := Rect2(Vector2.ZERO, size)
+	draw_rect(full, Color(0.1, 0.07, 0.05, 0.92))
+	var fill_tex: Texture2D = Kit.tex("hp_fill_rival" if fill.b > fill.r else "hp_fill_you")
+	if _lag > value:
+		var lr := _part(_lag / max_value)
+		draw_texture_rect(Kit.tex("hp_fill_lag"), lr, true)
+	if value > 0.0:
+		var r := _part(value / max_value)
+		var mod := Color.WHITE
+		if value / max_value <= 0.25 and not Engine.is_editor_hint():
+			mod = Color.WHITE.lerp(Color(1.0, 0.45, 0.4), 0.5 + 0.5 * sin(Time.get_ticks_msec() / 120.0))
+		draw_texture_rect(fill_tex, r, true, mod)
+	if segment > 0.0:
+		var n := int(max_value / segment)
+		for i in range(1, n):
+			var x := size.x * (i * segment / max_value)
+			draw_line(Vector2(x, 1), Vector2(x, size.y - 1), Color(0.1, 0.07, 0.05, 0.8), 2.0, true)
+	# the frame sits just outside the fill (its bronze caps overhang the ends)
+	Kit.draw_box(self, "hp_frame", full.grow_individual(16, 8, 16, 8), "hp_frame")

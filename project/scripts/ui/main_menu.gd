@@ -11,6 +11,8 @@ const ScrollPanel = preload("res://scripts/ui/kit/scroll_panel.gd")
 const EmblemTile = preload("res://scripts/ui/kit/emblem_tile.gd")
 const Roster = preload("res://scripts/data/roster.gd")
 const Arenas = preload("res://scripts/data/arenas.gd")
+const Specials = preload("res://scripts/data/specials.gd")
+const BuildBoard = preload("res://scripts/ui/kit/build_board.gd")
 
 const JOIN_TIMEOUT := 8.0
 
@@ -35,6 +37,10 @@ const JOIN_TIMEOUT := 8.0
 @onready var controls_box: VBoxContainer = $RightArea/InfoPanel/VBox/Controls
 
 enum Mode { MAIN, HOST, JOIN, TRAIN }
+var _build_dim: ColorRect
+var _build_panel
+var _build_msg: Label
+var _train_build: Label
 var _mode: Mode = Mode.MAIN
 var _joining: bool = false
 var _join_started: float = 0.0
@@ -97,7 +103,7 @@ func _build_info_panel() -> void:
 	grid.columns = 3
 	grid.add_theme_constant_override("h_separation", 22)
 	grid.add_theme_constant_override("v_separation", 8)
-	for pair in [["ARROWS", "MOVE"], ["Q W E R", "ATTACK"], ["SPACE", "JUMP"], ["HOLD F", "MERGE"], ["ESC ×2", "LEAVE"]]:
+	for pair in [["ARROWS", "MOVE"], ["Z X C V", "ATTACK"], ["A", "SIGNATURE"], ["HOLD SHIFT", "FINE AIM"], ["SPACE", "JUMP"], ["HOLD A", "MERGE"]]:
 		grid.add_child(KeyHint.new().setup(pair[0], pair[1]))
 	controls_box.add_child(grid)
 
@@ -128,7 +134,7 @@ func _build_training() -> void:
 	training_panel.add_child(v)
 	_lbl(v, &"EyebrowLabel", "SINGLE PLAYER")
 	_lbl(v, &"H2Label", "TRAINING GROUNDS")
-	var intro := _lbl(v, &"BodyLabel", "Practise every power on a sparring partner. Keys 1-4 change element; T calls Raava down to rehearse the merge.")
+	var intro := _lbl(v, &"BodyLabel", "Practise every power on a sparring partner. Keys 1-4 change element; T calls Raava down; A is your bender's signature.")
 	intro.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	intro.custom_minimum_size.x = 400
 	var g := Control.new()
@@ -166,6 +172,24 @@ func _build_training() -> void:
 	_train_nation = _lbl(acol, &"CaptionLabel", "")
 	arow.add_child(_arrow("<", func(): _step_arena(-1)))
 	arow.add_child(_arrow(">", func(): _step_arena(1)))
+
+	var brow0 := HBoxContainer.new()
+	brow0.add_theme_constant_override("separation", 10)
+	v.add_child(brow0)
+	var bld_col := VBoxContainer.new()
+	bld_col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	bld_col.add_theme_constant_override("separation", 0)
+	brow0.add_child(bld_col)
+	_lbl(bld_col, &"CaptionLabel", "BUILD")
+	_train_build = _lbl(bld_col, &"BodyLabel", "")
+	_train_build.add_theme_font_size_override("font_size", 15)
+	var bbtn := Button.new()
+	bbtn.theme_type_variation = &"SmallButton"
+	bbtn.text = "EDIT BUILD"
+	bbtn.custom_minimum_size = Vector2(130, 36)
+	bbtn.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	bbtn.pressed.connect(_open_build)
+	brow0.add_child(bbtn)
 
 	var g2 := Control.new()
 	g2.custom_minimum_size.y = 4
@@ -227,6 +251,59 @@ func _refresh_training() -> void:
 	_train_element.add_theme_color_override("font_color", T.element_color(int(f["element"])))
 	_train_arena.text = Arenas.display_name(_train_arena_id)
 	_train_nation.text = Arenas.nation_name(_train_arena_id).to_upper()
+	if _train_build:
+		_train_build.text = Specials.summary(_training_build(), Roster.FIGHTERS[_train_fighter]["id"])
+
+## Training build: your saved stats (the signature comes with the bender).
+func _training_build() -> Dictionary:
+	return Specials.sanitize(UserSettings.last_build)
+
+func _open_build() -> void:
+	if _build_dim == null:
+		_build_dim = ColorRect.new()
+		_build_dim.color = Color(T.INK, 0.9)
+		_build_dim.set_anchors_preset(Control.PRESET_FULL_RECT)
+		_build_dim.mouse_filter = Control.MOUSE_FILTER_STOP
+		add_child(_build_dim)
+		var v := VBoxContainer.new()
+		v.set_anchors_preset(Control.PRESET_FULL_RECT)
+		v.offset_left = 48
+		v.offset_right = -48
+		v.alignment = BoxContainer.ALIGNMENT_CENTER
+		v.add_theme_constant_override("separation", 14)
+		_build_dim.add_child(v)
+		var t := _lbl(v, &"H1Label", "SHAPE YOUR BUILD")
+		t.add_theme_color_override("font_color", T.PAPER_LIGHT)
+		var sub := _lbl(v, &"BodyLabel", "Spend 8 points on your stats. Your bender's signature attack is on A.")
+		sub.add_theme_color_override("font_color", Color(T.PAPER_LIGHT, 0.85))
+		_build_panel = BuildBoard.new()
+		_build_panel.custom_minimum_size = Vector2(1184, 332)
+		v.add_child(_build_panel)
+		var foot := HBoxContainer.new()
+		foot.add_theme_constant_override("separation", 16)
+		v.add_child(foot)
+		_build_msg = _lbl(foot, &"BodyLabel", "")
+		_build_msg.add_theme_color_override("font_color", T.PAPER_LIGHT)
+		_build_msg.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		var done := Button.new()
+		done.theme_type_variation = &"PrimaryButton"
+		done.text = "DONE"
+		done.custom_minimum_size = Vector2(200, 56)
+		done.pressed.connect(_close_build)
+		foot.add_child(done)
+		_build_panel.build_changed.connect(func(b):
+			UserSettings.last_build = b
+			UserSettings.save()
+			_refresh_training())
+		_build_panel.message.connect(func(m): _build_msg.text = m)
+	var el := int(Roster.FIGHTERS[_train_fighter]["element"])
+	_build_panel.set_state(el, Roster.FIGHTERS[_train_fighter]["id"], _training_build())
+	_build_msg.text = "Change bender (< >) on the training card to try another signature."
+	_build_dim.visible = true
+
+func _close_build() -> void:
+	_build_dim.visible = false
+	_train_start.grab_focus()
 
 func _on_training_pressed() -> void:
 	_show_notice("")
@@ -287,9 +364,20 @@ func _show_notice(text: String) -> void:
 	notice_label.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	notice_label.size.x = 0  # shrink to text
 
+func _input(event: InputEvent) -> void:
+	if _build_dim and _build_dim.visible and event is InputEventKey and event.pressed:
+		if event.keycode in [KEY_ENTER, KEY_KP_ENTER] and not event.echo:
+			_close_build()
+			get_viewport().set_input_as_handled()
+		elif _build_panel.key_input(event):
+			get_viewport().set_input_as_handled()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") or event.is_action_pressed("pause_menu"):
 		get_viewport().set_input_as_handled()
+		if _build_dim and _build_dim.visible:
+			_close_build()
+			return
 		if _mode == Mode.MAIN:
 			_on_quit_pressed()
 		else:

@@ -17,6 +17,7 @@ const DEFAULT_PORT: int = 7777
 const MAX_CLIENTS: int = 1  # host + 1 joining player = 2 fighters
 const Roster = preload("res://scripts/data/roster.gd")
 const Arenas = preload("res://scripts/data/arenas.gd")
+const Specials = preload("res://scripts/data/specials.gd")
 const LOBBY_COUNTDOWN: float = 3.0
 
 const MAIN_MENU_SCENE := "res://scenes/ui/main_menu.tscn"
@@ -195,7 +196,24 @@ func request_set_element(element: int) -> void:
 	if players[sender]["element"] != element:
 		players[sender]["element"] = element
 		players[sender]["fighter"] = Roster.default_for(element)
+		_revalidate_build(sender)
 	_sync_player_list.rpc(players)
+
+## Build (stats + special) from the lobby's build screen. The host keeps a legal copy.
+@rpc("any_peer", "reliable", "call_local")
+func request_set_build(build: Dictionary) -> void:
+	if not multiplayer.is_server():
+		return
+	var sender := _sender_id()
+	if not players.has(sender) or players[sender]["ready"]:
+		return
+	players[sender]["build"] = build
+	_revalidate_build(sender)
+	_sync_player_list.rpc(players)
+
+func _revalidate_build(id: int) -> void:
+	var p: Dictionary = players[id]
+	p["build"] = Specials.sanitize(p.get("build", {}))
 
 ## Pick a specific bender. Switching to another element's bender also
 ## switches the element.
@@ -211,6 +229,7 @@ func request_set_fighter(fighter_id: String) -> void:
 		return
 	players[sender]["element"] = int(f["element"])
 	players[sender]["fighter"] = fighter_id
+	_revalidate_build(sender)
 	_sync_player_list.rpc(players)
 
 @rpc("any_peer", "reliable", "call_local")
@@ -278,6 +297,7 @@ func return_to_lobby() -> void:
 		return
 	for id in players:
 		players[id]["ready"] = false
+		_revalidate_build(id)
 	_sync_player_list.rpc(players)
 	_start_lobby.rpc()
 
@@ -293,9 +313,11 @@ func start_training(fighter_id: String, arena_id: String) -> void:
 	# The partner is a bender of the next element, so mirror colors never clash.
 	var partner_el := (int(me["element"]) + 1) % 4
 	players = {
-		1: {"name": local_name(), "element": int(me["element"]), "fighter": me["id"], "ready": true},
-		TRAINING_PARTNER_ID: {"name": "Partner", "element": partner_el, "fighter": Roster.default_for(partner_el), "ready": true},
+		1: _new_player_entry(local_name(), int(me["element"])),
+		TRAINING_PARTNER_ID: _new_player_entry("Partner", partner_el),
 	}
+	players[1]["fighter"] = me["id"]
+	players[1]["build"] = Specials.sanitize(UserSettings.last_build)
 	if Arenas.is_valid(arena_id):
 		selected_arena = arena_id
 		UserSettings.last_arena = arena_id
@@ -338,7 +360,8 @@ func _all_ready() -> bool:
 	return true
 
 func _new_player_entry(player_name: String, element: int) -> Dictionary:
-	return {"name": player_name, "element": element, "fighter": Roster.default_for(element), "ready": false}
+	var b := Specials.sanitize(UserSettings.last_build if player_name == local_name() else {})
+	return {"name": player_name, "element": element, "fighter": Roster.default_for(element), "ready": false, "build": b}
 
 func get_local_ip() -> String:
 	var addresses := IP.get_local_addresses()

@@ -16,6 +16,7 @@ extends RefCounted
 ##   Panels:  PanelContainer (parchment), GlassPanel (ink wash), ChipPanel
 
 const T = preload("res://scripts/ui/kit/ui_tokens.gd")
+const Kit = preload("res://scripts/ui/kit/ui_kit.gd")
 
 static func build() -> Theme:
 	var th := Theme.new()
@@ -91,6 +92,10 @@ static func _buttons(th: Theme) -> void:
 	th.set_font("font", "Button", T.font("heading"))
 	th.set_font_size("font_size", "Button", T.FS_H3)
 
+	if Kit.has("button_primary_normal"):
+		_kit_buttons(th)
+		return
+
 	# Primary: a vermilion brush stroke.
 	th.set_type_variation("PrimaryButton", "Button")
 	th.set_stylebox("normal", "PrimaryButton", tex_box(brush, T.VERMILION, 70, 0, 34, 14))
@@ -117,6 +122,31 @@ static func _buttons(th: Theme) -> void:
 	th.set_stylebox("hover_pressed", "SmallButton", flat(T.PAPER_DARK, T.VERMILION_DEEP, 2, 14, 4))
 	th.set_stylebox("disabled", "SmallButton", flat(Color(T.PAPER_DARK, 0.5), Color(T.INK, 0.25), 2, 14, 4))
 	_font_colors(th, "SmallButton", T.INK, T.VERMILION, T.INK_FAINT)
+	th.set_font("font", "SmallButton", T.font("label"))
+	th.set_font_size("font_size", "SmallButton", T.FS_LABEL)
+
+## Keyboard focus on kit buttons: a thin gold leaf outline just outside.
+static func _kit_focus() -> StyleBoxFlat:
+	var sb := StyleBoxFlat.new()
+	sb.draw_center = false
+	sb.border_color = Color(T.SIDE_YOU, 0.9)
+	sb.set_border_width_all(2)
+	sb.set_corner_radius_all(6)
+	sb.set_expand_margin_all(3)
+	return sb
+
+## The painted kit: vermilion lacquer plaques, parchment tablets with scroll
+## ends, dark wood tablets with bronze corners.
+static func _kit_buttons(th: Theme) -> void:
+	var states := {"normal": "normal", "hover": "hover", "pressed": "pressed", "hover_pressed": "pressed", "disabled": "disabled"}
+	for variation in [["PrimaryButton", "button_primary", 30.0, 14.0], ["SecondaryButton", "button_secondary", 36.0, 14.0], ["SmallButton", "button_small", 16.0, 7.0]]:
+		th.set_type_variation(variation[0], "Button")
+		for st in states:
+			th.set_stylebox(st, variation[0], Kit.box("%s_%s" % [variation[1], states[st]], variation[1], variation[2], variation[3]))
+		th.set_stylebox("focus", variation[0], _kit_focus())
+	_font_colors(th, "PrimaryButton", T.PAPER_LIGHT, Color("fff3d6"), Color(T.PAPER_LIGHT, 0.55))
+	_font_colors(th, "SecondaryButton", T.INK, T.VERMILION, T.INK_FAINT)
+	_font_colors(th, "SmallButton", T.PAPER_LIGHT, T.SIDE_YOU, Color(T.PAPER_LIGHT, 0.45))
 	th.set_font("font", "SmallButton", T.font("label"))
 	th.set_font_size("font_size", "SmallButton", T.FS_LABEL)
 
@@ -182,13 +212,16 @@ static func _panels(th: Theme) -> void:
 	th.set_stylebox("panel", "Panel", panel)
 
 	th.set_type_variation("GlassPanel", "PanelContainer")
-	th.set_stylebox("panel", "GlassPanel", flat(T.INK_WASH, Color(0, 0, 0, 0), 0, 16, 12))
+	th.set_stylebox("panel", "GlassPanel", Kit.box("panel_dark", "", 24, 18) if Kit.has("panel_dark") else flat(T.INK_WASH, Color(0, 0, 0, 0), 0, 16, 12))
+	if Kit.has("panel_card"):
+		th.set_type_variation("CardPanel", "PanelContainer")
+		th.set_stylebox("panel", "CardPanel", Kit.box("panel_card", "", 40, 34))
 
 	th.set_type_variation("ChipPanel", "PanelContainer")
 	th.set_stylebox("panel", "ChipPanel", flat(T.PAPER_LIGHT, T.INK, 1, 8, 2))
 
 static func _misc(th: Theme) -> void:
-	th.set_stylebox("panel", "TooltipPanel", flat(T.PAPER_LIGHT, T.INK, 1, 12, 8))
+	th.set_stylebox("panel", "TooltipPanel", Kit.box("tooltip_toast", "", 30, 10) if Kit.has("tooltip_toast") else flat(T.PAPER_LIGHT, T.INK, 1, 12, 8))
 	th.set_color("font_color", "TooltipLabel", T.INK)
 	th.set_stylebox("background", "ProgressBar", flat(Color(T.INK, 0.6), T.INK, 1, 0, 0))
 	th.set_stylebox("fill", "ProgressBar", flat(T.SIDE_YOU, Color(0, 0, 0, 0), 0, 0, 0))

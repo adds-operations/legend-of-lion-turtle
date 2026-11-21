@@ -88,14 +88,44 @@ cd legend-of-lion-turtle
 1. Both Macs on the same Wi-Fi / network.
 2. **Mac A:** run the game → **Create Arena**. It shows its IP and port (7777).
 3. **Mac B:** run the game → **Join Arena** → type Mac A's IP → **Connect**.
-4. Both land in the lobby. The host picks the arena (**Q / E** or the arrows on the arena card). Pick an element, press **READY**. A 3-second countdown starts the match.
-5. Controls: **Arrow keys** move · **Q W E R** attack · **Space** jump · **Hold F** in Raava's light to merge · **Esc ×2** leave. There's no mouse: every power flies the way your bender faces, which is the way you last moved.
+4. Both land in the lobby. The host picks the arena (**Q / E** or the arrows on the arena card). Pick an element, set your build (**B**, see below), press **READY**. A 3-second countdown starts the match.
+5. Controls: **Arrow keys** move in any direction (360°: the facing turns smoothly, and letting go of a diagonal keeps you facing that diagonal) · **Z X C V** attack · **A** special · **Space** jump · **Hold A** in Raava's light to merge · **Esc** menu. There's no mouse: every power flies the way your bender faces, at any angle.
+6. **Auto-aim** (on by default): every power is aimed at your rival, so the arrows are only for moving and dodging. Hold **Shift** to aim by hand for a moment. Turn it off or on any time from the **Esc** menu (or press **Q** there). Training pauses while the menu is open; a LAN match keeps running for your rival.
+
+### Builds and signatures
+
+Before a match, open the lobby's **2 · BUILD & SIGNATURE** tab (click it or press **B**; on the training card, **EDIT BUILD**) and spend **8 points** on three stats, 0–5 each. Click a pip or use ← →; the red seal counts the points left. Pressing READY with points unspent takes you to the build tab once. Points only make you stronger; they never change your powers.
+
+| Stat | Per point |
+| --- | --- |
+| Attack | +5% damage |
+| Defense | 4% less damage taken (all reduction capped at 50%) |
+| Mobility | +4% move speed |
+
+**Signature (A):** every bender has one fixed signature attack, their bending style. It is long range, much stronger than Z X C V, has a short windup (about 0.25 s, you stand still for it) and leaves the rival with a status. Every signature only hits fighters on the ground, so jumping is the dodge.
+
+| Bender | Signature | What it does | Status |
+| --- | --- | --- | --- |
+| Ember Captain | Thunder Strike | instant lightning across the arena | Shocked: can't move or act 1 s |
+| Sun Student | Sun Dragon | a fire dragon flying far | Burning: 4 damage every 0.5 s for 3 s |
+| Ice Guard | Glacier Prison | ice spikes burst out of the ground in a line | Frozen: rooted 1.5 s (can still bend) |
+| Tide Runner | Tidal Surge | a great wave that rolls the rival back | Soaked: 45% slower for 3.5 s |
+| Stone Warden | Pillar Eruption | stone pillars erupt out of the ground | Stunned: can't move or act 0.9 s |
+| Sand Outrider | Sand Tomb | a sand serpent skimming the ground | Buried: rooted 1.6 s |
+| Temple Courier | Air Cannon | a compressed air sphere, huge knockback | Winded: can't attack, 25% slower, 2 s |
+| Cloud Keeper | Tornado Lift | a travelling tornado | Swept up: lifted, helpless 1.2 s |
+
+Hard control (shocked, stunned, frozen, buried, swept up) can't be chained: the target gets 1 s of immunity after it ends. Data: `project/scripts/data/specials.gd`; behaviour: `project/scripts/characters/signature_runner.gd`; status art: `project/scripts/fx/status_fx.gd`. Art: `assets/avatar_bending/signatures/<id>.png` (8 frames × windup / travel / impact / status rows); until those sheets are installed each signature borrows a row of the specials pack.
+
+**Bending sources:** earth powers lift out of a crack in the ground before they fly; water benders hold a ribbon of water and, when it runs out (or after about 9 s), pull more from the nearest pool or river in the arena, or from the ground. Both are visual only and never delay an attack.
+
+**Aim:** a power aimed within about 24° of the rival goes straight at them (leading a moving rival a little), and the hit area is the bender's whole body, not just their feet.
 
 ### Attacks and jumping
 
 Each element has four powers, one per key:
 
-| Element | Q | W | E | R |
+| Element | Z | X | C | V |
 | --- | --- | --- | --- | --- |
 | Fire | Fire Bolt (fireball) | Flame Burst (three flame crescents) | Fire Wave (a wall of flame rolls forward, passes through) | Lightning (instant bolt along a line) |
 | Water | Water Lash (short whip) | Ice Shard (fast) | Pushing Wave (churning waves, push) | Ice Spikes (crystals erupt along the ground) |
@@ -104,12 +134,18 @@ Each element has four powers, one per key:
 
 Every power is drawn with the special-powers pack art (`assets/avatar_bending/specials/`): windup frames at the hands, the active frame in flight, and the finish frame where it lands. The mapping is in `project/scripts/fx/bending_fx.gd`.
 
-**As the Avatar,** Q W E R throw one power of each element: Fire Bolt, Ice Shard, Shockwave and Tornado.
+**As the Avatar,** Z X C V throw each element's best power (Lightning, Ice Spikes, Ground Slam and Tornado) at half the cooldown.
 
-**Arrow combos:**
-- **Attack with no arrows held:** the power flies straight ahead, the way you face.
-- **Attack while holding one arrow:** it flies that way.
-- **Attack while holding two arrows** (for example → and ↓): it launches along the left/right arrow and curves toward the up/down one, about 100°. Use this to bend shots around rocks. Lightning can't bend, so it goes out on the diagonal instead.
+**Arrow combos:** tap arrows, then attack within about a third of a second. The last arrow you tap is "forward" (F). Two arrows tapped together count as one diagonal.
+
+| Input | Move | Effect |
+| --- | --- | --- |
+| F, F, attack | Dash Strike | dash ~95 px forward, then cast |
+| back, F, attack | Power Shot | ×1.5 damage, 30% bigger |
+| side, F, attack | Curve Shot | bends toward the side you tapped first (Lightning goes out on the diagonal) |
+| back, side, F, attack | Spread Shot | three at once, ±18° |
+
+The move's name pops up above the ability strip.
 
 **Hit combos:** hits landed within 1.6 s of each other chain up, and "3 Hit Combo" appears on screen. From the 3rd hit on, each hit deals +15% more, up to +60%. The chain breaks after 1.6 s without a hit, or as soon as you get hit.
 
@@ -192,8 +228,9 @@ Sixteen arenas from the arena pack (`project/assets/avatar_arenas/`), four per n
 On the main menu, pick **TRAINING**, choose a bender and an arena, then press **START TRAINING**. It runs offline, with no second Mac.
 
 - A **sparring partner** stands in the arena. Press **G** to cycle it: standing, moving, or sparring (it fires back).
-- Press **1–4** to switch between Fire, Water, Earth and Air at any time. Q W E R then throw that element's four powers.
-- Press **T** to call Raava. The ring appears and the beam descends 3 s later, so you can rehearse the merge (hold **F**) as often as you like.
+- Press **1–4** to switch between Fire, Water, Earth and Air at any time. Z X C V then throw that element's four powers.
+- **A** fires your bender's signature; change bender on the training card to try another.
+- Press **T** to call Raava. The ring appears and the beam descends 3 s later, so you can rehearse the merge (hold **A**) as often as you like. If either of you is knocked down, the Avatar state ends.
 - The HUD counts your hits, total damage, and damage over the last 5 s.
 - Neither of you can lose: a fighter knocked down gets back up after a moment.
 - Press **Esc** twice to leave.
@@ -206,14 +243,14 @@ Once per round, one fighter can merge with Raava and bend all four elements for 
 
 1. **50 s:** "Raava is arriving" with a countdown, and the hint "Enter the ring when the beam appears". Raava's ground ring and rising motes mark the spot. The host picks the most neutral of the arena's Raava markers.
 2. **60 s:** Raava descends: the beam rises out of the ring with the spirit inside it, then holds.
-3. **Claim:** stand in the circle and hold **F** for 1.5 s, grounded and still. Moving, jumping, attacking, taking a hit, or letting go resets it. If both fighters are in the circle, it's contested and neither progresses. Both players see the progress ring and a status line.
+3. **Claim:** stand in the circle and hold **A** for 1.5 s, grounded and still. Moving, jumping, attacking, taking a hit, or letting go resets it. If both fighters are in the circle, it's contested and neither progresses. Both players see the progress ring and a status line.
 3b. **Raava leaves:** if nobody has merged 20 s after she descends, she rises away (the strip counts down) and there's no Avatar that round.
 4. **Merge:** the host awards it once. The spirit sinks into the fighter as the beam collapses, and a small four-element burst plays with the bender's own fusion animation. The beam animation is `assets/avatar_transformation/raava/raava_beam.png`: 12 frames for arriving, rising, holding and absorbing. HP, cooldowns and stats are unchanged: no healing, no immunity.
-5. **Avatar:** **Q W E R** become Fire, Water, Earth and Air: one power of each element, each key with its own cooldown. You'll see:
-   - an Avatar bar above your HUD card showing Q W E R and their elements;
+5. **Avatar:** **Z X C V** become Fire, Water, Earth and Air, each element's best power (Lightning, Ice Spikes, Ground Slam, Tornado) at half the cooldown. The state lasts **25 s**. You'll see:
+   - an Avatar bar above your HUD card showing Z X C V, their elements and the seconds left;
    - the ability tiles recolored per element;
    - on the fighter: a Raava-blue ring at the feet and the four elements circling, the active one brightest. This is drawn behind the sprite, so the sprite isn't covered.
-6. **Round end:** the Avatar lasts until someone is defeated. The next round starts without it and Raava comes again. The result screen notes when the winner won as the Avatar.
+6. **Round end:** the Avatar fades after 25 s, or when someone is defeated. The next round starts without it and Raava comes again. The result screen notes when the winner won as the Avatar.
 
 The transformation poses (channel, fusion, Avatar-ready, four directions per bender) come from the transformation pack and are merged into each bender's own `SpriteFrames` at load (`Roster.fighter_frames`), so the character pack's files are untouched.
 

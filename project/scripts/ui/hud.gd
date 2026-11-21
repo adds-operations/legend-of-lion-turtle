@@ -23,6 +23,7 @@ const Roster = preload("res://scripts/data/roster.gd")
 const Emblems = preload("res://scripts/ui/kit/emblems.gd")
 const ElementSwitcher = preload("res://scripts/ui/kit/element_switcher.gd")
 const BendingFX = preload("res://scripts/fx/bending_fx.gd")
+const Specials = preload("res://scripts/data/specials.gd")
 
 var me = null      # local fighter
 var rival = null   # opponent fighter
@@ -74,6 +75,10 @@ var _raava_src = null           # RaavaEvent while counting down
 var _switcher: Control
 var _raava_ref = null           # RaavaEvent while its beam is open (leave countdown)
 var _combo: Label
+var _move: Label
+var _move_tween: Tween
+var _shown_special: String = "~"
+var _was_avatar: bool = false
 var _combo_tween: Tween
 # Training
 var training: bool = false
@@ -196,7 +201,7 @@ func _build_top() -> void:
 	add_child(tr)
 	_ping_label = _label(&"CaptionLabel", "LAN · — ms", tr)
 	_ping_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	var leave := KeyHint.new().setup("ESC ×2", "LEAVE")
+	var leave := KeyHint.new().setup("ESC", "MENU")
 	leave.alignment = BoxContainer.ALIGNMENT_END
 	tr.add_child(leave)
 
@@ -236,18 +241,19 @@ func _build_abilities() -> void:
 	var strip := PaintPanel.new()
 	strip.style = 2  # ink wash
 	strip.color = T.INK_WASH
-	_place(strip, Control.PRESET_BOTTOM_RIGHT, Vector2(-372, -116), Vector2(356, 108))
+	_place(strip, Control.PRESET_BOTTOM_RIGHT, Vector2(-470, -126), Vector2(458, 120))
 	add_child(strip)
-	_place(row, Control.PRESET_BOTTOM_RIGHT, Vector2(-470, -112), Vector2(440, 96))
+	_place(row, Control.PRESET_BOTTOM_RIGHT, Vector2(-560, -122), Vector2(536, 114))
 	_occluders.append(row)
 	_occluders.append(strip)
 	add_child(row)
 	# key, emblem, locked, large
 	var defs := [
-		["attack_1", "Q", "bolt", false, false],
-		["attack_2", "W", "burst", false, false],
-		["attack_3", "E", "arc", false, false],
-		["attack_4", "R", "special", false, true],
+		["attack_1", "Z", "bolt", false, false],
+		["attack_2", "X", "burst", false, false],
+		["attack_3", "C", "arc", false, false],
+		["attack_4", "V", "special", false, false],
+		["special", "A", "special", false, true],
 		["jump", "SPACE", "jump", false, false],
 	]
 	for d in defs:
@@ -304,7 +310,7 @@ func _build_overlays() -> void:
 
 	_result_box = ScrollPanel.new()
 	_result_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_place(_result_box, Control.PRESET_CENTER, Vector2(-170, 70), Vector2(340, 150))
+	_place(_result_box, Control.PRESET_CENTER, Vector2(-170, 44), Vector2(340, 150))
 	_result_box.visible = false
 	add_child(_result_box)
 	var rv := VBoxContainer.new()
@@ -422,12 +428,16 @@ func show_result(won: bool, my_score: int, rival_score: int, seconds: float, win
 		_banner.play("Defeat" if match_over else "Round Lost", T.INK, T.PAPER_DARK)
 	_result_score.text = "%d : %d" % [my_score, rival_score]
 	_result_box.visible = true
+	if _train_box:
+		_train_box.visible = false   # the score scroll takes the bottom centre
 	_result_box.scale = Vector2(1, 0.04)
 	get_tree().create_timer(T.T_SLOW).timeout.connect(_result_box.unroll)
 	_result_end = Time.get_ticks_msec() / 1000.0 + seconds
 
 ## Between rounds: put the arena back to how a round starts.
 func clear_result() -> void:
+	if _train_box:
+		_train_box.visible = true
 	_result_box.visible = false
 	_result_end = -1.0
 	_raava_box.visible = false
@@ -457,21 +467,23 @@ func setup_training(partner_mode: String) -> void:
 	training = true
 	_train_box = Control.new()
 	_train_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_place(_train_box, Control.PRESET_CENTER_BOTTOM, Vector2(-170, -112), Vector2(340, 98))
+	# between your HP card (ends ~465 px) and the ability strip (starts ~800 px)
+	_place(_train_box, Control.PRESET_CENTER_BOTTOM, Vector2(-160, -112), Vector2(320, 98))
 	add_child(_train_box)
 	_occluders.append(_train_box)
-	_paper(_train_box, Vector2.ZERO, Vector2(340, 98), 51)
+	_paper(_train_box, Vector2.ZERO, Vector2(320, 98), 51)
 	var v := VBoxContainer.new()
-	v.position = Vector2(20, 12)
-	v.size = Vector2(300, 74)
+	v.position = Vector2(12, 12)
+	v.size = Vector2(296, 74)
 	v.add_theme_constant_override("separation", 2)
 	_train_box.add_child(v)
 	_train_eyebrow = _label(&"EyebrowLabel", "TRAINING", v)
 	_train_eyebrow.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_train_stats = _label(&"BodyLabel", "", v)
 	_train_stats.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_train_stats.add_theme_font_size_override("font_size", 15)
+	_train_stats.add_theme_font_size_override("font_size", 14)
 	_train_mode = _label(&"CaptionLabel", "", v)
+	_train_mode.add_theme_font_size_override("font_size", 11)
 	_train_mode.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	set_partner_mode(partner_mode)
 	_update_training_stats()
@@ -480,7 +492,7 @@ func setup_training(partner_mode: String) -> void:
 
 func set_partner_mode(mode: String) -> void:
 	if _train_mode:
-		_train_mode.text = "T CALL RAAVA  ·  G PARTNER: %s" % mode
+		_train_mode.text = "T RAAVA  ·  G PARTNER: %s  ·  SHIFT AIM" % mode
 		_train_eyebrow.text = "TRAINING"
 
 func training_hit(amount: int) -> void:
@@ -520,13 +532,13 @@ func on_raava_opened() -> void:
 	if me:
 		var arena := get_tree().current_scene
 		_raava_ref = arena.get("raava") if arena else null
-	_raava_text("RAAVA HAS DESCENDED  ·  HOLD F IN THE LIGHT", T.VERMILION)
+	_raava_text("RAAVA HAS DESCENDED  ·  HOLD A IN THE LIGHT", T.VERMILION)
 
 func on_raava_claim(claimant: int, progress: float, contested: bool) -> void:
 	if contested:
 		_raava_text("CONTESTED  ·  NEITHER CAN MERGE", T.WARNING)
 	elif claimant == -1:
-		_raava_text("RAAVA HAS DESCENDED  ·  HOLD F IN THE LIGHT", T.VERMILION)
+		_raava_text("RAAVA HAS DESCENDED  ·  HOLD A IN THE LIGHT", T.VERMILION)
 	else:
 		var pct := int(clampf(progress / 1.5, 0.0, 1.0) * 100.0)
 		if me and claimant == me.peer_id:
@@ -545,18 +557,53 @@ func show_combo(mine: bool, hits: int, mult: float) -> void:
 		_combo.add_theme_font_override("font", T.font("display"))
 		_combo.add_theme_font_size_override("font_size", 46)
 		_combo.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-		_place(_combo, Control.PRESET_BOTTOM_RIGHT, Vector2(-470, -196), Vector2(440, 70))
+		_place(_combo, Control.PRESET_BOTTOM_RIGHT, Vector2(-560, -196), Vector2(530, 70))
 	_combo.text = "%d Hit Combo%s" % [hits, ("  ×%.2f" % mult) if mult > 1.0 else ""]
 	_combo.add_theme_color_override("font_color", T.VERMILION if mine else T.SIDE_RIVAL)
 	_combo.modulate.a = 1.0
 	_combo.scale = Vector2(1.15, 1.15)
-	_combo.pivot_offset = Vector2(440, 35)
+	_combo.pivot_offset = Vector2(530, 35)
 	if _combo_tween:
 		_combo_tween.kill()
 	_combo_tween = create_tween()
 	_combo_tween.tween_property(_combo, "scale", Vector2.ONE, 0.12)
 	_combo_tween.tween_interval(1.0)
 	_combo_tween.tween_property(_combo, "modulate:a", 0.0, 0.4)
+
+## An arrow combo's name (Dash Strike, Power Shot...) over the ability strip.
+var menu_open: bool = false
+var _menu: Control
+
+## Esc: open / close the in-game menu. Training pauses underneath it.
+func toggle_menu() -> void:
+	if _menu == null:
+		_menu = load("res://scripts/ui/game_menu.gd").new()
+		_menu.visible = false
+		_menu.closed.connect(toggle_menu)
+		add_child(_menu)
+	menu_open = not menu_open
+	if menu_open:
+		_menu.open(training)
+	else:
+		_menu.visible = false
+	if training:
+		get_tree().paused = menu_open
+
+func show_move(mine: bool, move_name: String) -> void:
+	if _move == null:
+		_move = _label(&"TitleLabel", "", self)
+		_move.add_theme_font_override("font", T.font("display"))
+		_move.add_theme_font_size_override("font_size", 34)
+		_move.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		_place(_move, Control.PRESET_BOTTOM_RIGHT, Vector2(-560, -246), Vector2(530, 50))
+	_move.text = move_name
+	_move.add_theme_color_override("font_color", T.INK if mine else T.SIDE_RIVAL)
+	_move.modulate.a = 1.0
+	if _move_tween:
+		_move_tween.kill()
+	_move_tween = create_tween()
+	_move_tween.tween_interval(0.9)
+	_move_tween.tween_property(_move, "modulate:a", 0.0, 0.35)
 
 func on_raava_fused(f) -> void:
 	_raava_ref = null
@@ -567,22 +614,31 @@ func on_raava_fused(f) -> void:
 	_banner.play("Avatar", T.VERMILION if mine else T.SIDE_RIVAL, T.PAPER_LIGHT)
 	get_tree().create_timer(T.T_HOLD).timeout.connect(_banner.dismiss)
 	if mine:
-		flash_hint("Q FIRE  ·  W WATER  ·  E EARTH  ·  R AIR", 3.0)
+		flash_hint("Z FIRE  ·  X WATER  ·  C EARTH  ·  V AIR  ·  BEST POWERS, HALF COOLDOWN", 3.0)
 	else:
 		flash_hint("%s IS THE AVATAR" % _name_of(f), 2.5)
 	_refresh_avatar()
 
-## Q W E R tiles: the element each key throws right now (all four differ as the Avatar).
+## Z X C V tiles: the power each key throws right now (as the Avatar, each
+## element's best). A: the equipped special.
 func _style_slots() -> void:
 	if me == null:
 		return
 	for i in 4:
-		var e := Elements.element_for_slot(me.active_element, i, me.is_avatar)
+		var spec := Elements.attack_for(me.active_element, i, me.is_avatar)
+		var e: int = spec[0]
 		var s = _slots[Elements.ACTIONS[i]]
 		s.color = T.element_color(e)
 		s.emblem = Emblems.element_kind(e) if me.is_avatar else Elements.get_info(e)["emblems"][i]
-		s.icon = BendingFX.icon(e, i)  # the attack's own art
+		s.icon = BendingFX.icon(e, spec[1])  # the attack's own art
 	_slots["jump"].color = T.INK
+	var sp = _slots["special"]
+	if me.special and me.special.id != "":
+		sp.color = T.element_color(int(Specials.info(me.special.id).get("element", me.element)))
+		sp.icon = Specials.frame(me.special.id, 1, 0)
+		sp.locked = false
+	else:
+		sp.locked = true
 
 ## Element labels, slot colors and the switcher follow each fighter's active element.
 func _refresh_avatar() -> void:
@@ -618,6 +674,13 @@ func _process(delta: float) -> void:
 		_hp_num.add_theme_color_override("font_color", T.DANGER if me.hp <= me.max_hp * 0.25 else T.INK)
 		for i in 4:
 			_slots[Elements.ACTIONS[i]].set_cooldown(me.attack_cd[i], me.attack_cd_total[i])
+		if me.special:
+			var sp = _slots["special"]
+			sp.set_cooldown(me.special.total if me.special.active else me.special.cd_left,
+					me.special.total if me.special.active else me.special.cd_total)
+			if me.special.id != _shown_special:
+				_shown_special = me.special.id
+				_style_slots()
 		var jump_cd: float = me.jump_cooldown_timer if not me.is_jumping else GameManager.jump_cooldown
 		_slots["jump"].set_cooldown(jump_cd, GameManager.jump_cooldown)
 	if rival:
@@ -638,9 +701,15 @@ func _process(delta: float) -> void:
 	if _raava_src and is_instance_valid(_raava_src) and _raava_src.state == 1:  # WARNING
 		_raava_text("RAAVA IS ARRIVING  ·  %d" % ceili(_raava_src.seconds_to_descend()), T.INK)
 	if _raava_ref and is_instance_valid(_raava_ref) and _raava_ref.is_open() and _raava_ref.claimant == -1 and not _raava_ref.contested:
-		_raava_text("RAAVA HAS DESCENDED  ·  HOLD F IN THE LIGHT  ·  %d" % ceili(_raava_ref.seconds_left_open()), T.VERMILION)
+		_raava_text("RAAVA HAS DESCENDED  ·  HOLD A IN THE LIGHT  ·  %d" % ceili(_raava_ref.seconds_left_open()), T.VERMILION)
 	if me and me.is_avatar:
-		_switcher.recovery = me._switch_t / me.SWITCH_RECOVERY
+		_switcher.recovery = 0.0
+		_switcher.title = "AVATAR  ·  %d" % ceili(me.avatar_t)
+	if me and _was_avatar != me.is_avatar:
+		_was_avatar = me.is_avatar
+		_refresh_avatar()
+		if not me.is_avatar and not training:
+			flash_hint("THE AVATAR STATE FADES", 2.0)
 
 	_ping_t -= delta
 	if _ping_t <= 0.0:

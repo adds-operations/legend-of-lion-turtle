@@ -18,6 +18,11 @@ extends CharacterBody2D
 const Roster = preload("res://scripts/data/roster.gd")
 const T = preload("res://scripts/ui/kit/ui_tokens.gd")
 const AvatarAura = preload("res://scripts/fx/avatar_aura.gd")
+const Specials = preload("res://scripts/data/specials.gd")
+const SignatureRunner = preload("res://scripts/characters/signature_runner.gd")
+const StatusFX = preload("res://scripts/fx/status_fx.gd")
+const WaterReserve = preload("res://scripts/fx/water_reserve.gd")
+const AimRing = preload("res://scripts/fx/aim_ring.gd")
 
 signal hp_changed(new_hp: int, delta: int)
 signal avatar_changed()        # became the Avatar, or switched element as the Avatar
@@ -31,9 +36,16 @@ signal avatar_changed()        # became the Avatar, or switched element as the A
 
 const JUMP_PEAK: float = 60.0
 const Elements = preload("res://scripts/data/elements.gd")
-## Q W E R throw the bender's four powers straight ahead (the facing);
-## as the Avatar they throw Fire, Water, Earth and Air. No mouse aiming.
+## Z X C V throw the bender's four powers the way they face (360°, from the
+## arrows); as the Avatar they throw the best power of Fire, Water, Earth and
+## Air. A uses the equipped special. No mouse aiming.
 const SLOTS := 4
+const BASE_SPEED := 200.0
+const STEER_RATE := 12.0      # (unused) old steering rate
+const ACCEL_TIME := 0.08      # seconds to reach full speed
+const BRAKE_TIME := 0.06      # seconds to stop
+const TURN_RATE := 720.0      # degrees/s the facing turns toward where you move
+const FINE_TURN := 160.0      # degrees/s while holding SHIFT to aim
 
 # Reconciliation (owner on a client)
 const RECONCILE_IGNORE: float = 4.0    # px of error we tolerate silently
@@ -73,6 +85,46 @@ var _fusion_t: float = 0.0
 var _switch_t: float = 0.0              # every peer: switch recovery left
 var _aura: Node2D
 var _bot_switch_timer: float = 3.0
+const AVATAR_TIME := 25.0               # the Avatar state fades after this long
+var avatar_t: float = 0.0               # every peer: Avatar time left
+
+# --- Build and special (spec §7–9) ---
+var build: Dictionary = Specials.empty_build()
+var special: Node2D                      # SignatureRunner, child "Special" (key A)
+# --- Statuses (from signatures), set on every peer by apply_status ---
+var root_t: float = 0.0                  # frozen / buried: can't move
+var slow_t: float = 0.0                  # soaked: 45% slower
+var silence_t: float = 0.0               # winded: can't attack, 25% slower
+var burn_t: float = 0.0                  # burning: host deals 4 every 0.5 s
+var lift_t: float = 0.0                  # swept up: lifted, helpless
+var _burn_tick: float = 0.0
+var status_fx: Node2D
+var water_reserve: Node2D
+var aim_ring: Node2D
+var flying: bool = false                 # flight special: airborne, over cover
+var intangible: bool = false             # spirit form: attacks pass through
+var speed_boost: float = 1.0             # earth surfing
+var held_t: float = 0.0                  # bloodbent: can't move or act
+var immune_t: float = 0.0                # control immunity after a hold
+var recover_t: float = 0.0               # rooted while charging / recovering
+
+# --- Arrow combos (owner) ---
+## Arrow presses in the last moment, oldest first: [{"d": Vector2, "t": seconds}]
+var _presses: Array = []
+var _clock: float = 0.0
+var _move_dir: Vector2 = Vector2.ZERO
+var _diag_aim: Vector2 = Vector2.RIGHT
+var aim_angle: float = 0.0              # owner: the facing as an angle (radians)
+var fine_aiming: bool = false           # owner: SHIFT held
+var lock_target = null                  # owner: the rival the aim assist would lock onto (for the ring)
+var vel_est: Vector2 = Vector2.ZERO     # host: smoothed velocity of this fighter
+var _last_pos: Vector2 = Vector2.ZERO
+const ASSIST_CONE := 24.0               # degrees: a rival this close to your facing gets aimed at
+const ASSIST_LEAD := 0.6                # how much of the rival's motion to lead
+var _diag_t: float = -10.0
+const DIAG_GRACE := 0.12
+enum Combo { NONE, DASH, POWER, CURVE, SPREAD }
+const COMBO_NAMES := ["", "Dash Strike", "Power Shot", "Curve Shot", "Spread Shot"]
 
 # --- Training ---
 var free_switch: bool = false           # training: 1–4 switch element without being the Avatar
@@ -155,10 +207,32 @@ func setup(id: int, index: int, elem: int, spawn_pos: Vector2, fighter: String =
 	position = spawn_pos
 	_net_target = spawn_pos
 	aim_direction = Vector2.RIGHT if index == 0 else Vector2.LEFT
+	aim_angle = aim_direction.angle()
+	var b: Dictionary = NetworkManager.players.get(id, {}).get("build", {})
+	if not b.is_empty():
+		build = b.duplicate()
 
 func _ready() -> void:
 	hp = GameManager.base_hp
 	max_hp = hp
+	move_speed = BASE_SPEED * Specials.speed_mult(build)
+	special = SignatureRunner.new()
+	special.name = "Special"
+	add_child(special)
+	special.equip(Specials.signature(fighter_id))
+	if is_local_player():
+		aim_ring = AimRing.new()
+		aim_ring.name = "AimRing"
+		add_child(aim_ring)
+		move_child(aim_ring, $Body.get_index())  # on the ground, under the bender
+		$AimIndicator.visible = false
+	status_fx = StatusFX.new()
+	status_fx.name = "StatusFX"
+	add_child(status_fx)  # its own node: drawn around the bender, never on the sprite
+	water_reserve = WaterReserve.new()
+	water_reserve.name = "WaterReserve"
+	add_child(water_reserve)
+	move_child(water_reserve, $Body.get_index())
 	_style_hp_bar()
 	if shadow and shadow.texture == null:
 		shadow.texture = _make_shadow_texture()
@@ -184,10 +258,33 @@ func _physics_process(delta: float) -> void:
 		attack_cd[i] = maxf(0.0, attack_cd[i] - delta)
 		_host_cd[i] = maxf(0.0, _host_cd[i] - delta)
 	_host_cast_t += delta
+	if is_host and delta > 0.0:
+		# Host's estimate of how this fighter is moving (for aim lead).
+		vel_est = vel_est.lerp((global_position - _last_pos) / delta, 0.25)
+		_last_pos = global_position
 	if _knock_ticks > 0 and (local or is_host):
 		_knock_ticks -= 1
 		move_and_collide(_knock)
 	_switch_t = maxf(0.0, _switch_t - delta)
+	held_t = maxf(0.0, held_t - delta)
+	immune_t = maxf(0.0, immune_t - delta)
+	recover_t = maxf(0.0, recover_t - delta)
+	root_t = maxf(0.0, root_t - delta)
+	slow_t = maxf(0.0, slow_t - delta)
+	silence_t = maxf(0.0, silence_t - delta)
+	lift_t = maxf(0.0, lift_t - delta)
+	speed_boost = (0.55 if slow_t > 0.0 else 1.0) * (0.75 if silence_t > 0.0 else 1.0)
+	if burn_t > 0.0:
+		burn_t = maxf(0.0, burn_t - delta)
+		_burn_tick += delta
+		if _burn_tick >= 0.5:
+			_burn_tick = 0.0
+			if is_host:
+				take_damage(4)
+	if is_avatar:
+		avatar_t = maxf(0.0, avatar_t - delta)
+		if is_host and avatar_t <= 0.0:
+			_end_avatar.rpc()
 
 	if local:
 		_owner_tick(delta)
@@ -196,7 +293,8 @@ func _physics_process(delta: float) -> void:
 	elif is_host:
 		# Remote fighter: refill its movement budget (a little headroom for jitter,
 		# capped so a burst after a lag spike stays small).
-		_move_budget = minf(_move_budget + move_speed * delta * 1.15, move_speed * 0.25)
+		var sp := move_speed * speed_boost
+		_move_budget = minf(_move_budget + sp * delta * 1.15, sp * 0.25)
 		_moved_recently += delta
 
 	if local:
@@ -222,56 +320,229 @@ func _physics_process(delta: float) -> void:
 # =====================================================================
 
 func _owner_tick(delta: float) -> void:
+	_clock += delta
 	var input := _read_bot_input(delta) if NetworkManager.has_debug("bot") else _read_input()
 
-	if not can_act:
+	if _menu_open():
+		input = {"dir": Vector2.ZERO, "aim": Vector2.ZERO, "jump": false, "attack": -1, "channel": false, "special": false, "element": -1}
+	if not can_act or held_t > 0.0:
 		input["dir"] = Vector2.ZERO
 		input["jump"] = false
 		input["attack"] = -1
 		input["channel"] = false
+		input["special"] = false
 		input["element"] = -1
+	if recover_t > 0.0:
+		input["dir"] = Vector2.ZERO
+		input["attack"] = -1
+	if root_t > 0.0:
+		input["dir"] = Vector2.ZERO   # frozen / buried: you can still bend
+		input["jump"] = false
+	if lift_t > 0.0:
+		input["dir"] = Vector2.ZERO
+		input["attack"] = -1
+		input["special"] = false
 
-	# Raava: Q held is streamed to the host, which runs the 1.5 s channel.
-	if net_ready and bool(input.get("channel", false)) != _q_sent:
-		_q_sent = bool(input.get("channel", false))
+	# Raava: A held inside her ring is the merge (streamed to the host).
+	var raava = _raava()
+	var in_ring: bool = raava != null and raava.is_open() and global_position.distance_to(raava.point) <= raava.RADIUS
+	var channel: bool = bool(input.get("channel", false)) and (in_ring or NetworkManager.has_debug("bot"))
+	if net_ready and channel != _q_sent:
+		_q_sent = channel
 		_request_channel.rpc_id(1, _q_sent)
-	# Avatar: 1–4 switch element (host validates and syncs).
+	if input.get("special", false) and not in_ring and net_ready and special.cd_left <= 0.0 and not special.active:
+		_request_special.rpc_id(1, aim_direction)
+	# Training: 1–4 switch element (host validates and syncs).
 	var want: int = input.get("element", -1)
 	if free_switch and want >= 0 and want != active_element and _switch_t <= 0.0 and net_ready:
 		_request_element.rpc_id(1, want)
 
-	velocity = input["dir"] * move_speed
-	if input["aim"] != Vector2.ZERO:
-		aim_direction = input["aim"]
+	# Movement: quick acceleration and braking, so it feels weighty but
+	# responsive. Facing (aim) is separate: it turns toward where you move at
+	# TURN_RATE, so it can rest at ANY angle, and holding SHIFT stands you still
+	# and turns your aim finely with ← → (360° aiming on a keyboard).
+	var want_dir: Vector2 = input["dir"]
+	var fine: bool = bool(input.get("fine", false))
+	if fine:
+		fine_aiming = true
+		var turn: float = want_dir.x if absf(want_dir.x) > 0.1 else 0.0
+		aim_angle = wrapf(aim_angle + turn * deg_to_rad(FINE_TURN) * delta, -PI, PI)
+		aim_direction = Vector2.from_angle(aim_angle)
+		want_dir = Vector2.ZERO
+	else:
+		fine_aiming = false
+	var target_v: Vector2 = want_dir * move_speed * speed_boost
+	var rate: float = move_speed / (ACCEL_TIME if target_v.length() >= velocity.length() else BRAKE_TIME)
+	velocity = velocity.move_toward(target_v, rate * delta)
+	_move_dir = velocity.normalized() if velocity.length() > 1.0 else Vector2.ZERO
+	var rival = _auto_aim_target() if not fine else null
+	if rival != null:
+		# Auto-aim: face the rival at all times; the arrows only move and dodge.
+		aim_direction = (rival.global_position - global_position).normalized()
+		aim_angle = aim_direction.angle()
+	elif not fine:
+		if NetworkManager.has_debug("bot"):
+			if input["aim"] != Vector2.ZERO:
+				aim_direction = input["aim"]
+				aim_angle = aim_direction.angle()
+		else:
+			_update_aim(want_dir, delta)
 
 	if net_ready and not multiplayer.is_server():
 		_input_seq += 1
 		# Predicted position is sent after this tick's move in _physics_process().
 
-	if input["jump"] and not is_jumping and jump_cooldown_timer <= 0.0:
+	if input["jump"] and not is_jumping and not flying and jump_cooldown_timer <= 0.0:
 		_start_jump()  # predict locally (authoritative if we are the host)
 		if not multiplayer.is_server():
 			_request_jump.rpc_id(1)
 
-	var slot: int = input.get("attack", -1)
-	if slot >= 0 and attack_cd[slot] <= 0.0 and _switch_t <= 0.0:
-		var cd: float = Elements.attack(Elements.element_for_slot(active_element, slot, is_avatar), slot)["cd"]
-		attack_cd[slot] = cd
-		attack_cd_total[slot] = cd
-		# Arrow combos: two arrows held together = a curving throw. It launches
-		# along the left/right arrow and bends toward the up/down one.
-		var held: Vector2 = input["dir"]
-		var shot_dir := aim_direction
-		var bend := 0.0
-		if absf(held.x) > 0.3 and absf(held.y) > 0.3:
-			shot_dir = Vector2(signf(held.x), 0.0)
-			bend = signf(held.x) * signf(held.y)
-		_request_attack.rpc_id(1, shot_dir, slot, bend)
+	var key: int = input.get("attack", -1)
+	if key >= 0 and attack_cd[key] <= 0.0 and _switch_t <= 0.0 and can_attack():
+		var spec := Elements.attack_for(active_element, key, is_avatar)
+		var cd: float = Elements.attack(spec[0], spec[1])["cd"] * float(spec[2])
+		attack_cd[key] = cd
+		attack_cd_total[key] = cd
+		var combo := _read_combo()
+		if UserSettings.auto_aim and not fine_aiming:
+			combo[1] = aim_direction   # combos still fire at the rival
+		_request_attack.rpc_id(1, combo[1], key, combo[2], combo[0])
+
+## Arrow combos, read from the last few arrow presses (the last one sets the
+## facing F):  F F = Dash Strike · back F = Power Shot · side F = Curve Shot
+## (bends toward that side) · back side F = Spread Shot.  -> [combo, dir, bend]
+## The facing follows the smoothed movement, at any angle. Two arrows are never
+## released on the same frame, so a diagonal is held for a moment after one
+## of them lifts: letting go of ↑→ leaves you facing ↗, not → or ↑.
+func _update_aim(want_dir: Vector2, delta: float) -> void:
+	var diag := absf(want_dir.x) > 0.1 and absf(want_dir.y) > 0.1
+	if diag:
+		_diag_aim = want_dir.normalized()
+		_diag_t = _clock
+	var recent_diag := _clock - _diag_t < DIAG_GRACE
+	var target := aim_angle
+	if want_dir == Vector2.ZERO:
+		if recent_diag:
+			target = _diag_aim.angle()
+	elif not diag and recent_diag and want_dir.dot(_diag_aim) > 0.6:
+		target = _diag_aim.angle()  # one key of the diagonal just lifted
+	else:
+		target = want_dir.angle()
+	# turn toward it at TURN_RATE (a full reversal snaps, so dodging stays sharp)
+	var diff := wrapf(target - aim_angle, -PI, PI)
+	if absf(diff) > deg_to_rad(150.0):
+		aim_angle = target
+	else:
+		aim_angle = wrapf(aim_angle + clampf(diff, -deg_to_rad(TURN_RATE) * delta, deg_to_rad(TURN_RATE) * delta), -PI, PI)
+	aim_direction = Vector2.from_angle(aim_angle)
+
+func _read_combo() -> Array:
+	var none := [Combo.NONE, aim_direction, 0.0]
+	if _presses.is_empty() or _clock - float(_presses[-1]["t"]) > 0.35:
+		return none
+	var recent := []
+	for i in range(_presses.size() - 1, -1, -1):
+		var p: Dictionary = _presses[i]
+		if recent.size() > 0 and float(recent[0]["t"]) - float(p["t"]) > 0.4:
+			break
+		recent.push_front(p)
+		if recent.size() == 3:
+			break
+	_presses.clear()
+	if recent.size() < 2:
+		return none
+	# Combos are taps: an earlier arrow still held down is just steering
+	# (holding → and adding ↑ is a diagonal run, not a Curve Shot).
+	var last_act: String = recent[-1]["act"]
+	for i in recent.size() - 1:
+		var act: String = recent[i]["act"]
+		if act != last_act and Input.is_action_pressed(act):
+			return none
+	var f: Vector2 = recent[-1]["d"]
+	var a: Vector2 = recent[-2]["d"]
+	var rel := rad_to_deg(absf(f.angle_to(a)))
+	if recent.size() == 3:
+		var a0: Vector2 = recent[0]["d"]
+		if rad_to_deg(absf(f.angle_to(a0))) > 140.0 and rel > 50.0 and rel < 130.0:
+			return [Combo.SPREAD, f, 0.0]
+	if rel < 30.0:
+		return [Combo.DASH, f, 0.0]
+	if rel > 150.0:
+		return [Combo.POWER, f, 0.0]
+	if rel > 50.0 and rel < 130.0:
+		return [Combo.CURVE, f, signf(f.cross(a))]
+	return none
+
+func _note_presses() -> void:
+	var dirs := {"move_left": Vector2.LEFT, "move_right": Vector2.RIGHT, "move_up": Vector2.UP, "move_down": Vector2.DOWN}
+	for act in dirs:
+		if Input.is_action_just_pressed(act):
+			var d: Vector2 = dirs[act]
+			# Two arrows pressed together count as one diagonal press.
+			if not _presses.is_empty() and _clock - float(_presses[-1]["t"]) < 0.07 and absf((_presses[-1]["d"] as Vector2).dot(d)) < 0.5:
+				_presses[-1]["d"] = ((_presses[-1]["d"] as Vector2) + d).normalized()
+			else:
+				_presses.append({"d": d, "t": _clock, "act": act})
+	while _presses.size() > 6:
+		_presses.pop_front()
+
+func can_attack() -> bool:
+	return can_act and not is_defeated and held_t <= 0.0 and recover_t <= 0.0 and not intangible \
+			and silence_t <= 0.0 and lift_t <= 0.0
+
+## Host → every peer: a signature's status lands on this fighter.
+## Hard control (stun, lift, freeze, bury) can't chain: 1 s of immunity after.
+func apply_status(kind: String, seconds: float, src_id: String) -> void:
+	if not multiplayer.is_server() or is_defeated:
+		return
+	if kind in ["stun", "shock", "lift", "freeze", "bury"] and immune_t > 0.0:
+		return
+	_status_rpc.rpc(kind, seconds, src_id)
+
+@rpc("authority", "reliable", "call_local")
+func _status_rpc(kind: String, seconds: float, src_id: String) -> void:
+	match kind:
+		"stun", "shock":
+			held_t = maxf(held_t, seconds)
+		"lift":
+			held_t = maxf(held_t, seconds)
+			lift_t = maxf(lift_t, seconds)
+		"freeze", "bury":
+			root_t = maxf(root_t, seconds)
+		"soak":
+			slow_t = maxf(slow_t, seconds)
+		"wind":
+			silence_t = maxf(silence_t, seconds)
+		"burn":
+			burn_t = maxf(burn_t, seconds)
+			_burn_tick = 0.0
+	if kind in ["stun", "shock", "lift", "freeze", "bury"]:
+		immune_t = seconds + 1.0
+	channel_held = false
+	if status_fx:
+		status_fx.show_status(kind, seconds, src_id)
+
+func clear_statuses() -> void:
+	root_t = 0.0
+	slow_t = 0.0
+	silence_t = 0.0
+	burn_t = 0.0
+	lift_t = 0.0
+	held_t = 0.0
+	if status_fx:
+		status_fx.clear()
+
+func is_airborne() -> bool:
+	return is_jumping or flying
+
+func damage_mult() -> float:
+	return Specials.damage_mult(build)
 
 func _read_input() -> Dictionary:
 	var dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if dir.length() > 1.0:
 		dir = dir.normalized()
+	_note_presses()
 	# You aim by facing: powers fly the way you last moved.
 	var attack := -1
 	for i in SLOTS:
@@ -280,9 +551,11 @@ func _read_input() -> Dictionary:
 	return {
 		"dir": dir,
 		"aim": dir.normalized() if dir != Vector2.ZERO else Vector2.ZERO,
+		"fine": Input.is_action_pressed("aim_mode"),
 		"jump": Input.is_action_just_pressed("jump"),
 		"attack": attack,
 		"channel": Input.is_action_pressed("special"),
+		"special": Input.is_action_just_pressed("special"),
 		"element": _element_key(),
 	}
 
@@ -334,12 +607,8 @@ func _read_bot_input(delta: float) -> Dictionary:
 			channel = true
 			fire = false
 			jump = false
-	if is_avatar:
-		_bot_switch_timer -= delta
-		if _bot_switch_timer <= 0.0:
-			_bot_switch_timer = 2.0
-			elem = (active_element + 1) % 4
-	return {"dir": dir, "aim": aim, "jump": jump, "attack": (randi() % SLOTS) if fire else -1, "channel": channel, "element": elem}
+	var spc := NetworkManager.has_debug("bot-special") and randf() < 0.01 and not channel
+	return {"dir": dir, "aim": aim, "jump": jump, "attack": (randi() % SLOTS) if fire else -1, "channel": channel, "special": spc, "element": elem}
 
 func _raava():
 	var arena := get_tree().current_scene
@@ -378,7 +647,7 @@ func _request_jump() -> void:
 		return
 	if multiplayer.get_remote_sender_id() != peer_id or not can_act:
 		return
-	if is_jumping or jump_cooldown_timer > 0.0:
+	if is_jumping or flying or jump_cooldown_timer > 0.0:
 		return
 	_start_jump()
 
@@ -410,7 +679,20 @@ func _sync_active_element(new_element: int) -> void:
 	_switch_t = SWITCH_RECOVERY
 	if _aura:
 		_aura.element = new_element
+	# Training: A follows the element too — the signature of this bender's
+	# counterpart in that element (Ember Captain ↔ Ice Guard ↔ Stone Warden ↔ Temple Courier).
+	if free_switch and special and not special.active:
+		special.equip(Specials.signature(_counterpart(new_element)))
 	avatar_changed.emit()
+
+func _counterpart(new_element: int) -> String:
+	var mine := Roster.for_element(element)
+	var idx := 0
+	for i in mine.size():
+		if mine[i]["id"] == fighter_id:
+			idx = i
+	var theirs := Roster.for_element(new_element)
+	return theirs[mini(idx, theirs.size() - 1)]["id"]
 
 ## Training: drop the Avatar state (so Raava can be practiced again).
 func clear_avatar() -> void:
@@ -426,7 +708,20 @@ func clear_avatar() -> void:
 ## and jump cleared. The host starts the round with _begin_round afterwards.
 func reset_for_round(spawn_pos: Vector2) -> void:
 	clear_avatar()
+	if special:
+		special.reset()
+	clear_statuses()
+	if water_reserve:
+		water_reserve.refill_now()
+	set_flying(false)
+	intangible = false
+	speed_boost = 1.0
+	held_t = 0.0
+	immune_t = 0.0
+	recover_t = 0.0
 	active_element = element
+	if special:
+		special.equip(Specials.signature(fighter_id))
 	is_defeated = false
 	hp = max_hp
 	_update_hp_display()
@@ -454,6 +749,7 @@ func reset_for_round(spawn_pos: Vector2) -> void:
 
 ## Training: back on your feet with full HP.
 func revive() -> void:
+	clear_statuses()
 	is_defeated = false
 	hp = max_hp
 	_hit_t = 0.0
@@ -464,6 +760,22 @@ func revive() -> void:
 
 ## Host: the training partner. STAND waits, MOVE strafes around its spot,
 ## SPAR strafes and throws a bolt at you every so often.
+var _ai_orbit: float = 1.0
+var _ai_turn_t: float = 0.0
+var _ai_stuck_t: float = 0.0
+
+## Is one of `who`'s powers heading this way?
+func _threatened(who) -> bool:
+	var arena := get_tree().current_scene
+	if arena == null or not ("projectiles_root" in arena):
+		return false
+	for p in arena.projectiles_root.get_children():
+		if p is Area2D and p.get("owner_peer_id") == who.peer_id:
+			var to: Vector2 = global_position - p.global_position
+			if to.length() < 160.0 and p.direction.dot(to.normalized()) > 0.8:
+				return true
+	return false
+
 func _ai_tick(delta: float) -> void:
 	_ai_t += delta
 	var target = null
@@ -475,27 +787,55 @@ func _ai_tick(delta: float) -> void:
 	if target:
 		aim_direction = (target.global_position - global_position).normalized()
 	var dir := Vector2.ZERO
-	if ai_mode != AIMode.STAND and can_act and not is_defeated:
-		dir = Vector2(cos(_ai_t * 0.9), sin(_ai_t * 1.7)).normalized()
-		if target and global_position.distance_to(target.global_position) < 90.0:
-			dir = (dir - aim_direction).normalized()  # keep some room
+	if ai_mode != AIMode.STAND and can_act and not is_defeated and target:
+		# Circle the player at a fighting distance, switching direction now and
+		# then; step in when too far, back off when too close.
+		_ai_turn_t -= delta
+		if _ai_turn_t <= 0.0:
+			_ai_turn_t = randf_range(1.2, 2.6)
+			_ai_orbit = -_ai_orbit if randf() < 0.6 else _ai_orbit
+		var to: Vector2 = target.global_position - global_position
+		var dist := to.length()
+		var radial := 0.0
+		if dist > 260.0:
+			radial = 1.0
+		elif dist < 150.0:
+			radial = -1.0
+		dir = (to.normalized() * radial + to.normalized().orthogonal() * _ai_orbit).normalized()
+		# Blocked by a rock or the edge: try the other way round.
+		if _ai_stuck_t > 0.35:
+			_ai_orbit = -_ai_orbit
+			_ai_stuck_t = 0.0
+		# Sparring: hop over powers flying at it, sometimes.
+		if ai_mode == AIMode.SPAR and not is_jumping and jump_cooldown_timer <= 0.0 and randf() < 0.02 and _threatened(target):
+			_start_jump()
 	var before := global_position
-	velocity = dir * move_speed * 0.55
+	if held_t > 0.0 or recover_t > 0.0 or root_t > 0.0:
+		dir = Vector2.ZERO
+	velocity = dir * move_speed * 0.75 * speed_boost
 	move_and_slide()
-	if global_position.distance_squared_to(before) > 0.01:
+	var moved := global_position.distance_to(before)
+	if moved > 0.1:
 		_moved_recently = 0.0
 	else:
 		_moved_recently += delta
+	if dir != Vector2.ZERO and moved < move_speed * 0.75 * delta * 0.3:
+		_ai_stuck_t += delta
+	else:
+		_ai_stuck_t = 0.0
 	if ai_mode == AIMode.SPAR and target and can_act:
 		_ai_fire_t -= delta
 		if _ai_fire_t <= 0.0:
 			_ai_fire_t = 1.4
 			_host_attack(aim_direction, randi() % SLOTS)
+		if randf() < 0.004 and special.id != "":
+			special.host_try(aim_direction)
 
 ## Every peer, on the host's confirmed merge: become the Avatar for the rest
 ## of the round. HP, cooldowns and stats are untouched (no heal, no immunity).
 func become_avatar() -> void:
 	is_avatar = true
+	avatar_t = AVATAR_TIME
 	channeling = false
 	active_element = element
 	_fusion_t = FUSION_TIME
@@ -508,29 +848,147 @@ func become_avatar() -> void:
 	avatar_changed.emit()
 
 @rpc("any_peer", "reliable", "call_local")
-func _request_attack(aim_dir: Vector2, attack_type: int, bend: float = 0.0) -> void:
+func _request_attack(aim_dir: Vector2, attack_type: int, bend: float = 0.0, combo: int = 0) -> void:
 	if not multiplayer.is_server():
 		return
 	if NetworkManager._sender_id() != peer_id:
 		return
-	_host_attack(aim_dir, attack_type, bend)
+	_host_attack(aim_dir, attack_type, bend, combo)
 
-## Host: validate and cast the power on key `slot` (0–3 = Q W E R).
-func _host_attack(aim_dir: Vector2, slot: int, bend: float = 0.0) -> void:
-	if not can_act or is_defeated or slot < 0 or slot >= SLOTS:
+## Owner → host: use the equipped special (A).
+@rpc("any_peer", "reliable", "call_local")
+func _request_special(aim_dir: Vector2) -> void:
+	if not multiplayer.is_server() or NetworkManager._sender_id() != peer_id:
+		return
+	if not can_act or is_defeated or held_t > 0.0 or recover_t > 0.0:
+		return
+	var raava = _raava()
+	if raava and raava.is_open() and global_position.distance_to(raava.point) <= raava.RADIUS:
+		return  # inside Raava's ring, A is the merge
+	special.host_try(aim_dir)
+
+## Host: validate and cast the power on key `key` (0–3 = Z X C V).
+func _host_attack(aim_dir: Vector2, key: int, bend: float = 0.0, combo: int = 0) -> void:
+	if not can_attack() or key < 0 or key >= SLOTS:
 		return
 	# Small tolerance for jitter between the owner's and host's clocks.
-	if _host_cd[slot] > 0.05 or _switch_t > 0.05:
+	if _host_cd[key] > 0.05 or _switch_t > 0.05:
 		return
-	var elem := Elements.element_for_slot(active_element, slot, is_avatar)
-	_host_cd[slot] = Elements.attack(elem, slot)["cd"]
+	var spec := Elements.attack_for(active_element, key, is_avatar)
+	_host_cd[key] = Elements.attack(spec[0], spec[1])["cd"] * float(spec[2])
 	_host_cast_t = 0.0
 	var dir := aim_dir.normalized() if aim_dir.length_squared() > 0.0001 else aim_direction
 	var arena := get_tree().current_scene
-	if arena and arena.has_method("spawn_attack"):
-		arena.spawn_attack(peer_id, elem, slot, dir, is_jumping, clampf(bend, -1.0, 1.0))
+	var atk := Elements.attack(spec[0], spec[1])
+	if combo != Combo.CURVE and atk["kind"] != "burst":
+		dir = assist_aim(dir, float(atk["speed"]), float(atk["speed"]) * float(atk["life"]) if atk["kind"] != "beam" else float(atk["range"]))
 	if arena and arena.has_method("on_fighter_disrupted"):
 		arena.on_fighter_disrupted(peer_id)
+	if combo == Combo.DASH:
+		dash(dir * 95.0, 8)
+		if not is_local_player() and ai_mode == AIMode.NONE:
+			_dash_owner.rpc_id(peer_id, dir * 95.0, 8)
+		await get_tree().create_timer(0.13).timeout
+		if not is_inside_tree() or not can_attack():
+			return
+	if combo != Combo.CURVE:
+		bend = 0.0
+	if arena and arena.has_method("spawn_attack"):
+		arena.spawn_attack(peer_id, spec[0], spec[1], dir, is_airborne(), clampf(bend, -1.0, 1.0), combo)
+		if combo != Combo.NONE:
+			arena.announce_move(peer_id, COMBO_NAMES[combo])
+
+@rpc("authority", "reliable", "call_remote")
+func _dash_owner(v: Vector2, ticks: int) -> void:
+	dash(v, ticks)
+
+## Move this fighter by `v` over `ticks` physics ticks (dashes, surges).
+## Owner: the nearest standing rival, when auto-aim is on (setting in the Esc menu).
+func _auto_aim_target():
+	if not UserSettings.auto_aim or NetworkManager.has_debug("bot"):
+		return null
+	var arena := get_tree().current_scene
+	if arena == null or not ("fighters" in arena):
+		return null
+	var best = null
+	var best_d := INF
+	for other in arena.fighters.values():
+		if other == self or other.is_defeated:
+			continue
+		var d := global_position.distance_squared_to(other.global_position)
+		if d < best_d:
+			best_d = d
+			best = other
+	return best
+
+func _menu_open() -> bool:
+	var arena := get_tree().current_scene
+	return arena != null and arena.get("hud") != null and arena.hud.get("menu_open") == true
+
+## Owner: which rival the assist would lock onto for Z (shown on the AimRing).
+func _assist_preview():
+	var arena := get_tree().current_scene
+	if arena == null or not ("fighters" in arena) or is_defeated:
+		return null
+	var atk := Elements.attack(Elements.attack_for(active_element, 0, is_avatar)[0], Elements.attack_for(active_element, 0, is_avatar)[1])
+	var reach: float = float(atk["speed"]) * float(atk["life"]) + 40.0
+	for other in arena.fighters.values():
+		if other == self or other.is_defeated:
+			continue
+		var to: Vector2 = other.global_position - global_position
+		if to.length() <= reach and absf(aim_direction.angle_to(to)) <= deg_to_rad(ASSIST_CONE):
+			return other
+	return null
+
+## Host: soft aim assist. If the rival is within a small cone of where you
+## face and within reach, the power goes straight at them (leading a moving
+## rival a little), so keyboard aiming in 360° still lands.
+func assist_aim(dir: Vector2, speed: float, reach: float) -> Vector2:
+	var arena := get_tree().current_scene
+	if arena == null or not ("fighters" in arena):
+		return dir
+	var best := dir
+	var best_ang := deg_to_rad(ASSIST_CONE)
+	for other in arena.fighters.values():
+		if other == self or other.is_defeated:
+			continue
+		var to: Vector2 = other.global_position - global_position
+		var dist := to.length()
+		if dist < 1.0 or dist > reach + 40.0:
+			continue
+		var t := dist / maxf(speed, 1.0) if speed > 0.0 else 0.0
+		var lead: Vector2 = to + other.vel_est * t * ASSIST_LEAD
+		var ang := absf(dir.angle_to(lead))
+		if ang < best_ang:
+			best_ang = ang
+			best = lead.normalized()
+	return best
+
+func dash(v: Vector2, ticks: int) -> void:
+	_knock = v / ticks
+	_knock_ticks = ticks
+
+func set_flying(on: bool) -> void:
+	flying = on
+	set_collision_mask_value(4, not on)   # glide over cover (layer value 8); walls still hold
+
+## Host: stop a channel or a held special (Metalbending's shove, getting hit).
+func interrupt() -> void:
+	channel_held = false
+	if special and special.active and special.id in ["bloodbending", "lightning", "combustion"]:
+		special.host_interrupt()
+
+func heal(amount: int) -> void:
+	if not multiplayer.is_server() or is_defeated:
+		return
+	var new_hp: int = mini(max_hp, hp + amount)
+	if new_hp != hp:
+		_sync_hp.rpc(new_hp)
+
+@rpc("authority", "reliable", "call_local")
+func _end_avatar() -> void:
+	if is_avatar:
+		clear_avatar()
 
 ## Host: push this fighter (from a hit). The owner moves itself the same way
 ## so prediction and the host agree; the host moves its own copy.
@@ -608,12 +1066,18 @@ func _sync_defeated() -> void:
 # Host-side gameplay
 # =====================================================================
 
-func take_damage(amount: int) -> void:
-	if not multiplayer.is_server() or is_defeated:
+func take_damage(amount: int, from: Vector2 = Vector2.INF) -> void:
+	if not multiplayer.is_server() or is_defeated or intangible:
 		return
 	var arena := get_tree().current_scene
 	if arena and arena.get("round_live") == false:
 		return  # bolts still in flight after the round is decided do nothing
+	# Defense: 4% per point, all reduction capped at 50%. Then guards and armor.
+	amount = int(round(amount * (1.0 - minf(0.5, Specials.reduction(build)))))
+	if special:
+		amount = special.absorb(amount, from)
+	if amount <= 0:
+		return
 	# Let _sync_hp apply it everywhere (the host included), so every peer sees
 	# the same delta: damage numbers, the hit pose and training stats.
 	var new_hp: int = maxi(0, hp - amount)
@@ -700,7 +1164,10 @@ func _update_visuals() -> void:
 
 func _update_frame_visuals(delta: float) -> void:
 	if body:
-		body.position = Vector2(0, -jump_height)
+		var lift := 0.0
+		if lift_t > 0.0:
+			lift = 26.0 * minf(1.0, lift_t * 3.0) + sin(Time.get_ticks_msec() / 90.0) * 3.0
+		body.position = Vector2(0, -jump_height - (24.0 if flying else 0.0) - lift)
 		_animate(delta)
 	# Name chip and mini HP bar ride with the body so a jump never hides behind them.
 	if name_label:
@@ -712,11 +1179,12 @@ func _update_frame_visuals(delta: float) -> void:
 		shadow.modulate.a = clampf(1.0 - k * 0.5, 0.3, 1.0)
 		shadow.scale = Vector2.ONE * (1.0 - k * 0.3)
 	if aim_indicator:
-		aim_indicator.rotation = aim_direction.angle()
-		aim_indicator.visible = is_local_player() and not is_defeated
+		aim_indicator.visible = false   # replaced by the ground AimRing
+	if aim_ring:
+		lock_target = _assist_preview()
 	if side_ring:
 		side_ring.aim = aim_direction
-		side_ring.visible = not is_defeated
+		side_ring.visible = not is_defeated and aim_ring == null   # your own ring is the AimRing
 
 ## Picks the bender's animation from gameplay state. Every peer runs this
 ## from the same synced state (position, aim, jump, HP, strikes).
@@ -748,8 +1216,8 @@ func _animate(delta: float) -> void:
 		action = "raava_fusion"
 	elif channeling and not is_jumping:
 		action = "raava_channel"
-	elif is_jumping:
-		action = "jump_start" if _air_t < TAKEOFF_TIME else "airborne"
+	elif is_jumping or flying:
+		action = "jump_start" if (_air_t < TAKEOFF_TIME and not flying) else "airborne"
 	elif _land_t > 0.0:
 		action = "land"
 	elif _strike_t > 0.0:
@@ -772,9 +1240,12 @@ func _animate(delta: float) -> void:
 		body.frame = keep_frame
 
 ## Called on every peer when this fighter's attack spawns.
-func play_strike(dir: Vector2) -> void:
+func play_strike(dir: Vector2, element: int = -1) -> void:
 	if dir != Vector2.ZERO:
 		aim_direction = dir.normalized()
+		aim_angle = aim_direction.angle()
+	if element == 1 and water_reserve:
+		water_reserve.use()  # water benders bend from the water they hold
 	_strike_t = STRIKE_TIME
 	_restart_anim = true
 
